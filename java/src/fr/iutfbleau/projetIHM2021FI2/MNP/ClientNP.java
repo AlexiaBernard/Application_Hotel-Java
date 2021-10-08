@@ -2,7 +2,7 @@ package fr.iutfbleau.projetIHM2021FI2.MNP;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import java.util.*;
 /**
- * Un client non persistent tout bête
+ * Un client non persistant tout bête
  */
 
 public class ClientNP implements Client {
@@ -14,9 +14,9 @@ public class ClientNP implements Client {
     /**
      * Constructeur
      */
-    public ClientNP(int id, String nom, String prenom){
+    public ClientNP(int id, String prenom, String nom){
         Objects.requireNonNull(nom,"On ne peut pas créer une personne avec un nom à null.");
-        Objects.requireNonNull(nom,"On ne peut pas créer une personne avec un prenom à null.");
+        Objects.requireNonNull(prenom,"On ne peut pas créer une personne avec un prenom à null.");
         this.id=id;
         this.nom=nom;
         this.prenom=prenom;
@@ -46,4 +46,9 @@ public class ClientNP implements Client {
         return this.prenom;
     }
 
+    // voir interface MonPrint
+    // @Override
+    // public String toString() {
+    //     return String.format("Nom " + this.nom + " Prenom " + this.prenom + " (id="+this.id+")");
+    // }
 }

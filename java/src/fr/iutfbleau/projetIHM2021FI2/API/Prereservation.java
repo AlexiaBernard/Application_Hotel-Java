@@ -1,5 +1,5 @@
 package fr.iutfbleau.projetIHM2021FI2.API;
-import java.util.Date;
+import java.time.LocalDate;
 /**
  * Une préréservation
  * 
@@ -7,7 +7,7 @@ import java.util.Date;
  * 
  */
 
-public interface Prereservation {
+public interface Prereservation extends MonPrint{
 
     /**
      * permet de récupérer 
@@ -21,7 +21,7 @@ public interface Prereservation {
      *
      * A priori seule la date est importante, le reste est sans importance.
      */
-    public Date getDateDebut();
+    public LocalDate getDateDebut();
 
     /**
      * permet de récupérer 
@@ -40,4 +40,15 @@ public interface Prereservation {
      * @return le client
      */
     public Client getClient();
+
+    /**
+     * @see MonPrint
+     * NB. On n'utilise le mécanisme des méthodes par défaut pour donner du code dans une interface. C'est un petit peu laid et à contre-emploi mais pratique ici.
+     */ 
+    public default String monPrint() {
+        return String.format("Préréservation " + getReference() + ": " + getClient().monPrint() + " le " +  getDateDebut().toString() + " pour " + getJours() + " nuit(s) ");
+    }
+
+    
 }
+
