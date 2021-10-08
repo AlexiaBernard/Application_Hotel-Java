@@ -6,7 +6,7 @@ import java.sql.*;
 /**
  * 
  */
-public class Recherche implements PrereservationFactory{
+public class RecherchePrereservation implements PrereservationFactory{
 
 	/**
 	 * 
@@ -45,14 +45,17 @@ public class Recherche implements PrereservationFactory{
 	public Prereservation getPrereservation(String r) {
 		Connection cnx = Connexion();
 		try{
-			PreparedStatement numero1 = cnx.prepareStatement("SELECT * FROM Reservation where reference = ?");
+			PreparedStatement numero1 = cnx.prepareStatement("SELECT * FROM Reservation WHERE reference = ?");
 			numero1.setString(1, r);
 			numero1.executeUpdate();
 			ResultSet rs1 = numero1.executeQuery();
+			Prereservation resultat = (Prereservation) rs1.getObject(1);
+			Deconnexion(cnx);
+			return resultat;
 		}catch(SQLException a){
 			System.err.println("Problème d'exécution de la requête SQL par reference");
 		}
-		
+		Deconnexion(cnx);
 		return null;
 	}
 
@@ -63,14 +66,21 @@ public class Recherche implements PrereservationFactory{
 	public Set<Prereservation> getPrereservations(String n, String p) {
 		Connection cnx = Connexion();
 		try{
-			PreparedStatement numero2 = cnx.prepareStatement("SELECT * FROM Reservation where Client IN (select id FROM Client where nom = ? AND prenom = ?)") ;
+			PreparedStatement numero2 = cnx.prepareStatement("SELECT * FROM Reservation WHERE Client IN (SELECT id FROM Client WHERE nom = ? AND prenom = ?)") ;
 			numero2.setString(1, n);
 			numero2.setString(2, p);
 			numero2.executeUpdate();
-			ResultSet rs1 = numero2.executeQuery();
+			ResultSet rs2 = numero2.executeQuery();
+			Set<Prereservation> resultat = new HashSet<Prereservation>();
+			while(rs2.next()){
+				resultat.add((Prereservation) rs2.getObject(1));
+			}
+			Deconnexion(cnx);
+			return resultat;
 		}catch(SQLException a){
 			System.err.println("Problème d'exécution de la requête SQL par reference");
 		}
+		Deconnexion(cnx);
 		return null;
 	}
 
