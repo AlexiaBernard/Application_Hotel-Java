@@ -1,13 +1,17 @@
 package Vues;
-import fr.iutfbleau.projetIHM2021FI2.Vues.*;
+//import fr.iutfbleau.projetIHM2021FI2.Vues.*;
 import javax.swing.*;
 import java.awt.*;
 
 public class Menu {
     private JFrame fenetre = new JFrame("Menu");
 
-    private JLabel textRetrouver = new JLabel("Retrouver réservation avec le nom et le prénom du client.");
+    private JLabel textRetrouver_np = new JLabel("Retrouver réservation avec le nom et le prénom du client.");
     private JPanel retrouver_np = new JPanel();
+    private JPanel jp_nom = new JPanel();
+    private JPanel jp_prenom = new JPanel();
+    private JLabel jl_nom = new JLabel("Nom : ");
+    private JLabel jl_prenom = new JLabel("Prénom : ");
     private JTextField nom = new JTextField();
     private JTextField prenom = new JTextField();
     private JButton valider_np = new JButton("Valider");
@@ -25,19 +29,45 @@ public class Menu {
         this.fenetre.setLocation(0, 0);
         this.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.retrouver_np.add(this.textRetrouver_np);
-        this.retrouver_np.add(this.nom);
-        this.retrouver_np.add(this.prenom);
-        this.retrouver_np.add(this.valider_np);
-        this.fenetre.add(this.retrouver_np);
+        /* Pour les JTextField */
+        this.nom.setFont(new Font("Serif", Font.BOLD, 20));
+        this.nom.setPreferredSize(new Dimension(150, 30));
+        this.prenom.setFont(new Font("Serif", Font.BOLD, 20));
+        this.prenom.setPreferredSize(new Dimension(150, 30));
+        this.reference.setFont(new Font("Serif", Font.BOLD, 20));
+        this.reference.setPreferredSize(new Dimension(150, 30));
 
+        /* Nom */
+        this.jl_nom.setLabelFor(this.nom);
+        this.jp_nom.add(this.jl_nom);
+        this.jp_nom.add(this.nom);
+
+        /* Prénom */
+        this.jl_prenom.setLabelFor(this.prenom);
+        this.jp_prenom.add(this.jl_prenom);
+        this.jp_prenom.add(this.prenom);
+
+        /* Pour Nom Prénom */
+        this.jl_prenom.setLabelFor(this.prenom);
+        this.retrouver_np.setLayout(new GridLayout(4,1));
+        this.retrouver_np.add(this.textRetrouver_np);
+        this.retrouver_np.add(this.jp_nom);
+        this.retrouver_np.add(this.jp_prenom);
+        this.retrouver_np.add(this.valider_np);
+
+
+        /* Pour référence */
+        this.retrouver_ref.setLayout(new GridLayout(3,1));
         this.retrouver_ref.add(this.textRetrouver_ref);
         this.retrouver_ref.add(this.reference);
         this.retrouver_ref.add(this.valider_ref);
-        this.fenetre.add(this.retrouver_ref);
 
-        this.valider_ref.addActionListener(new TraitementReference(this.fenetre));
-        this.valider_np.addActionListener(new TraitementNomPrenom(this.fenetre));
+        this.fenetre.add(this.retrouver_ref,BorderLayout.SOUTH);
+        this.fenetre.add(this.retrouver_np,BorderLayout.NORTH);
+
+        /* Les Listener */
+        this.valider_ref.addActionListener(new TraitementReference(this.fenetre, this.reference));
+        this.valider_np.addActionListener(new TraitementNomPrenom(this.fenetre, this.nom, this.prenom));
 
 		this.fenetre.setVisible(true);
     }

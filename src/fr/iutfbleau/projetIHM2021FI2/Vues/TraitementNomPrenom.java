@@ -1,4 +1,5 @@
-package fr.iutfbleau.projetIHM2021FI2.Vues;
+package Vues;
+//package fr.iutfbleau.projetIHM2021FI2.Vues;
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -12,13 +13,17 @@ import java.awt.event.*;
 
 public class TraitementNomPrenom implements ActionListener{
     private JFrame fenetre;
+    private JTextField prenom;
+    private JTextField nom;
     
     /**
      * Constructeur qui permer d'accéder à la fenêtre par la suite
      * @param fenetre the linked window
      */
-    public TraitementNomPrenom(JFrame fenetre) {
+    public TraitementNomPrenom(JFrame fenetre, JTextField nom, JTextField prenom) {
         this.fenetre = fenetre;
+        this.prenom = prenom;
+        this.nom = nom;
     }
 
     /**
@@ -27,13 +32,8 @@ public class TraitementNomPrenom implements ActionListener{
      */
     @Override
     public void actionPerformed(ActionEvent e){
-        System.out.println("Nom Prénom");
-        new FormulaireNomPrenom();
-        /* Le truc à changer
-        fenetre.dispose();
-
-        //Appel de la fenetre de jeu
-        new Jeu(); */
+        System.out.println("Nom : " + this.nom.getText() + " Prénom : " + this.prenom.getText());
+        new VerificationNomPrenom(this.nom.getText(), this.prenom.getText());
     }
     
     

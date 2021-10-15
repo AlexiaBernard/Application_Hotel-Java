@@ -1,4 +1,5 @@
-package fr.iutfbleau.projetIHM2021FI2.Vues;
+package Vues;
+//package fr.iutfbleau.projetIHM2021FI2.Vues;
 import javax.swing.*;
 import java.awt.event.*;
 
