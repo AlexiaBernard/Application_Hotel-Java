@@ -1,5 +1,4 @@
-package Vues;
-//package fr.iutfbleau.projetIHM2021FI2.Vues;
+package fr.iutfbleau.projetIHM2021FI2.Vues;
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -7,8 +6,8 @@ import java.awt.event.*;
  * <code>TraitementNomPrenom</code> est un contrôleur.
  * Il gère le bouton lancer du menu
  * 
- * @author Enora GERMOND
- * @version 1.3
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
  */
 
 public class TraitementNomPrenom implements ActionListener{
@@ -19,6 +18,8 @@ public class TraitementNomPrenom implements ActionListener{
     /**
      * Constructeur qui permer d'accéder à la fenêtre par la suite
      * @param fenetre the linked window
+     * @param nom
+     * @param prenom
      */
     public TraitementNomPrenom(JFrame fenetre, JTextField nom, JTextField prenom) {
         this.fenetre = fenetre;
@@ -33,7 +34,7 @@ public class TraitementNomPrenom implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         System.out.println("Nom : " + this.nom.getText() + " Prénom : " + this.prenom.getText());
-        new VerificationNomPrenom(this.nom.getText(), this.prenom.getText());
+        new VerificationNomPrenom(this.fenetre, this.nom.getText(), this.prenom.getText());
     }
     
     

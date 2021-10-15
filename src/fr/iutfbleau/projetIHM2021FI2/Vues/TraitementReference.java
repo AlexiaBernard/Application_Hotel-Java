@@ -1,4 +1,4 @@
-package Vues; //package fr.iutfbleau.projetIHM2021FI2.Vues;
+package fr.iutfbleau.projetIHM2021FI2.Vues;
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -17,6 +17,7 @@ public class TraitementReference implements ActionListener{
     /**
      * Constructeur qui permer d'accéder à la fenêtre par la suite
      * @param fenetre the linked window
+     * @param reference
      */
     public TraitementReference(JFrame fenetre, JTextField reference) {
         this.fenetre = fenetre;
@@ -30,7 +31,7 @@ public class TraitementReference implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         System.out.println("Référence : " + this.reference.getText());
-        new VerificationReference(this.reference.getText());
+        new VerificationReference(this.fenetre, this.reference.getText());
     }
     
     
