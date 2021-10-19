@@ -10,7 +10,6 @@ import javax.swing.*;
  */
 public class VerificationReference {
 
-    //public Prereservation getPrereservation(String r);
     /**
      * 
      * @param fenetre
@@ -41,6 +40,7 @@ public class VerificationReference {
         try{
             Prereservation prereservation = bookingPointComAPISeulement.getPrereservation(reference);
             System.out.println(reference);
+            new Afficher(prereservation);
         }catch(IllegalStateException e){
             System.out.print("Je n'ai pas trouvé de préreservation avec cette référence.\n");
             new Menu(fenetre, 1);
