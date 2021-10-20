@@ -2,17 +2,43 @@ package fr.iutfbleau.projetIHM2021FI2.Vues;
 
 import fr.iutfbleau.projetIHM2021FI2.MNP.*;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
+import fr.iutfbleau.projetIHM2021FI2.Modele.*;
+import fr.iutfbleau.projetIHM2021FI2.Constructeur.*;
 import java.time.LocalDate;
-import javax.swing.*;;
+import javax.swing.*;
+import java.awt.*;
+
 
 public class Afficher {
 
-    public Afficher(Prereservation prereservation){
-        TypeChambre type = prereservation.getTypeChambre();
-        LocalDate dateDebut = prereservation.getDateDebut();
-        int jours = prereservation.getJours();
-        System.out.println("Prereservation = "+ prereservation.monPrint());
-        System.out.println("Type de Chambre = "+type+ "Date de début = "+dateDebut+"Nombre de jour = "+jours);
+    public Afficher(JFrame fenetre, ChambreNP chambre){
+
+        JPanel affichage = new JPanel();
+
+        JLabel num_chambre = new JLabel("La chambre numéro "+chambre.getNumero()+" est disponible.");
+       
+        //boutons
+        JPanel boutons = new JPanel();
+        JButton valider = new JButton("Valider"); //à changer la taille de ce bouton
+        JButton liste = new JButton("Demander la liste"); //à changer la taille de ce bouton
+
+        boutons.setLayout(new GridLayout(1,2));
+		boutons.add(valider);
+		boutons.add(liste);
+
+        //Ajout au Panel affichage
+        affichage.setLayout(new GridLayout(2,1));
+		affichage.add(num_chambre);
+		affichage.add(boutons);
+
+        //Ajout à la fenetre
+        fenetre.add(affichage, BorderLayout.CENTER);
+
+        //valider.addActionListener(new TraitementReference(fenetre, reference));
+        //liste.addActionListener(new TraitementNomPrenom(fenetre, nom, prenom));
+
+        fenetre.setVisible(true);
+        
     }
     
 }

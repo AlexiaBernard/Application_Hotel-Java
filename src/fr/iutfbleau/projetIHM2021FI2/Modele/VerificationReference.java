@@ -1,7 +1,9 @@
-package fr.iutfbleau.projetIHM2021FI2.Vues;
+package fr.iutfbleau.projetIHM2021FI2.Modele;
 
 import fr.iutfbleau.projetIHM2021FI2.MNP.*;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
+import fr.iutfbleau.projetIHM2021FI2.Vues.*;
+import fr.iutfbleau.projetIHM2021FI2.Constructeur.*;
 import java.time.LocalDate;
 import javax.swing.*;
 
@@ -32,6 +34,9 @@ public class VerificationReference {
         bookingPointCom.ajoutePrereservation("1499-2254-DBIU", LocalDate.of(2018,01,04),2, TypeChambre.UNLS,c2);
         bookingPointCom.ajoutePrereservation("5660-8953-YKJO", LocalDate.of(2018,01,06),2, TypeChambre.DEUXLS,c5);
 
+        TypeChambre type2LS = TypeChambre.DEUXLS; //utilisation type énuméré TypeChambre
+        ChambreNP ch1 = new ChambreNP(1, type2LS);
+
         // une fois que le modèle de PrereservationFactoryNP a du contenu, je peux le caster en l'interface PreservationFactory de l'API correspondante pour que la vue s'en serve.
         
         PrereservationFactory bookingPointComAPISeulement = bookingPointCom;
@@ -40,7 +45,15 @@ public class VerificationReference {
         try{
             Prereservation prereservation = bookingPointComAPISeulement.getPrereservation(reference);
             System.out.println(reference);
-            new Afficher(prereservation);
+            /*
+            TypeChambre type = prereservation.getTypeChambre();
+            LocalDate dateDebut = prereservation.getDateDebut();
+            int jours = prereservation.getJours();
+            System.out.println("Prereservation = "+ prereservation.monPrint());
+            System.out.println("Type de Chambre = "+type+ " Date de début = "+dateDebut+" Nombre de jour = "+jours);
+            System.out.println("Numéro de chambre : "+ch1.getNumero()+ "Type de chambre : "+ch1.getType());
+            */
+            new Afficher(fenetre, ch1);
         }catch(IllegalStateException e){
             System.out.print("Je n'ai pas trouvé de préreservation avec cette référence.\n");
             new Menu(fenetre, 1);

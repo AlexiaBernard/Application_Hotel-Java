@@ -1,6 +1,14 @@
 package fr.iutfbleau.projetIHM2021FI2.Vues;
-//import fr.iutfbleau.projetIHM2021FI2.Vues.*;
+
+import fr.iutfbleau.projetIHM2021FI2.MNP.*;
+import fr.iutfbleau.projetIHM2021FI2.API.*;
+import fr.iutfbleau.projetIHM2021FI2.Modele.*;
+import fr.iutfbleau.projetIHM2021FI2.Constructeur.*;
 import javax.swing.*;
+
+import fr.iutfbleau.projetIHM2021FI2.Constructeur.TraitementNomPrenom;
+import fr.iutfbleau.projetIHM2021FI2.Constructeur.TraitementReference;
+
 import java.awt.*;
 
 public class Menu {
