@@ -1,21 +1,18 @@
 package fr.iutfbleau.projetIHM2021FI2.Vues;
-
-import fr.iutfbleau.projetIHM2021FI2.MNP.*;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.Modele.*;
-import fr.iutfbleau.projetIHM2021FI2.Constructeur.*;
-import java.time.LocalDate;
+import fr.iutfbleau.projetIHM2021FI2.Controller.*;
+import fr.iutfbleau.projetIHM2021FI2.MNP.*;
 import javax.swing.*;
 import java.awt.*;
 
 
 public class Afficher {
 
-    public Afficher(JFrame fenetre, ChambreNP chambre){
+    public Afficher(JFrame fenetre, Chambre ch1, Prereservation prereservation){
 
         JPanel affichage = new JPanel();
 
-        JLabel num_chambre = new JLabel("La chambre numéro "+chambre.getNumero()+" est disponible.");
+        JLabel num_chambre = new JLabel("La chambre numéro "+ch1.getNumero()+" est disponible.");
        
         //boutons
         JPanel boutons = new JPanel();
@@ -34,8 +31,8 @@ public class Afficher {
         //Ajout à la fenetre
         fenetre.add(affichage, BorderLayout.CENTER);
 
-        //valider.addActionListener(new TraitementReference(fenetre, reference));
-        //liste.addActionListener(new TraitementNomPrenom(fenetre, nom, prenom));
+        valider.addActionListener(new TraitementValider(fenetre, ch1, prereservation));
+        liste.addActionListener(new TraitementListe(fenetre));
 
         fenetre.setVisible(true);
         
