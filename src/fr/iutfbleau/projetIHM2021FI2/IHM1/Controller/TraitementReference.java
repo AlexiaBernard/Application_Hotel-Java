@@ -1,7 +1,8 @@
-package fr.iutfbleau.projetIHM2021FI2.Controller;
+package fr.iutfbleau.projetIHM2021FI2.IHM1.Controller;
 
-import fr.iutfbleau.projetIHM2021FI2.Modele.*;
 import javax.swing.*;
+
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Modele.*;
 
 import java.awt.event.*;
 

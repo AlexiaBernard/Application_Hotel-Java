@@ -1,4 +1,5 @@
 package fr.iutfbleau.projetIHM2021FI2.API;
+import java.time.LocalDate;
 import java.util.*;
 /**
  * Cette interface est une usine abstraite.
@@ -69,7 +70,7 @@ public interface ReservationFactory{
      *
      * Ne devrait pas retourner un objet null, par contre peut être un ensemble qui est vide.
      */    
-    public Set<Reservation> getReservation(Date d);
+    public Set<Reservation> getReservation(LocalDate d);
 
     /**
      * Cherche le nombre de chambres disponibles pour une date (réservées ou non).
@@ -79,7 +80,7 @@ public interface ReservationFactory{
      *
      * Ne devrait pas retourner un entier négatif.
      */    
-    public int getDisponibles(Date d);
+    public int getDisponibles(LocalDate d);
 
     /**
      * Cherche les réservations
@@ -90,7 +91,7 @@ public interface ReservationFactory{
      *
      * Ne devrait pas retourner un objet null, par contre peut être un ensemble qui est vide.
      */    
-    public Set<Reservation> getReservation(Date d, TypeChambre t);
+    public Set<Reservation> getReservation(LocalDate d, TypeChambre t);
     
     /**
      * Cherche le nombre de chambres disponibles d'un certain type pour une date (réservées ou non).
@@ -101,7 +102,7 @@ public interface ReservationFactory{
      *
      * Ne devrait pas retourner un entier négatif.
      */    
-    public int getDisponibles(Date d, TypeChambre t);
+    public int getDisponibles(LocalDate d, TypeChambre t);
 
     /**
      * Cherche la proportion de chambres disponibles pour une date (réservées sur réservables).
@@ -109,7 +110,7 @@ public interface ReservationFactory{
      * @return un entier entre 0 et 100
      * @throws NullPointerException si un argument est null
      */    
-    public int getRatio(Date d);
+    public int getRatio(LocalDate d);
 
     /**
      * Cherche la proportion de chambres disponibles d'un certain type pour une date (réservées sur réservables).
@@ -118,7 +119,7 @@ public interface ReservationFactory{
      * @return un entier entre 0 et 100
      * @throws NullPointerException si un argument est null
      */    
-    public int getRatio(Date d, TypeChambre t);
+    public int getRatio(LocalDate d, TypeChambre t);
 
     /**
      * Cherche le nombre moyen de chambres disponibles entre deux date (réservées ou non), arrondies à l'entier inférieur.
@@ -130,7 +131,7 @@ public interface ReservationFactory{
      *
      * Ne devrait pas retourner un entier négatif.
      */    
-    public int getDisponibles(Date d1, Date d2);
+    public int getDisponibles(LocalDate d1, LocalDate d2);
 
     /**
      * Cherche les réservations
@@ -143,7 +144,7 @@ public interface ReservationFactory{
      *
      * Ne devrait pas retourner un objet null, par contre peut être un ensemble qui est vide.
      */    
-    public Set<Reservation> getReservation(Date d1, Date d2, TypeChambre t);
+    public Set<Reservation> getReservation(LocalDate d1, LocalDate d2, TypeChambre t);
     
     /**
      * Cherche le <b>nombre moyen</b> de chambres disponibles d'un certain type entre deux date (réservées ou non), arrondies à l'entier inférieur.
@@ -156,7 +157,7 @@ public interface ReservationFactory{
      *
      * Ne devrait pas retourner un entier négatif.
      */    
-    public int getDisponibles(Date d1, Date d2, TypeChambre t);
+    public int getDisponibles(LocalDate d1, LocalDate d2, TypeChambre t);
 
     /**
      * Cherche la <b>proportion moyenne</b> de chambres disponibles pour une date (réservées sur réservables).
@@ -165,7 +166,7 @@ public interface ReservationFactory{
      * @return un entier entre 0 et 100
      * @throws NullPointerException si un argument est null
      */    
-    public int getRatio(Date d1, Date d2);
+    public int getRatio(LocalDate d1, LocalDate d2);
 
     /**
      * Cherche la <b>proportion moyenne</b> de chambres disponibles d'un certain type pour une date (réservées sur réservables).
@@ -175,6 +176,6 @@ public interface ReservationFactory{
      * @return un entier entre 0 et 100
      * @throws NullPointerException si un argument est null
      */    
-    public int getRatio(Date d1, Date d2, TypeChambre t);
+    public int getRatio(LocalDate d1, LocalDate d2, TypeChambre t);
     
 }

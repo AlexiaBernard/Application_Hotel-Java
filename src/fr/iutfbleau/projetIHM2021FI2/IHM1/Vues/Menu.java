@@ -1,9 +1,8 @@
-package fr.iutfbleau.projetIHM2021FI2.Vues;
+package fr.iutfbleau.projetIHM2021FI2.IHM1.Vues;
 
 import javax.swing.*;
 
-import fr.iutfbleau.projetIHM2021FI2.Controller.TraitementNomPrenom;
-import fr.iutfbleau.projetIHM2021FI2.Controller.TraitementReference;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Controller.*;
 
 import java.awt.*;
 

@@ -1,17 +1,12 @@
-package fr.iutfbleau.projetIHM2021FI2.Controller;
+package fr.iutfbleau.projetIHM2021FI2.IHM1.Controller;
 
-import fr.iutfbleau.projetIHM2021FI2.API.Chambre;
-import fr.iutfbleau.projetIHM2021FI2.API.Client;
-import fr.iutfbleau.projetIHM2021FI2.API.Prereservation;
-import fr.iutfbleau.projetIHM2021FI2.API.Reservation;
-import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
-import fr.iutfbleau.projetIHM2021FI2.MNP.ChambreNP;
-import fr.iutfbleau.projetIHM2021FI2.MNP.ReservationNP;
-import fr.iutfbleau.projetIHM2021FI2.Modele.*;
+import fr.iutfbleau.projetIHM2021FI2.API.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Modele.*;
+
 import javax.swing.*;
 
 import java.awt.event.*;
-import java.util.Date;
+
 
 /**
  * <code>TraitementNomPrenom</code> est un contrôleur.
@@ -44,14 +39,12 @@ public class TraitementValider implements ActionListener{
      * @param e the action data
      */
     @Override
-    public void actionPerformed(ActionEvent e){
-        //ReservationFactoryNP chambresReservees = new ReservationFactoryNP();
+    public void actionPerformed(ActionEvent a){
+        //Ici on attend que le professeur créé ResreationFactoryNP
+        //ReservationFactory chambresReservees = new ReservationFactoryNP();
         //chambresReservees.createReservation(prereservation, chambre);
         System.out.println("Réservation validée");
+        new AjoutReservation(fenetre, chambre,prereservation);
     }
     
 }
-
-/* Utilisation de 
-public Reservation createReservation(Prereservation p, Chambre c);
-*/

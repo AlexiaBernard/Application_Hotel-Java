@@ -73,21 +73,81 @@ ${BUILD}/MNP/ChambreNP.class : ${SRC}/MNP/ChambreNP.java \
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MNP/ChambreNP.java
 
 ${BUILD}/MNP/PrereservationNP.class : ${SRC}/MNP/PrereservationNP.java \
-                              ${BUILD}/API/Prereservation.class 
+			${BUILD}/MNP/ClientNP.class \
+                        ${BUILD}/API/Prereservation.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MNP/PrereservationNP.java
 
 ${BUILD}/MNP/ReservationNP.class : ${SRC}/MNP/ReservationNP.java \
                               ${BUILD}/API/Reservation.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MNP/ReservationNP.java
 
+${BUILD}/MNP/PrereservationFactory.class : ${SRC}/API/PrereservationFactory.java 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MNP/PrereservationFactory.java
+
 ${BUILD}/MNP/PrereservationFactoryNP.class : ${SRC}/MNP/PrereservationFactoryNP.java \
                               ${BUILD}/API/PrereservationFactory.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MNP/PrereservationFactoryNP.java
 
 ## TEST ##
- ${BUILD}/Test/TestTexteMNP.class : ${SRC}/Test/TestTexteMNP.java \
-			      ${BUILD}/API/PrereservationFactory.class
+${BUILD}/Test/TestTexteMNP.class : ${SRC}/Test/TestTexteMNP.java \
+			 ${BUILD}/MNP/PrereservationNP.class \
+			 ${BUILD}/MNP/PrereservationFactoryNP.class
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/Test/TestTexteMNP.java
+
+#### IHM 1 ####
+## Controller ##
+${BUILD}/IHM1/Controller/TraitementReference.class : ${SRC}/IHM1/Controller/TraitementReference.java/
+										${BUILD}/IHM1/Modele/VerificationReference.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementReference.java
+
+${BUILD}/IHM1/Controller/TraitementNomPrenom.class : ${SRC}/IHM1/Controller/TraitementNomPrenom.java/
+										${BUILD}/IHM1/Modele/VerificationNomPrenom.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementNomPrenom.java
+
+${BUILD}/IHM1/Controller/TraitementListe.class : ${SRC}/IHM1/Controller/TraitementListe.java
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementListe.java
+
+${BUILD}/IHM1/Controller/TraitementValider.class : ${SRC}/IHM1/Controller/TraitementValider.java/
+										${BUILD}/IHM1/Modele/AjoutReservation.class/
+										${BUILD}/API/Chambre.class/
+										${BUILD}/API/Prereservation.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementValider.java
+
+## Modele ##
+${BUILD}/IHM1/Modele/VerificationNomPrenom.class : ${SRC}/IHM1/Modele/VerificationNomPrenom.java/
+										${BUILD}/IHM1/Vues/Menu.class/
+										${BUILD}/API/Prereservation.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Modele/VerificationNomPrenom.java
+
+${BUILD}/IHM1/Modele/VerificationReference.class : ${SRC}/IHM1/Modele/VerificationReference.java/
+										${BUILD}/IHM1/Vues/Menu.class/
+										${BUILD}/IHM1/Vues/Afficher.class/
+										${BUILD}/API/Prereservation.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Modele/VerificationReference.java
+
+${BUILD}/IHM1/Modele/AjoutReservation.class : ${SRC}/IHM1/Modele/AjoutReservation.java/
+										${BUILD}/IHM1/Vues/Menu.class/
+										${BUILD}/API/Chambre.class/
+										${BUILD}/API/Prereservation.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Modele/AjoutReservation.java
+
+## Vues ##
+
+${BUILD}/IHM1/Vues/Menu.class : ${SRC}/IHM1/Vues/Menu.java/
+										${BUILD}/IHM1/Controller/TraitementNomPrenom.class/
+										${BUILD}/IHM1/Controller/TraitementReference.class										${BUILD}/API/Prereservation.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Vues/Menu.java
+
+${BUILD}/IHM1/Vues/Afficher.class : ${SRC}/IHM1/Vues/Afficher.java/
+										${BUILD}/IHM1/Controller/TraitementValider.class/
+										${BUILD}/IHM1/Controller/TraitementListe.class/
+										${BUILD}/API/Chambre.class/
+										${BUILD}/API/Prereservation.class									${BUILD}/API/Prereservation.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Vues/Afficher.java
+
+${BUILD}/IHM1/Vues/Main.class : ${SRC}/IHM1/Vues/Main.java
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Vues/Main.java
+
 
 # ## JARS ##
  ${JAR_MNP} : ${BUILD}/Test/TestTexteMNP.class

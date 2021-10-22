@@ -1,10 +1,10 @@
-package fr.iutfbleau.projetIHM2021FI2.Modele;
+package fr.iutfbleau.projetIHM2021FI2.IHM1.Modele;
 
 import fr.iutfbleau.projetIHM2021FI2.MNP.*;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.Controller.*;
-import fr.iutfbleau.projetIHM2021FI2.Vues.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Vues.*;
 
+import java.sql.*;
 import java.time.LocalDate;
 import javax.swing.*;
 
@@ -59,5 +59,42 @@ public class VerificationReference {
             System.out.print("Je n'ai pas trouvé de préreservation avec cette référence.\n");
             new Menu(fenetre, 1);
         }
+        
+        /*
+        //En utilisant une base de données : 
+        //il faudrait mettre une autre erreur de base de données
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+            try{
+                Connection connexion = DriverManager.getConnection(
+                "jdbc:mariadb://dwarves.iut-fbleau.fr/bernardal",
+                    "bernardal", "bernardal");
+                /*Connection connexion = DriverManager.getConnection(
+                    "jdbc:mariadb://dwarves.iut-fbleau.fr/phpmyadmin",
+                        "projetihm", "mhitejorp");
+                        */
+                   /* try {
+                        PreparedStatement commande = connexion.prepareStatement("SELECT * FROM Reservation WHERE reference=?");
+                        //Attention ici Reservation doit etre prereservation , mais pour tester j'ai mit reservation car
+                        //Le tableau prereservation nexiste pas
+                        commande.setString(1, reference);
+                        ResultSet result = commande.executeQuery();
+                        Prereservation prereservation = (Prereservation) result.getObject(1);
+                        connexion.close();
+                        new Afficher(fenetre, prereservation);
+                    } catch (SQLException g) {
+                        System.err.println("Problèmre dans la récupération des données");
+                    }
+            }catch(SQLException f){
+                System.err.println("Problèmre dans la connexion avec la Base de données. ");
+                new Menu(fenetre, 1);
+            }
+        } catch (ClassNotFoundException e) {
+            System.err.println("Impossible de se connecter à la Base de données.");
+            new Menu(fenetre, 1);
+        }
+        */
+        
+        
     }  
 }

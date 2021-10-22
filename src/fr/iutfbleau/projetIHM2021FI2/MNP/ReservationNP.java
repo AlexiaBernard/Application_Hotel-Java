@@ -1,5 +1,7 @@
 package fr.iutfbleau.projetIHM2021FI2.MNP;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
+
+import java.time.LocalDate;
 import java.util.*;
 /**
  * Une Réservation non presistante toute bête
@@ -11,7 +13,7 @@ import java.util.*;
 public class ReservationNP implements Reservation {
 
     private String reference;
-    private Date dateDebut;
+    private LocalDate dateDebut;
     private int jours;
     private Chambre chambre;
     private Client client;
@@ -21,7 +23,7 @@ public class ReservationNP implements Reservation {
      *
      * NB. on force jours>0 et les autres attributs à ne pas être null
      */
-    public ReservationNP(String reference, Date dateDebut, int jours, Chambre chambre, Client client){
+    public ReservationNP(String reference, LocalDate dateDebut, int jours, Chambre chambre, Client client){
         Objects.requireNonNull(reference,"On ne peut pas créer une réservation avec un reference à null.");
         Objects.requireNonNull(dateDebut,"On ne peut pas créer une réservation avec un date de début à null.");
         if (jours<1) {
@@ -52,7 +54,7 @@ public class ReservationNP implements Reservation {
      *
      * A priori seule la date est importante, le reste est sans importance.
      */
-    public Date getDateDebut(){
+    public LocalDate getDateDebut(){
         return this.dateDebut;
     }
 

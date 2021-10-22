@@ -1,5 +1,5 @@
 package fr.iutfbleau.projetIHM2021FI2.API;
-import java.util.Date;
+import java.time.LocalDate;
 /**
  * Une Réservation
  * 
@@ -21,7 +21,7 @@ public interface Reservation {
      *
      * A priori seule la date est importante, le reste est sans importance.
      */
-    public Date getDateDebut();
+    public LocalDate getDateDebut();
 
     /**
      * permet de récupérer 
@@ -40,6 +40,15 @@ public interface Reservation {
      * @return le client
      */
     public Client getClient();
+
+     /**
+     * @see MonPrint
+     * NB. On n'utilise le mécanisme des méthodes par défaut pour donner du code dans une interface. C'est un petit peu laid et à contre-emploi mais pratique ici.
+     */ 
+    public default String monPrint() {
+        return String.format("Réservation " + getReference() + ": " + getClient().monPrint() + " le " +  getDateDebut().toString() + " pour " + getJours() + " nuit(s) " + getChambre().monPrint());
+    }
+
 }
 
 

@@ -1,9 +1,10 @@
-package fr.iutfbleau.projetIHM2021FI2.Vues;
-import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.Controller.*;
-import fr.iutfbleau.projetIHM2021FI2.MNP.*;
-import javax.swing.*;
+package fr.iutfbleau.projetIHM2021FI2.IHM1.Vues;
 import java.awt.*;
+
+import javax.swing.*;
+
+import fr.iutfbleau.projetIHM2021FI2.API.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Controller.*;
 
 
 public class Afficher {
