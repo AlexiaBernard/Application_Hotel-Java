@@ -20,15 +20,18 @@ public class TraitementValider implements ActionListener{
     private JFrame fenetre;
     private Chambre chambre;
     private Prereservation prereservation;
+    private PrereservationFactory bookingPointComAPISeulement;
 
     
     /**
      * Constructeur qui permer d'accéder à la fenêtre par la suite
+     * @param bookingPointComAPISeulement
      * @param fenetre the linked window
      * @param prereservation
      * @param chambre
      */
-    public TraitementValider(JFrame fenetre, Chambre chambre, Prereservation prereservation) {
+    public TraitementValider(PrereservationFactory bookingPointComAPISeulement, JFrame fenetre, Chambre chambre, Prereservation prereservation) {
+        this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.fenetre = fenetre;
         this.chambre = chambre;
         this.prereservation = prereservation;
@@ -44,7 +47,7 @@ public class TraitementValider implements ActionListener{
         //ReservationFactory chambresReservees = new ReservationFactoryNP();
         //chambresReservees.createReservation(prereservation, chambre);
         System.out.println("Réservation validée");
-        new AjoutReservation(fenetre, chambre,prereservation);
+        new AjoutReservation(bookingPointComAPISeulement, fenetre, chambre,prereservation);
     }
     
 }

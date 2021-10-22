@@ -9,7 +9,7 @@ import fr.iutfbleau.projetIHM2021FI2.IHM1.Controller.*;
 
 public class Afficher {
 
-    public Afficher(JFrame fenetre, Chambre ch1, Prereservation prereservation){
+    public Afficher(PrereservationFactory bookingPointComAPISeulement, JFrame fenetre, Chambre ch1, Prereservation prereservation){
 
         JPanel affichage = new JPanel();
 
@@ -32,8 +32,8 @@ public class Afficher {
         //Ajout à la fenetre
         fenetre.add(affichage, BorderLayout.CENTER);
 
-        valider.addActionListener(new TraitementValider(fenetre, ch1, prereservation));
-        liste.addActionListener(new TraitementListe(fenetre));
+        valider.addActionListener(new TraitementValider(bookingPointComAPISeulement ,fenetre, ch1, prereservation));
+        liste.addActionListener(new TraitementListe(bookingPointComAPISeulement, fenetre));
 
         fenetre.setVisible(true);
         

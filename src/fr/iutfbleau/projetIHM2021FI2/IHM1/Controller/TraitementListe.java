@@ -2,6 +2,8 @@ package fr.iutfbleau.projetIHM2021FI2.IHM1.Controller;
 
 import javax.swing.*;
 
+import fr.iutfbleau.projetIHM2021FI2.API.PrereservationFactory;
+
 import java.awt.event.*;
 
 /**
@@ -17,9 +19,10 @@ public class TraitementListe implements ActionListener{
     
     /**
      * Constructeur qui permer d'accéder à la fenêtre par la suite
+     * @param bookingPointComAPISeulement
      * @param fenetre the linked window
      */
-    public TraitementListe(JFrame fenetre) {
+    public TraitementListe(PrereservationFactory bookingPointComAPISeulement, JFrame fenetre) {
         this.fenetre = fenetre;
     }
 
