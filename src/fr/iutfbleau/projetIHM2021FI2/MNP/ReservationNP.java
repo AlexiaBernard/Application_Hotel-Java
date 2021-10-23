@@ -68,7 +68,7 @@ public class ReservationNP implements Reservation {
 
     /**
      * permet de récupérer 
-     * @return le type de chambre
+     * @return la chambre
      */
     public Chambre getChambre(){
         return this.chambre;

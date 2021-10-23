@@ -52,6 +52,7 @@ ${BUILD}/API/Prereservation.class : ${SRC}/API/Prereservation.java \
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/Prereservation.java
 
 ${BUILD}/API/Reservation.class : ${SRC}/API/Reservation.java \
+					 ${BUILD}/API/Chambre.class \
 	  		         ${BUILD}/API/Prereservation.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/Reservation.java
 
@@ -60,7 +61,7 @@ ${BUILD}/API/PrereservationFactory.class : ${SRC}/API/PrereservationFactory.java
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/PrereservationFactory.java
 
 ${BUILD}/API/ReservationFactory.class : ${SRC}/API/ReservationFactory.java \
-	  		            ${BUILD}/API/Prereservation.class 
+	  		            ${BUILD}/API/Reservation.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/ReservationFactory.java
 
 ## MNP ##
@@ -81,17 +82,21 @@ ${BUILD}/MNP/ReservationNP.class : ${SRC}/MNP/ReservationNP.java \
                               ${BUILD}/API/Reservation.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MNP/ReservationNP.java
 
-${BUILD}/MNP/PrereservationFactory.class : ${SRC}/API/PrereservationFactory.java 
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MNP/PrereservationFactory.java
-
 ${BUILD}/MNP/PrereservationFactoryNP.class : ${SRC}/MNP/PrereservationFactoryNP.java \
                               ${BUILD}/API/PrereservationFactory.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MNP/PrereservationFactoryNP.java
 
+${BUILD}/MNP/ReservationFactoryNP.class : ${SRC}/MNP/ReservationFactoryNP.java \
+			      			  ${BUILD}/MNP/ChambreNP.class \
+			      			  ${BUILD}/MNP/ReservationNP.class \
+                              ${BUILD}/API/ReservationFactory.class 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MNP/ReservationFactoryNP.java
+
 ## TEST ##
 ${BUILD}/Test/TestTexteMNP.class : ${SRC}/Test/TestTexteMNP.java \
 			 ${BUILD}/MNP/PrereservationNP.class \
-			 ${BUILD}/MNP/PrereservationFactoryNP.class
+			 ${BUILD}/MNP/PrereservationFactoryNP.class\
+			 ${BUILD}/MNP/ReservationFactoryNP.class
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/Test/TestTexteMNP.java
 
 #### IHM 1 ####

@@ -1,5 +1,4 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM1.Vues;
-import java.awt.*;
 
 import javax.swing.*;
 
@@ -9,34 +8,17 @@ import fr.iutfbleau.projetIHM2021FI2.IHM1.Controller.*;
 
 public class Afficher {
 
-    public Afficher(PrereservationFactory bookingPointComAPISeulement, JFrame fenetre, Chambre ch1, Prereservation prereservation){
+    public Afficher(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre,Chambre ch1, Prereservation prereservation){
 
-        JPanel affichage = new JPanel();
+        int result = JOptionPane.showConfirmDialog(fenetre, "Lachambre numéro "+ch1.getNumero()+" est disponible. Vous convient-elle?");
 
-        JLabel num_chambre = new JLabel("La chambre numéro "+ch1.getNumero()+" est disponible.");
-       
-        //boutons
-        JPanel boutons = new JPanel();
-        JButton valider = new JButton("Valider"); //à changer la taille de ce bouton
-        JButton liste = new JButton("Demander la liste"); //à changer la taille de ce bouton
-
-        boutons.setLayout(new GridLayout(1,2));
-		boutons.add(valider);
-		boutons.add(liste);
-
-        //Ajout au Panel affichage
-        affichage.setLayout(new GridLayout(2,1));
-		affichage.add(num_chambre);
-		affichage.add(boutons);
-
-        //Ajout à la fenetre
-        fenetre.add(affichage, BorderLayout.CENTER);
-
-        valider.addActionListener(new TraitementValider(bookingPointComAPISeulement ,fenetre, ch1, prereservation));
-        liste.addActionListener(new TraitementListe(bookingPointComAPISeulement, fenetre));
-
-        fenetre.setVisible(true);
-        
+        if(result==0){
+            new TraitementValider(bookingPointComAPISeulement, grandLivreDOrAPISeulement ,fenetre, ch1, prereservation);
+        }else if(result==1){
+            new  TraitementListe(bookingPointComAPISeulement, grandLivreDOrAPISeulement, fenetre);
+        }else{
+            new TraitementFin(fenetre);
+        }        
     }
     
 }

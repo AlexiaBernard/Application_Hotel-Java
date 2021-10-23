@@ -31,7 +31,7 @@ public interface Reservation {
 
     /**
      * permet de récupérer 
-     * @return le type de chambre
+     * @return la chambre
      */
     public Chambre getChambre();
 

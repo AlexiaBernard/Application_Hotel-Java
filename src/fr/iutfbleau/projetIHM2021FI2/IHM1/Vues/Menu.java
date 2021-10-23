@@ -3,6 +3,7 @@ package fr.iutfbleau.projetIHM2021FI2.IHM1.Vues;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.PrereservationFactory;
+import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Controller.*;
 
 import java.awt.*;
@@ -37,8 +38,9 @@ public class Menu {
     /**
      * Constructeur qui crée et affiche le Menu
      * @param bookingPointComAPISeulement
+     * @param grandLivreDOrAPISeulement
      */
-    public Menu(PrereservationFactory bookingPointComAPISeulement, JFrame fenetre, int erreur){
+    public Menu(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, int erreur){
 		this.fenetre = fenetre;
 
         /* Pour les JTextField */
@@ -93,8 +95,8 @@ public class Menu {
         this.fenetre.add(this.retrouver_np,BorderLayout.NORTH);
 
         /* Les Listener */
-        this.valider_ref.addActionListener(new TraitementReference(bookingPointComAPISeulement ,this.fenetre, this.reference));
-        this.valider_np.addActionListener(new TraitementNomPrenom(bookingPointComAPISeulement, this.fenetre, this.nom, this.prenom));
+        this.valider_ref.addActionListener(new TraitementReference(bookingPointComAPISeulement, grandLivreDOrAPISeulement ,this.fenetre, this.reference));
+        this.valider_np.addActionListener(new TraitementNomPrenom(bookingPointComAPISeulement, grandLivreDOrAPISeulement, this.fenetre, this.nom, this.prenom));
 
 		this.fenetre.setVisible(true);
     }

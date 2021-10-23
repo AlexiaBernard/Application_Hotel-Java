@@ -11,7 +11,7 @@ import fr.iutfbleau.projetIHM2021FI2.IHM1.Vues.*;
 import fr.iutfbleau.projetIHM2021FI2.MNP.*;
 
 public class VerificationNomPrenom {
-    public VerificationNomPrenom(PrereservationFactory bookingPointComAPISeulement, JFrame fenetre, String nom, String prenom){
+    public VerificationNomPrenom(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, String nom, String prenom){
      
         try{
             Set<Prereservation> prereservations = bookingPointComAPISeulement.getPrereservations(nom, prenom);
@@ -20,7 +20,7 @@ public class VerificationNomPrenom {
             //...
         }catch(IllegalStateException e){
             System.out.print("Je n'ai pas trouvé de préreservation avec ces nom et prénom.\n");
-            new Menu(bookingPointComAPISeulement, fenetre, 2);
+            new Menu(bookingPointComAPISeulement, grandLivreDOrAPISeulement, fenetre, 2);
         }        
     }
 }

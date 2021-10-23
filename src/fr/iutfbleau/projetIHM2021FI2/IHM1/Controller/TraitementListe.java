@@ -2,9 +2,8 @@ package fr.iutfbleau.projetIHM2021FI2.IHM1.Controller;
 
 import javax.swing.*;
 
-import fr.iutfbleau.projetIHM2021FI2.API.PrereservationFactory;
+import fr.iutfbleau.projetIHM2021FI2.API.*;
 
-import java.awt.event.*;
 
 /**
  * <code>TraitementNomPrenom</code> est un contrôleur.
@@ -14,26 +13,15 @@ import java.awt.event.*;
  * @version 1.0
  */
 
-public class TraitementListe implements ActionListener{
-    private JFrame fenetre;
+public class TraitementListe{
     
     /**
      * Constructeur qui permer d'accéder à la fenêtre par la suite
      * @param bookingPointComAPISeulement
-     * @param fenetre the linked window
+     * @param grandLivreDOrAPISeulement the linked window
+     * @param fenetre2
      */
-    public TraitementListe(PrereservationFactory bookingPointComAPISeulement, JFrame fenetre) {
-        this.fenetre = fenetre;
-    }
-
-    /**
-     * Lors du clic sur le bouton
-     * @param e the action data
-     */
-    @Override
-    public void actionPerformed(ActionEvent e){
+    public TraitementListe(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre) {
         System.out.println("Liste des chambres disponibles....");
-    }
-    
-    
+    }    
 }

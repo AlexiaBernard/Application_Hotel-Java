@@ -1,9 +1,8 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM1.Controller;
 
-import javax.print.attribute.standard.PresentationDirection;
 import javax.swing.*;
 
-import fr.iutfbleau.projetIHM2021FI2.API.PrereservationFactory;
+import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Modele.*;
 
 import java.awt.event.*;
@@ -20,15 +19,18 @@ public class TraitementReference implements ActionListener{
     private JFrame fenetre;
     private JTextField reference;
     private PrereservationFactory bookingPointComAPISeulement;
+    private ReservationFactory grandLivreDOrAPISeulement;
     
     /**
      * Constructeur qui permer d'accéder à la fenêtre par la suite
      * @param bookingPointComAPISeulement
+     * @param grandLivreDOrAPISeulement
      * @param fenetre the linked window
      * @param reference
      */
-    public TraitementReference(PrereservationFactory bookingPointComAPISeulement, JFrame fenetre, JTextField reference) {
+    public TraitementReference(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JTextField reference) {
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
+        this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
         this.reference = reference;
     }
@@ -40,7 +42,7 @@ public class TraitementReference implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         System.out.println("Référence : " + this.reference.getText());
-        new VerificationReference(this.bookingPointComAPISeulement, this.fenetre, this.reference.getText());
+        new VerificationReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.reference.getText());
     }
     
     

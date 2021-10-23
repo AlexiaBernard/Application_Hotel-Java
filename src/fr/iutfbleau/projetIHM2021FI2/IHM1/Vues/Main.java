@@ -11,8 +11,8 @@ public class Main {
 
 	JFrame fenetre = new JFrame("Menu");
 
-	fenetre.setSize(800, 600);
-	fenetre.setLocation(0, 0);
+	fenetre.setSize(500, 500);
+	fenetre.setLocation(100, 100);
 	fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	// morceaux de modèle
@@ -36,8 +36,10 @@ public class Main {
 	PrereservationFactory bookingPointComAPISeulement = bookingPointCom;
 	System.out.print("Le modèle de Préréservation est prêt.\n");
 
+	ReservationFactory grandLivreDOrAPISeulement  = new ReservationFactoryNP();
 
-	new Menu(bookingPointComAPISeulement,fenetre, 0);
+
+	new Menu(bookingPointComAPISeulement, grandLivreDOrAPISeulement,fenetre, 0);
  }    
 }
 
