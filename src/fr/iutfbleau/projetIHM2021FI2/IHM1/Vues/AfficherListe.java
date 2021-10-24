@@ -37,12 +37,13 @@ public class AfficherListe {
         ButtonGroup group = new ButtonGroup();
         JButton valider = new JButton("Valider");
 
-        for(Chambre c : disponibles){
+        for(Chambre c : this.disponibles){
             compteur++;
         }
 
         panel_liste.setLayout(new GridLayout(4,compteur%4));
-        for(Chambre c : disponibles){
+        compteur = 0;
+        for(Chambre c : this.disponibles){
            JRadioButton btn = new JRadioButton();
            btn.setText(""+c.getNumero());
            btn.setActionCommand(""+c.getNumero());
@@ -58,7 +59,7 @@ public class AfficherListe {
         this.fenetre.add(centre, BorderLayout.CENTER);
         this.fenetre.setVisible(true);
 
-        valider.addActionListener(new TraitementListeValider(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement ,this.fenetre, prereservation,group));
+        valider.addActionListener(new TraitementListeValider(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement ,this.fenetre, prereservation,group, this.disponibles));
 
     }
 }

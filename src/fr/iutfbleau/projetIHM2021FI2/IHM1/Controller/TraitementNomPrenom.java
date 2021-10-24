@@ -45,7 +45,8 @@ public class TraitementNomPrenom implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         System.out.println("Nom : " + this.nom.getText() + " Prénom : " + this.prenom.getText());
-        new VerificationNomPrenom(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.nom.getText(), this.prenom.getText());
+        VerificationNomPrenom np = new VerificationNomPrenom(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.nom.getText(), this.prenom.getText());
+        np.run();
     }
     
     
