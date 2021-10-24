@@ -42,7 +42,8 @@ public class TraitementReference implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         System.out.println("Référence : " + this.reference.getText());
-        new VerificationReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.reference.getText());
+        VerificationReference verif = new VerificationReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.reference.getText());
+        verif.run();
     }
     
     

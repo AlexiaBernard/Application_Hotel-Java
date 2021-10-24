@@ -4,7 +4,13 @@ import javax.swing.*;
 
 public class TraitementFin {
 
+    private JFrame fenetre;
+
     public TraitementFin(JFrame fenetre) {
-         fenetre.dispose();
+        this.fenetre = fenetre;
+    }
+
+    public void run(){
+        this.fenetre.dispose();
     }
 }

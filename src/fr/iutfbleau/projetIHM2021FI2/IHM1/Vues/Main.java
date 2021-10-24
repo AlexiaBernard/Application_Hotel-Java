@@ -39,15 +39,7 @@ public class Main {
 	ReservationFactory grandLivreDOrAPISeulement  = new ReservationFactoryNP();
 
 
-	new Menu(bookingPointComAPISeulement, grandLivreDOrAPISeulement,fenetre, 0);
+	Menu menu = new Menu(bookingPointComAPISeulement, grandLivreDOrAPISeulement,fenetre, 0);
+	menu.run();
  }    
 }
-
-/*
-A demander : 
-_Pas de Table Prereservation ??
-_On peut faire notre propre base de données ? : pour pouvoir insérer des reservations
-_Pas de Table Chambre ?? 
-
-Faire Prereservation factory et reservation dans le main et trimbaler après
-*/

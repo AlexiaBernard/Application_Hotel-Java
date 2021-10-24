@@ -15,17 +15,31 @@ import javax.swing.*;
  */
 
 public class TraitementValider{
+
+    private PrereservationFactory bookingPointComAPISeulement;
+    private ReservationFactory grandLivreDOrAPISeulement;
+    private JFrame fenetre;
+    private Prereservation prereservation;
+    private Chambre chambre;
     
     /**
      * Constructeur qui permer d'accéder à la fenêtre par la suite
      * @param bookingPointComAPISeulement
      * @param grandLivreDOrAPISeulement
-     * @param fenetre the linked window
+     * @param fenetre 
      * @param prereservation
      * @param chambre
      */
     public TraitementValider(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement,  JFrame fenetre, Chambre chambre, Prereservation prereservation) {
-        new AjoutReservation(bookingPointComAPISeulement, grandLivreDOrAPISeulement, fenetre, chambre, prereservation);
+        this.bookingPointComAPISeulement = bookingPointComAPISeulement;
+        this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
+        this.fenetre = fenetre;
+        this.prereservation = prereservation;
+        this.chambre = chambre;
     }
     
+    public void run(){
+        AjoutReservation reser = new AjoutReservation(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.chambre, this.prereservation);
+        reser.run();
+    }
 }
