@@ -12,6 +12,7 @@ public class AjoutReservation {
     private JFrame fenetre;
     private Chambre chambre;
     private Prereservation prereservation;
+    private JPanel centre;
     
     /**
      * 
@@ -20,20 +21,23 @@ public class AjoutReservation {
      * @param fenetre
      * @param chambre
      * @param prereservation
+     * @param centre
      */
-    public AjoutReservation(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement,  JFrame fenetre, Chambre chambre, Prereservation prereservation){
+    public AjoutReservation(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement,  JFrame fenetre, Chambre chambre, Prereservation prereservation, JPanel centre){
        this.bookingPointComAPISeulement = bookingPointComAPISeulement;
        this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
        this.fenetre = fenetre;
        this.chambre = chambre;
        this.prereservation = prereservation;
+       this.centre = centre;
     }
 
     public void run(){
         try{
             this.grandLivreDOrAPISeulement.createReservation(this.prereservation,this.chambre);
+            System.out.println("Chambre : "+this.chambre.getNumero());
             System.out.println("Réservation validée.");
-            Fin fin = new Fin(this.bookingPointComAPISeulement,this.grandLivreDOrAPISeulement, this.fenetre);
+            Fin fin = new Fin(this.bookingPointComAPISeulement,this.grandLivreDOrAPISeulement, this.fenetre, this.centre);
             fin.run();
         }
         catch(IllegalStateException e){

@@ -15,7 +15,7 @@ public class TraitementListeValiderReference implements ActionListener {
     private JFrame fenetre;
     private ButtonGroup group;
     private Set<Prereservation> prereservations;
-
+    private JPanel centre;
 
         /**
          * 
@@ -24,15 +24,17 @@ public class TraitementListeValiderReference implements ActionListener {
          * @param fenetre
          * @param group
          * @param prereservations
+         * @param centre
          */
     public TraitementListeValiderReference(PrereservationFactory bookingPointComAPISeulement,
             ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, ButtonGroup group,
-            Set<Prereservation> prereservations) {
+            Set<Prereservation> prereservations, JPanel centre) {
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
         this.group = group;
         this.prereservations = prereservations;
+        this.centre = centre;
     }
 
     @Override
@@ -50,8 +52,8 @@ public class TraitementListeValiderReference implements ActionListener {
         }
         if(choisi!=null){
             AfficherReservations del = new AfficherReservations(bookingPointComAPISeulement, grandLivreDOrAPISeulement, fenetre, prereservations);
-            del.deleteRef();
-            VerificationReference ref = new VerificationReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, choisi.getReference());
+            del.deleteRef(this.centre);
+            VerificationReference ref = new VerificationReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, choisi.getReference(), this.centre);
             ref.run();
         }else{
             System.err.println("Problème dans TraitementListeValiderReference : prereservation nulle !");

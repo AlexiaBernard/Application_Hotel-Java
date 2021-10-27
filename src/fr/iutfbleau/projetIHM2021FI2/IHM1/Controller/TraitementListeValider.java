@@ -16,6 +16,7 @@ public class TraitementListeValider implements ActionListener {
     private Prereservation prereservation;
     private ButtonGroup group;
     private Set<Chambre> disponibles;
+    private JPanel centre;
 
     /**
      * 
@@ -25,16 +26,18 @@ public class TraitementListeValider implements ActionListener {
      * @param prereservation
      * @param group
      * @param disponibles
+     * @param centre
      */
     public TraitementListeValider(PrereservationFactory bookingPointComAPISeulement,
             ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, Prereservation prereservation,
-            ButtonGroup group, Set<Chambre> disponibles) {
+            ButtonGroup group, Set<Chambre> disponibles, JPanel centre) {
                 this.bookingPointComAPISeulement = bookingPointComAPISeulement;
                 this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
                 this.fenetre = fenetre;
                 this.prereservation = prereservation;
                 this.group = group;
                 this.disponibles = disponibles;
+                this.centre  = centre;
     }
 
     @Override
@@ -51,7 +54,7 @@ public class TraitementListeValider implements ActionListener {
             }
         }
         if(choisi!=null){
-            AjoutReservation reser = new AjoutReservation(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, choisi, prereservation);  
+            AjoutReservation reser = new AjoutReservation(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, choisi, prereservation, this.centre);  
             reser.run();
         }else{
             System.err.println("Problème dans TraitementListeValider : chambre nulle !");

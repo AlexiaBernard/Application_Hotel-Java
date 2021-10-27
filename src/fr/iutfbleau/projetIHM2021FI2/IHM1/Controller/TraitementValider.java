@@ -21,6 +21,7 @@ public class TraitementValider{
     private JFrame fenetre;
     private Prereservation prereservation;
     private Chambre chambre;
+    private JPanel centre;
     
     /**
      * Constructeur qui permer d'accéder à la fenêtre par la suite
@@ -39,7 +40,7 @@ public class TraitementValider{
     }
     
     public void run(){
-        AjoutReservation reser = new AjoutReservation(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.chambre, this.prereservation);
+        AjoutReservation reser = new AjoutReservation(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.chambre, this.prereservation, this.centre);
         reser.run();
     }
 }

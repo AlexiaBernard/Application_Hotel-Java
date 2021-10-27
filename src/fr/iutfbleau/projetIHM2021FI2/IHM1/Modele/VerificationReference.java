@@ -14,6 +14,7 @@ public class VerificationReference {
     private ReservationFactory grandLivreDOrAPISeulement;
     private JFrame fenetre;
     private String reference;
+    private JPanel centre;
 
     /**
      * 
@@ -21,16 +22,17 @@ public class VerificationReference {
      * @param grandLivreDOrAPISeulement
      * @param fenetre
      * @param reference
+     * @param centre
      */
-    public VerificationReference(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, String reference){
+    public VerificationReference(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, String reference, JPanel centre){
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
         this.reference = reference; 
-        
+        this.centre = centre;   
    }
-   
-   public void run(){
+
+public void run(){
     try{
         Prereservation prereservation = this.bookingPointComAPISeulement.getPrereservation(this.reference);
         System.out.println(this.reference);
@@ -43,7 +45,7 @@ public class VerificationReference {
         catch(IllegalStateException e){
             System.out.print(e.getMessage());
         }
-        Afficher afficher = new Afficher(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, libre, prereservation);
+        Afficher afficher = new Afficher(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, libre, prereservation, this.centre);
         afficher.run();
     }catch(IllegalStateException e){
         System.out.print("Je n'ai pas trouvé de préreservation avec cette référence.\n");
