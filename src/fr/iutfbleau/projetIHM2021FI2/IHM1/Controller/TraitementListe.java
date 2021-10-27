@@ -10,8 +10,8 @@ import fr.iutfbleau.projetIHM2021FI2.IHM1.Vues.*;
 
 
 /**
- * <code>TraitementNomPrenom</code> est un contrôleur.
- * Il gère le bouton lancer du menu
+ * <code>TraitementListe</code> est un contrôleur.
+ * Il gère le bouton ...
  * 
  * @author Enora GERMOND, Aléxia Bernard
  * @version 1.0
