@@ -4,7 +4,9 @@ import java.util.*;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.Vues.AfficherListe;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Vues.*;
+
+
 
 
 /**

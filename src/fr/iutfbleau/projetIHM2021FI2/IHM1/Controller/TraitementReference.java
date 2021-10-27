@@ -6,7 +6,6 @@ import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Modele.*;
 
 import java.awt.event.*;
-
 /**
  * <code>TraitementReference</code> est un contrôleur.
  * Il gère le bouton lancer du menu
@@ -46,6 +45,4 @@ public class TraitementReference implements ActionListener{
         VerificationReference verif = new VerificationReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.reference.getText(), centre);
         verif.run();
     }
-    
-    
 }

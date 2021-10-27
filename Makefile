@@ -102,14 +102,23 @@ ${BUILD}/Test/TestTexteMNP.class : ${SRC}/Test/TestTexteMNP.java \
 #### IHM 1 ####
 ## Controller ##
 ${BUILD}/IHM1/Controller/TraitementReference.class : ${SRC}/IHM1/Controller/TraitementReference.java/
-										${BUILD}/IHM1/Modele/VerificationReference.class
+										${BUILD}/IHM1/Modele/VerificationReference.class /
+										${BUILD}/API/PrereservationFactory.class/
+										${BUILD}/API/ReservationFactory.class			
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementReference.java
 
 ${BUILD}/IHM1/Controller/TraitementNomPrenom.class : ${SRC}/IHM1/Controller/TraitementNomPrenom.java/
 										${BUILD}/IHM1/Modele/VerificationNomPrenom.class
+										${BUILD}/API/PrereservationFactory.class/
+										${BUILD}/API/ReservationFactory.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementNomPrenom.java
 
 ${BUILD}/IHM1/Controller/TraitementListe.class : ${SRC}/IHM1/Controller/TraitementListe.java
+										${BUILD}/IHM1/Vues/AfficherListe.class/
+										${BUILD}/API/Chambre.class/
+										${BUILD}/API/Prereservation.class
+										${BUILD}/API/PrereservationFactory.class/
+										${BUILD}/API/ReservationFactory.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementListe.java
 
 ${BUILD}/IHM1/Controller/TraitementValider.class : ${SRC}/IHM1/Controller/TraitementValider.java/

@@ -1,11 +1,12 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM1.Controller;
 
 import java.awt.event.*;
-
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Modele.*;
+
+
 
 /**
  * <code>TraitementNomPrenom</code> est un contrôleur.
