@@ -13,17 +13,23 @@ DOC = doc/fr/iutfbleau/projetIHM2021FI2
 
 # CHOIX NOMS
 JAR_MNP = test-mnp.jar
+JAR_IHM1 = ihm1.jar
 
 # BUTS FACTICES #
 .PHONY : run clean doc
 
 # BUT PAR DEFAUT #
-run : ${JAR_MNP}
+run_mnp : ${JAR_MNP}
 	${EXEC_JAR} ${JAR_MNP}
+
+run_ihm1 : ${JAR_IHM1}
+	${EXEC_JAR} ${JAR_IHM1}
 
 # AUTRE BUTS
 doc :
 	javadoc -d doc src/fr/iutfbleau/projetIHM2021FI2/API/*.java src/fr/iutfbleau/projetIHM2021FI2/MNP/*.java
+	 src/fr/iutfbleau/projetIHM2021FI2/IHM1/Vues/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM1/Modele/*.java
+	 src/fr/iutfbleau/projetIHM2021FI2/IHM1/Controller/*.java
 
 clean :
 	rm -rf ${BUILD}/* *.jar
@@ -233,3 +239,6 @@ ${BUILD}/IHM1/Vues/Main.class : ${SRC}/IHM1/Vues/Main.java/
 # ## JARS ##
  ${JAR_MNP} : ${BUILD}/Test/TestTexteMNP.class
 	${JAR} cvfe ${JAR_MNP} fr.iutfbleau.projetIHM2021FI2.Test.TestTexteMNP -C build fr
+
+ ${JAR_IHM1} : ${BUILD}/IHM1/Vues/Main.class
+	${JAR} cvfe ${JAR_IHM1} fr.iutfbleau.projetIHM2021FI2.IHM1.Vues.Main -C build fr
