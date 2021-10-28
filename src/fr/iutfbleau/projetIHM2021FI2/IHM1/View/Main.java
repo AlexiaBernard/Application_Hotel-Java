@@ -1,7 +1,7 @@
-package fr.iutfbleau.projetIHM2021FI2.IHM1.Vues;
-import java.time.LocalDate;
+package fr.iutfbleau.projetIHM2021FI2.IHM1.View;
 
-import javax.swing.JFrame;
+import java.time.*;
+import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.MNP.*;
@@ -34,12 +34,11 @@ public class Main {
 	// une fois que le modèle de PrereservationFactoryNP a du contenu, je peux le caster en l'interface PreservationFactory de l'API correspondante pour que la vue s'en serve.
 	
 	PrereservationFactory bookingPointComAPISeulement = bookingPointCom;
-	System.out.print("Le modèle de Préréservation est prêt.\n");
+	JOptionPane.showMessageDialog(fenetre,"Les modèles de préréservation et de réservation sont prêts.");
 
 	ReservationFactory grandLivreDOrAPISeulement  = new ReservationFactoryNP();
 
-
-	Menu menu = new Menu(bookingPointComAPISeulement, grandLivreDOrAPISeulement,fenetre, 0);
+	Menu menu = new Menu(bookingPointComAPISeulement, grandLivreDOrAPISeulement,fenetre);
 	menu.run();
  }    
 }

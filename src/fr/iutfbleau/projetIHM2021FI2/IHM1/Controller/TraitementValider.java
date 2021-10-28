@@ -1,7 +1,7 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM1.Controller;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.Modele.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.*;
 
 import javax.swing.*;
 
@@ -31,7 +31,9 @@ public class TraitementValider{
      * @param prereservation
      * @param chambre
      */
-    public TraitementValider(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement,  JFrame fenetre, Chambre chambre, Prereservation prereservation) {
+    public TraitementValider(PrereservationFactory bookingPointComAPISeulement, 
+            ReservationFactory grandLivreDOrAPISeulement,  JFrame fenetre, 
+            Chambre chambre, Prereservation prereservation) {
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
@@ -40,7 +42,9 @@ public class TraitementValider{
     }
     
     public void run(){
-        AjoutReservation reser = new AjoutReservation(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.chambre, this.prereservation, this.centre);
+        AjoutReservation reser = new AjoutReservation(this.bookingPointComAPISeulement, 
+                this.grandLivreDOrAPISeulement, this.fenetre, this.chambre, 
+                this.prereservation, this.centre, null,1);
         reser.run();
     }
 }

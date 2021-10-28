@@ -1,4 +1,4 @@
-package fr.iutfbleau.projetIHM2021FI2.IHM1.Vues;
+package fr.iutfbleau.projetIHM2021FI2.IHM1.View;
 
 import javax.swing.*;
 
@@ -19,7 +19,8 @@ public class Fin {
      * @param fenetre
      * @param centre
      */
-    public Fin(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JPanel centre){
+    public Fin(PrereservationFactory bookingPointComAPISeulement, 
+            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JPanel centre){
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;

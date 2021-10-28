@@ -4,9 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.Modele.*;
-
-
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.*;
 
 /**
  * <code>TraitementNomPrenom</code> est un contrôleur.
@@ -31,7 +29,9 @@ public class TraitementNomPrenom implements ActionListener{
      * @param nom
      * @param prenom
      */
-    public TraitementNomPrenom(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JTextField nom, JTextField prenom) {
+    public TraitementNomPrenom(PrereservationFactory bookingPointComAPISeulement, 
+            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, 
+            JTextField nom, JTextField prenom) {
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
@@ -45,8 +45,8 @@ public class TraitementNomPrenom implements ActionListener{
      */
     @Override
     public void actionPerformed(ActionEvent e){
-        System.out.println("Nom : " + this.nom.getText() + " Prénom : " + this.prenom.getText());
-        VerificationNomPrenom np = new VerificationNomPrenom(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.nom.getText(), this.prenom.getText());
+        VerificationNomPrenom np = new VerificationNomPrenom(this.bookingPointComAPISeulement, 
+                this.grandLivreDOrAPISeulement, this.fenetre, this.nom.getText(), this.prenom.getText());
         np.run();
     }
     

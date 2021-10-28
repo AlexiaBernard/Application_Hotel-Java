@@ -3,7 +3,7 @@ package fr.iutfbleau.projetIHM2021FI2.IHM1.Controller;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.Modele.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.*;
 
 import java.awt.event.*;
 /**
@@ -27,7 +27,8 @@ public class TraitementReference implements ActionListener{
      * @param fenetre the linked window
      * @param reference
      */
-    public TraitementReference(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JTextField reference) {
+    public TraitementReference(PrereservationFactory bookingPointComAPISeulement, 
+            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JTextField reference) {
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
@@ -40,9 +41,9 @@ public class TraitementReference implements ActionListener{
      */
     @Override
     public void actionPerformed(ActionEvent e){
-        System.out.println("Référence : " + this.reference.getText());
         JPanel centre = new JPanel();
-        VerificationReference verif = new VerificationReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.reference.getText(), centre);
+        VerificationReference verif = new VerificationReference(this.bookingPointComAPISeulement, 
+                this.grandLivreDOrAPISeulement, this.fenetre, this.reference.getText(), centre);
         verif.run();
     }
 }

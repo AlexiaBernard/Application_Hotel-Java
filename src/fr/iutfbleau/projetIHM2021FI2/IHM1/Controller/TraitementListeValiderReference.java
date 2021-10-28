@@ -5,8 +5,8 @@ import javax.swing.*;
 import java.awt.event.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.Modele.VerificationReference;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.Vues.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.View.*;
 
 public class TraitementListeValiderReference implements ActionListener {
 
@@ -56,7 +56,9 @@ public class TraitementListeValiderReference implements ActionListener {
             VerificationReference ref = new VerificationReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, choisi.getReference(), this.centre);
             ref.run();
         }else{
-            System.err.println("Problème dans TraitementListeValiderReference : prereservation nulle !");
+            JOptionPane.showMessageDialog(this.fenetre,"Problème avec la prereservation selectionnée.");
+            TraitementFin fin = new TraitementFin(this.fenetre);
+            fin.run();
         }        
     }
 }

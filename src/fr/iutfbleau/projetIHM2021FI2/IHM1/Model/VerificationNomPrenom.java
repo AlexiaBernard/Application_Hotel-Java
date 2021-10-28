@@ -1,10 +1,10 @@
-package fr.iutfbleau.projetIHM2021FI2.IHM1.Modele;
+package fr.iutfbleau.projetIHM2021FI2.IHM1.Model;
 
 import java.util.*;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.Vues.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.View.*;
 
 public class VerificationNomPrenom {
 
@@ -33,12 +33,11 @@ public class VerificationNomPrenom {
     public void run(){
         try{
             Set<Prereservation> prereservations = this.bookingPointComAPISeulement.getPrereservations(this.nom, this.prenom);
-            System.out.println(this.nom + " " + this.prenom);
             AfficherReservations rese = new AfficherReservations(bookingPointComAPISeulement, grandLivreDOrAPISeulement, fenetre, prereservations);
             rese.run();
         }catch(IllegalStateException e){
-            System.out.print("Je n'ai pas trouvé de préreservation avec ces nom et prénom.\n");
-            Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, 2);
+            JOptionPane.showMessageDialog(this.fenetre,"Pas de préréservation pour ce client.");
+            Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre);
             menu.run();
         }    
     }

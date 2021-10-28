@@ -3,7 +3,7 @@ package fr.iutfbleau.projetIHM2021FI2.IHM1.Controller;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.Vues.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.View.*;
 
 public class TraitementRetourMenu {
 
@@ -17,14 +17,15 @@ public class TraitementRetourMenu {
      * @param grandLivreDOrAPISeulement
      * @param fenetre
      */
-    public TraitementRetourMenu(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre) {
+    public TraitementRetourMenu(PrereservationFactory bookingPointComAPISeulement, 
+            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre) {
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
     }
 
     public void run(){
-        Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, 0);
+        Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre);
         menu.run();
     }
 }

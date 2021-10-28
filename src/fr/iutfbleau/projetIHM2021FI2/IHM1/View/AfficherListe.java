@@ -1,4 +1,4 @@
-package fr.iutfbleau.projetIHM2021FI2.IHM1.Vues;
+package fr.iutfbleau.projetIHM2021FI2.IHM1.View;
 
 import java.util.*;
 import javax.swing.*;
@@ -23,7 +23,9 @@ public class AfficherListe {
      * @param prereservation
      * @param disponibles
      */
-    public AfficherListe(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, Prereservation prereservation, Set<Chambre> disponibles){
+    public AfficherListe(PrereservationFactory bookingPointComAPISeulement, 
+            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, 
+            Prereservation prereservation, Set<Chambre> disponibles){
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
@@ -59,8 +61,9 @@ public class AfficherListe {
         this.fenetre.add(centre, BorderLayout.CENTER);
         this.fenetre.setVisible(true);
 
-        valider.addActionListener(new TraitementListeValider(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement ,this.fenetre, prereservation,group, this.disponibles, centre));
-
+        valider.addActionListener(new TraitementListeValider(this.bookingPointComAPISeulement, 
+                this.grandLivreDOrAPISeulement ,this.fenetre, prereservation,group, 
+                this.disponibles, centre));
     }
 
      /**

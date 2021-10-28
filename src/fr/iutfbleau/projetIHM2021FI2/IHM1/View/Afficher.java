@@ -1,4 +1,4 @@
-package fr.iutfbleau.projetIHM2021FI2.IHM1.Vues;
+package fr.iutfbleau.projetIHM2021FI2.IHM1.View;
 
 import javax.swing.*;
 
@@ -24,7 +24,9 @@ public class Afficher {
      * @param prereservation
      * @param centre
      */
-    public Afficher(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre,Chambre ch1, Prereservation prereservation, JPanel centre){
+    public Afficher(PrereservationFactory bookingPointComAPISeulement, 
+                ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre,
+                Chambre ch1, Prereservation prereservation, JPanel centre){
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
@@ -34,15 +36,19 @@ public class Afficher {
     }
 
     public void run(){
-        int result = JOptionPane.showConfirmDialog(this.fenetre, "La chambre numéro "+this.chambre.getNumero()+" est disponible. Vous convient-elle?");
+        int result = JOptionPane.showConfirmDialog(this.fenetre, 
+                "La chambre numéro "+this.chambre.getNumero()+" est disponible. Vous convient-elle?");
 
         if(result==0){
-            TraitementValider valider = new TraitementValider(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement ,this.fenetre, this.chambre, this.prereservation);
+            TraitementValider valider = new TraitementValider(this.bookingPointComAPISeulement, 
+                    this.grandLivreDOrAPISeulement ,this.fenetre, this.chambre, this.prereservation);
             valider.run();
         }else if(result==1){
-            AfficherReservations aff = new AfficherReservations(bookingPointComAPISeulement, grandLivreDOrAPISeulement, fenetre, null);
+            AfficherReservations aff = new AfficherReservations(this.bookingPointComAPISeulement, 
+                    this.grandLivreDOrAPISeulement, this.fenetre, null);
             aff.deleteRef(this.centre);
-            TraitementListe liste = new  TraitementListe(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.prereservation);
+            TraitementListe liste = new  TraitementListe(this.bookingPointComAPISeulement, 
+                    this.grandLivreDOrAPISeulement, this.fenetre, this.prereservation);
             liste.run();
         }else{
             TraitementFin fin = new TraitementFin(this.fenetre);

@@ -1,4 +1,4 @@
-package fr.iutfbleau.projetIHM2021FI2.IHM1.Vues;
+package fr.iutfbleau.projetIHM2021FI2.IHM1.View;
 
 import java.util.*;
 import javax.swing.*;
@@ -23,7 +23,8 @@ public class AfficherReservations {
      * @param prereservations
      */
     public AfficherReservations(PrereservationFactory bookingPointComAPISeulement,
-            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, Set<Prereservation> prereservations) {
+            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, 
+            Set<Prereservation> prereservations) {
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;

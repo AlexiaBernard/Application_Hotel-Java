@@ -6,7 +6,7 @@ import java.util.*;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.Modele.AjoutReservation;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.AjoutReservation;
 
 public class TraitementListeValider implements ActionListener {
 
@@ -38,6 +38,7 @@ public class TraitementListeValider implements ActionListener {
                 this.group = group;
                 this.disponibles = disponibles;
                 this.centre  = centre;
+                this.disponibles = disponibles;
     }
 
     @Override
@@ -54,10 +55,15 @@ public class TraitementListeValider implements ActionListener {
             }
         }
         if(choisi!=null){
-            AjoutReservation reser = new AjoutReservation(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, choisi, prereservation, this.centre);  
+            AjoutReservation reser = new AjoutReservation(this.bookingPointComAPISeulement, 
+                    this.grandLivreDOrAPISeulement, this.fenetre, choisi, prereservation, 
+                    this.centre, this.disponibles, 0);  
             reser.run();
         }else{
-            System.err.println("Problème dans TraitementListeValider : chambre nulle !");
+            JOptionPane.showMessageDialog(this.fenetre,"Problème avec la chambre selectionnée.");
+            TraitementFin fin = new TraitementFin(this.fenetre);
+            fin.run();
         }        
     }
 }
+ 

@@ -4,7 +4,7 @@ import java.util.*;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.Vues.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.View.*;
 
 
 
@@ -31,7 +31,9 @@ public class TraitementListe{
      * @param fenetre
      * @param prereservation
      */
-    public TraitementListe(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, Prereservation prereservation) {
+    public TraitementListe(PrereservationFactory bookingPointComAPISeulement, 
+            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, 
+            Prereservation prereservation) {
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
@@ -42,11 +44,14 @@ public class TraitementListe{
         Set<Chambre> disponibles=null;
         try{
             disponibles = this.grandLivreDOrAPISeulement.getChambres(this.prereservation);
-            AfficherListe liste = new AfficherListe(this.bookingPointComAPISeulement,this.grandLivreDOrAPISeulement, this.fenetre, this.prereservation, disponibles);
+            AfficherListe liste = new AfficherListe(this.bookingPointComAPISeulement,
+                    this.grandLivreDOrAPISeulement, this.fenetre, this.prereservation, disponibles);
             liste.run();            
         }
         catch(IllegalStateException e){
-            System.out.print(e.getMessage());
+            JOptionPane.showMessageDialog(this.fenetre,"Problème avec la base de données.");
+            TraitementFin fin = new TraitementFin(this.fenetre);
+            fin.run();
         }      
 }
 }
