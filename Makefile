@@ -28,7 +28,7 @@ run_ihm1 : ${JAR_IHM1}
 # AUTRE BUTS
 doc :
 	javadoc -d doc src/fr/iutfbleau/projetIHM2021FI2/API/*.java src/fr/iutfbleau/projetIHM2021FI2/MNP/*.java
-	 src/fr/iutfbleau/projetIHM2021FI2/IHM1/Vues/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM1/Model/*.java
+	 src/fr/iutfbleau/projetIHM2021FI2/IHM1/View/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM1/Model/*.java
 	 src/fr/iutfbleau/projetIHM2021FI2/IHM1/Controller/*.java
 
 clean :
@@ -120,7 +120,7 @@ ${BUILD}/IHM1/Controller/TraitementNomPrenom.class : ${SRC}/IHM1/Controller/Trai
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementNomPrenom.java
 
 ${BUILD}/IHM1/Controller/TraitementListe.class : ${SRC}/IHM1/Controller/TraitementListe.java/
-										${BUILD}/IHM1/Vues/AfficherListe.class/
+										${BUILD}/IHM1/View/AfficherListe.class/
 										${BUILD}/API/Chambre.class/
 										${BUILD}/API/Prereservation.class/
 										${BUILD}/API/PrereservationFactory.class/
@@ -140,13 +140,13 @@ ${BUILD}/IHM1/Controller/TraitementListeValiderReference.class : ${SRC}/IHM1/Con
 										${BUILD}/API/PrereservationFactory.class/
 										${BUILD}/API/ReservationFactory.class/
 										${BUILD}/IHM1/Model/VerificationReference.class/
-										${BUILD}/IHM1/Vues/AfficherReservations.class
+										${BUILD}/IHM1/View/AfficherReservations.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementListeValiderReference.java
 
 ${BUILD}/IHM1/Controller/TraitementRetourMenu.class : ${SRC}/IHM1/Controller/TraitementRetourMenu.java/
 										${BUILD}/API/PrereservationFactory.class/
 										${BUILD}/API/ReservationFactory.class/
-										${BUILD}/IHM1/Vues/Menu.class
+										${BUILD}/IHM1/View/Menu.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementRetourMenu.java
 
 ${BUILD}/IHM1/Controller/TraitementValider.class : ${SRC}/IHM1/Controller/TraitementValider.java/
@@ -163,16 +163,16 @@ ${BUILD}/IHM1/Controller/TraitementFin.class : ${SRC}/IHM1/Controller/Traitement
 
 ## Model ##
 ${BUILD}/IHM1/Model/VerificationNomPrenom.class : ${SRC}/IHM1/Model/VerificationNomPrenom.java/
-										${BUILD}/IHM1/Vues/Menu.class/
-										${BUILD}/IHM1/Vues/AfficherReservations.class/
+										${BUILD}/IHM1/View/Menu.class/
+										${BUILD}/IHM1/View/AfficherReservations.class/
 										${BUILD}/API/Prereservation.class/
 										${BUILD}/API/PrereservationFactory.class/
 										${BUILD}/API/ReservationFactory.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Model/VerificationNomPrenom.java
 
 ${BUILD}/IHM1/Model/VerificationReference.class : ${SRC}/IHM1/Model/VerificationReference.java/
-										${BUILD}/IHM1/Vues/Menu.class/
-										${BUILD}/IHM1/Vues/Afficher.class/
+										${BUILD}/IHM1/View/Menu.class/
+										${BUILD}/IHM1/View/Afficher.class/
 										${BUILD}/API/Prereservation.class/
 										${BUILD}/API/PrereservationFactory.class/
 										${BUILD}/API/ReservationFactory.class/
@@ -180,65 +180,66 @@ ${BUILD}/IHM1/Model/VerificationReference.class : ${SRC}/IHM1/Model/Verification
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Model/VerificationReference.java
 
 ${BUILD}/IHM1/Model/AjoutReservation.class : ${SRC}/IHM1/Model/AjoutReservation.java/
-										${BUILD}/IHM1/Vues/Fin.class/
+										${BUILD}/IHM1/View/Fin.class/
 										${BUILD}/API/Chambre.class/
 										${BUILD}/API/Prereservation.class/
 										${BUILD}/API/PrereservationFactory.class/
 										${BUILD}/API/ReservationFactory.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Model/AjoutReservation.java
 
-## Vues ##
+## View ##
 
-${BUILD}/IHM1/Vues/Menu.class : ${SRC}/IHM1/Vues/Menu.java/
+${BUILD}/IHM1/View/Menu.class : ${SRC}/IHM1/View/Menu.java/
 										${BUILD}/IHM1/Controller/TraitementNomPrenom.class/
 										${BUILD}/IHM1/Controller/TraitementReference.class/									
 										${BUILD}/API/Prereservation.class
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Vues/Menu.java
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/Menu.java
 
-${BUILD}/IHM1/Vues/Afficher.class : ${SRC}/IHM1/Vues/Afficher.java/
+${BUILD}/IHM1/View/Afficher.class : ${SRC}/IHM1/View/Afficher.java/
 										${BUILD}/IHM1/Controller/TraitementValider.class/
 										${BUILD}/IHM1/Controller/TraitementListe.class/
 										${BUILD}/API/Chambre.class/
 										${BUILD}/API/Prereservation.class									
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Vues/Afficher.java
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/Afficher.java
 
-${BUILD}/IHM1/Vues/AfficherListe.class : ${SRC}/IHM1/Vues/AfficherListe.java/
+${BUILD}/IHM1/View/AfficherListe.class : ${SRC}/IHM1/View/AfficherListe.java/
 										${BUILD}/IHM1/Controller/TraitementListeValider.class/
 										${BUILD}/API/Chambre.class/
 										${BUILD}/API/Prereservation.class/
 										${BUILD}/API/PrereservationFactory.class/
 										${BUILD}/API/ReservationFactory.class
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Vues/AfficherListe.java
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/AfficherListe.java
 
-${BUILD}/IHM1/Vues/AfficherReservations.class : ${SRC}/IHM1/Vues/AfficherReservations.java/
+${BUILD}/IHM1/View/AfficherReservations.class : ${SRC}/IHM1/View/AfficherReservations.java/
 										${BUILD}/API/Prereservation.class/
 										${BUILD}/API/PrereservationFactory.class/
 										${BUILD}/API/ReservationFactory.class/
 										${BUILD}/IHM1/Controller/TraitementListeValiderReference.class/
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Vues/AfficherReservations.java
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/AfficherReservations.java
 
 
-${BUILD}/IHM1/Vues/Fin.class : ${SRC}/IHM1/Vues/Fin.java/
+${BUILD}/IHM1/View/Fin.class : ${SRC}/IHM1/View/Fin.java/
 										${BUILD}/API/PrereservationFactory.class/
 										${BUILD}/API/ReservationFactory.class/
 										${BUILD}/IHM1/Controller/TraitementFin.class/
 										${BUILD}/IHM1/Controller/TraitementRetourMenu.class
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Vues/Fin.java
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/Fin.java
 
 
-${BUILD}/IHM1/Vues/Main.class : ${SRC}/IHM1/Vues/Main.java/
+${BUILD}/IHM1/View/Main.class : ${SRC}/IHM1/View/Main.java/
 										${BUILD}/API/PrereservationFactory.class/
 										${BUILD}/API/ReservationFactory.class/
 										${BUILD}/API/Client.class/
 										${BUILD}/API/TypeChambre.class/
 										${BUILD}/MNP/ClientNP.class/
-										${BUILD}/MNP/PrereservationFactoryNP.class
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Vues/Main.java
+										${BUILD}/MNP/PrereservationFactoryNP.class/
+										${BUILD}/MNP/ReservationFactoryNP.class
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM1/View/Main.java
 
 
 # ## JARS ##
  ${JAR_MNP} : ${BUILD}/Test/TestTexteMNP.class
 	${JAR} cvfe ${JAR_MNP} fr.iutfbleau.projetIHM2021FI2.Test.TestTexteMNP -C build fr
 
- ${JAR_IHM1} : ${BUILD}/IHM1/Vues/Main.class
-	${JAR} cvfe ${JAR_IHM1} fr.iutfbleau.projetIHM2021FI2.IHM1.Vues.Main -C build fr
+ ${JAR_IHM1} : ${BUILD}/IHM1/View/Main.class
+	${JAR} cvfe ${JAR_IHM1} fr.iutfbleau.projetIHM2021FI2.IHM1.View.Main -C build fr
