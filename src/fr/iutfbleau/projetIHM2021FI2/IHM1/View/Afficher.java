@@ -5,7 +5,10 @@ import javax.swing.*;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Controller.*;
 
-
+/**
+ * <code>Afficher</code> est une vue
+ * Elle affiche une boite de dialogue lorsqu'une préreservation a été trouvée 
+ */
 public class Afficher {
 
     private PrereservationFactory bookingPointComAPISeulement;
@@ -16,13 +19,13 @@ public class Afficher {
     private JPanel centre;
 
     /**
-     * 
-     * @param bookingPointComAPISeulement
-     * @param grandLivreDOrAPISeulement
-     * @param fenetre
-     * @param ch1
-     * @param prereservation
-     * @param centre
+     * Constructeur qui permer d'accéder à la fenêtre à la chambre et à la préreservation en paramètre par la suite
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
+     * @param fenetre la fenetre
+     * @param ch1 une chambre
+     * @param prereservation une préréservation
+     * @param centre un JPanel
      */
     public Afficher(PrereservationFactory bookingPointComAPISeulement, 
                 ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre,
@@ -35,6 +38,9 @@ public class Afficher {
         this.centre = centre;   
     }
 
+    /**
+     * Affiche une boite de dialogue lorsqu'une préreservation a été trouvée afin de savoir quelle action effectuer
+     */
     public void run(){
         int result = JOptionPane.showConfirmDialog(this.fenetre, 
                 "La chambre numéro "+this.chambre.getNumero()+" est disponible. Vous convient-elle?");

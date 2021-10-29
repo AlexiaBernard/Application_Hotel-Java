@@ -129,7 +129,7 @@ ${BUILD}/IHM1/Controller/TraitementListeValiderReference.class : ${SRC}/IHM1/Con
 										${BUILD}/API/PrereservationFactory.class\
 										${BUILD}/API/ReservationFactory.class\
 										${BUILD}/IHM1/Model/VerificationReference.class\
-										${BUILD}/IHM1/View/AfficherReservations.class
+										${SRC}/IHM1/View/AfficherReservations.java
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementListeValiderReference.java
 
 ${BUILD}/IHM1/Controller/TraitementNomPrenom.class : ${SRC}/IHM1/Controller/TraitementNomPrenom.java\
@@ -212,7 +212,7 @@ ${BUILD}/IHM1/View/AfficherReservations.class : ${SRC}/IHM1/View/AfficherReserva
 										${BUILD}/API/Prereservation.class\
 										${BUILD}/API/PrereservationFactory.class\
 										${BUILD}/API/ReservationFactory.class\
-										${BUILD}/IHM1/Controller/TraitementListeValiderReference.class\
+										${SRC}/IHM1/Controller/TraitementListeValiderReference.java
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/AfficherReservations.java
 
 

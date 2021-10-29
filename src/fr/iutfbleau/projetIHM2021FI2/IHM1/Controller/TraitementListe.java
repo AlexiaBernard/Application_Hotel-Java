@@ -25,10 +25,10 @@ public class TraitementListe{
     private Prereservation prereservation;
     
     /**
-     * Constructeur qui permer d'accéder à la fenêtre par la suite
-     * @param bookingPointComAPISeulement
+     * Constructeur qui permer d'accéder à la fenêtre et à la préreservation en paramètre par la suite
+     * @param bookingPointComAPISeulement la préréservation
      * @param grandLivreDOrAPISeulement
-     * @param fenetre
+     * @param fenetre la fenêtre
      * @param prereservation
      */
     public TraitementListe(PrereservationFactory bookingPointComAPISeulement, 
