@@ -31,8 +31,10 @@ public class Fin {
         int result = JOptionPane.showConfirmDialog(this.fenetre, "Réservation Validée, voulez-vous retourner au menu?");
 
         if(result==0){
-            AfficherListe aff = new AfficherListe(bookingPointComAPISeulement, grandLivreDOrAPISeulement, fenetre, null, null);
-            aff.deleteRef(centre);
+            if (this.centre !=null){
+                AfficherListe aff = new AfficherListe(bookingPointComAPISeulement, grandLivreDOrAPISeulement, fenetre, null, null);
+                aff.deleteRef(centre);
+            }
             TraitementRetourMenu menu = new TraitementRetourMenu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement,this.fenetre);
             menu.run();
         }else{
