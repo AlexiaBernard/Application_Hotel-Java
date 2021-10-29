@@ -38,6 +38,7 @@ public class Main {
 
 	ReservationFactory grandLivreDOrAPISeulement  = new ReservationFactoryNP();
 
+	//Lancement du menu
 	Menu menu = new Menu(bookingPointComAPISeulement, grandLivreDOrAPISeulement,fenetre);
 	menu.run();
  }    

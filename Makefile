@@ -1,7 +1,7 @@
 # COMMANDES #
 JAVAC = javac
 # note $$ to get a single shell $
-JAVAC_OPTIONS = -d build -cp build:$$CLASSPATH -implicit:none
+JAVAC_OPTIONS = -d build -cp build:$$CLASSPATH -sourcepath src -implicit:none
 JAVA = java
 JAR = jar
 EXEC_JAR = ${JAVA} -jar
@@ -139,9 +139,9 @@ ${BUILD}/IHM1/Controller/TraitementNomPrenom.class : ${SRC}/IHM1/Controller/Trai
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementNomPrenom.java
 
 ${BUILD}/IHM1/Controller/TraitementReference.class : ${SRC}/IHM1/Controller/TraitementReference.java\
-										${BUILD}/IHM1/Model/VerificationReference.class\
 										${BUILD}/API/PrereservationFactory.class\
-										${BUILD}/API/ReservationFactory.class
+										${BUILD}/API/ReservationFactory.class\
+										${BUILD}/IHM1/Model/VerificationReference.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementReference.java
 
 ${BUILD}/IHM1/Controller/TraitementRetourMenu.class : ${SRC}/IHM1/Controller/TraitementRetourMenu.java\
@@ -161,7 +161,7 @@ ${BUILD}/IHM1/Controller/TraitementValider.class : ${SRC}/IHM1/Controller/Traite
 
 ## Model ##
 ${BUILD}/IHM1/Model/VerificationNomPrenom.class : ${SRC}/IHM1/Model/VerificationNomPrenom.java\
-										${BUILD}/IHM1/View/Menu.class\
+										${SRC}/IHM1/View/Menu.java\
 										${BUILD}/IHM1/View/AfficherReservations.class\
 										${BUILD}/API/Prereservation.class\
 										${BUILD}/API/PrereservationFactory.class\
@@ -225,6 +225,7 @@ ${BUILD}/IHM1/View/Fin.class : ${SRC}/IHM1/View/Fin.java\
 
 
 ${BUILD}/IHM1/View/Main.class : ${SRC}/IHM1/View/Main.java\
+										${BUILD}/IHM1/View/Menu.class\
 										${BUILD}/API/PrereservationFactory.class\
 										${BUILD}/API/ReservationFactory.class\
 										${BUILD}/API/Client.class\
