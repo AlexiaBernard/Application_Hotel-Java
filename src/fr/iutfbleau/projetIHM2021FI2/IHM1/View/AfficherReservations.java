@@ -7,7 +7,7 @@ import java.awt.*;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Controller.*;
 
-public class AfficherReservations {
+public class AfficherReservations{
 
     private PrereservationFactory bookingPointComAPISeulement;
     private ReservationFactory grandLivreDOrAPISeulement;
@@ -59,7 +59,7 @@ public class AfficherReservations {
         this.fenetre.add(this.centre, BorderLayout.CENTER);
         this.fenetre.setVisible(true);
 
-        valider1.addActionListener(new TraitementListeValiderReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement ,this.fenetre, group, this.prereservations, this.centre));
+        valider1.addActionListener(new TraitementListeValiderReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, group, this.prereservations, this.centre));
     }
 
 
