@@ -3,36 +3,39 @@ package fr.iutfbleau.projetIHM2021FI2.IHM2.View;
 import javax.swing.*;
 import java.awt.*;
 
+import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
 import fr.iutfbleau.projetIHM2021FI2.IHM2.Controller.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM2.Model.*;
 
 public class Bureau {
 
     private JFrame fenetre;
-    private BD baseDeDonnées;
+    private ReservationFactory grandLivreDOrAPISeulement;
+    private JPanel centre;
 
     /**
      * 
      * @param fenetre
-     * @param baseDeDonnées
+     * @param grandLivreDOrAPISeulement
+     * @param centre
      */
-    public Bureau(JFrame fenetre, BD baseDeDonnées){
+    public Bureau(JFrame fenetre, ReservationFactory grandLivreDOrAPISeulement, JPanel centre){
         this.fenetre = fenetre;
-        this.baseDeDonnées = baseDeDonnées;
+        this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
+        this.centre = centre;
     }
 
     public void run() {
 
-        JPanel panel = new JPanel();
-        JLabel vide = new JLabel("");
-
         //Taux d'occupation
         JPanel taux_p = new JPanel();
-        JLabel taux_l = new JLabel("Taux d'occupation");
-        JButton taux = new JButton("Demander");
-        taux_p.setLayout(new GridLayout(2,1));
+        JLabel taux_l = new JLabel("Taux d'occupation d'une journée");
+        JButton taux_date = new JButton("Demander");
+        JButton taux_type = new JButton("Demander par type");
+        taux_p.setLayout(new GridLayout(3,1));
         taux_p.add(taux_l);
-        taux_p.add(taux);
+        taux_p.add(taux_date);
+        taux_p.add(taux_type);
 
 
         //Graphique d'occupation
@@ -43,18 +46,16 @@ public class Bureau {
         graphique_p.add(graphique_l);
         graphique_p.add(graphique);
 
-        panel.setLayout(new GridLayout(3,1));
-        panel.add(taux_p);
-        panel.add(vide);
-        panel.add(graphique_p);
-
-        this.fenetre.add(panel, BorderLayout.CENTER);
+        this.fenetre.add(taux_p, BorderLayout.NORTH);
+        this.fenetre.add(this.centre, BorderLayout.CENTER);
+        this.fenetre.add(graphique_p, BorderLayout.SOUTH);
 
         this.fenetre.setVisible(true);
 
         //Listener
-        taux.addActionListener(new TraitementTaux(this.fenetre, this.baseDeDonnées));
-        graphique.addActionListener(new TraitementGraphique(this.fenetre, this.baseDeDonnées) );
+        taux_date.addActionListener(new TraitementTaux(this.fenetre, this.grandLivreDOrAPISeulement, this.centre));
+        taux_type.addActionListener(new TraitementTauxType(this.fenetre, this.grandLivreDOrAPISeulement, this.centre));
+        graphique.addActionListener(new TraitementGraphique(this.fenetre, this.grandLivreDOrAPISeulement, this.centre));
         
     }    
 }
