@@ -101,15 +101,17 @@ public class ReservationFactoryP implements ReservationFactory {
             ResultSet result2 = sql2.executeQuery();
             if (result.getObject(1) != result2.getObject(1) ) {
                 throw new IllegalArgumentException("Erreur sur le type de la chambre: la préréservation indique " + p.getTypeChambre() + " mais la chambre est  " + c.getType());
+            } else if (//Si la chambre n'est pas disponible pour cette date){
+                throw new IllegalArgumentException("La chambre " + c.monPrint() + " n'est pas disponible pour fabriquer une réservation à partir de la préréservation " + p.monPrint());
+            } else {
+                PreparedStatement sql3 = this.connexion.prepareStatement("INSERT INTO Reservation ... ");
+                //Ici il faut faire la requête d'insertion dans reservation
+                sql3.executeUpdate();
             }
         } catch (Exception e) {
             throw new IllegalStateException("La réservation a échoué");
         }
         
-        else if (//si la chambre n'est pas disponible pour cette date) // on fait comme si ça n'arrive jamais dans l'hôtel magique (pour l'instant).
-            {
-                throw new IllegalArgumentException("La chambre " + c.monPrint() + " n'est pas disponible pour fabriquer une réservation à partir de la préréservation " + p.monPrint());
-            }
         else {
             Reservation r = new ReservationNP(p.getReference(), p.getDateDebut(), p.getJours(), c, p.getClient());
             this.addReservationToBrain(r);
