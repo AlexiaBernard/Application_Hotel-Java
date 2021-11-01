@@ -73,10 +73,48 @@ public class ReservationFactoryP implements ReservationFactory {
         }
     }
 
+
+    /**
+     * Fabrique (ajoute) une réservation
+     * @param  p une  préréservation 
+     * @param  c une  chambre (normalement libre et adaptée à la préréservation) 
+     * @return la réservation
+     * @throws NullPointerException si un argument est null
+     * @throws IllegalArgumentException si la chambre ne correspondant pas au type de chambre de la préréservation.
+     * @throws IllegalStateException si la chambre n'est pas disponible.
+     *
+     * Ne devrait pas retourner un objet null.
+     */    
     @Override
     public Reservation createReservation(Prereservation p, Chambre c) {
-        // TODO Auto-generated method stub
-        return null;
+        Objects.requireNonNull(p,"La préréservation est null.");
+        Objects.requireNonNull(p,"La chambre est null.");
+        try {
+            //Requête pour récuperer le type de chambre de la prereservation
+            PreparedStatement sql = this.connexion.prepareStatement("SELECT TypeChambre FROM Prereservation WHERE reference = ?");
+            sql.setObject(1, p.getReference());
+            ResultSet result = sql.executeQuery();
+
+            //Requête pour récuperer le type de chambre de la chambre
+            PreparedStatement sql2 = this.connexion.prepareStatement("SELECT TypeChambre FROM Chambre WHERE id = ?");
+            sql2.setInt(1, c.getNumero());
+            ResultSet result2 = sql2.executeQuery();
+            if (result.getObject(1) != result2.getObject(1) ) {
+                throw new IllegalArgumentException("Erreur sur le type de la chambre: la préréservation indique " + p.getTypeChambre() + " mais la chambre est  " + c.getType());
+            }
+        } catch (Exception e) {
+            throw new IllegalStateException("La réservation a échoué");
+        }
+        
+        else if (//si la chambre n'est pas disponible pour cette date) // on fait comme si ça n'arrive jamais dans l'hôtel magique (pour l'instant).
+            {
+                throw new IllegalArgumentException("La chambre " + c.monPrint() + " n'est pas disponible pour fabriquer une réservation à partir de la préréservation " + p.monPrint());
+            }
+        else {
+            Reservation r = new ReservationNP(p.getReference(), p.getDateDebut(), p.getJours(), c, p.getClient());
+            this.addReservationToBrain(r);
+            return r;
+        }
     }
 
     @Override
