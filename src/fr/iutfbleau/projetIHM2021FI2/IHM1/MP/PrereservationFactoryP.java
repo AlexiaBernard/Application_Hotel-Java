@@ -6,7 +6,8 @@ import java.util.*;
 /**
  *
  */
-public class PrereservationFactoryP{
+public class PrereservationFactoryP implements PrereservationFactory{
+
     
     // plutôt que d'utiliser un ensemble, on utilise un HashMap car on suppose qu'on va devoir chercher
     // plutôt les préréservations avec le numéro de référence (un String, voir Prereservation).
@@ -14,33 +15,13 @@ public class PrereservationFactoryP{
     private HashMap<String,Prereservation> brain =new HashMap<String,Prereservation>();//Creating HashMap 
     private Connection connexion;
 
-    public PrereservationFactoryP(){
-        connexion();
+    public PrereservationFactoryP(Connection connexion){
+        this.connexion = connexion;
     }
 
     
-    public void connexion(){
-        try {
-            Class.forName("org.mariadb.jdbc.Driver");
-            try {
-                this.connexion = DriverManager.getConnection(
-                    "jdbc:mariadb://dwarves.iut-fbleau.fr/bernardal",
-                    "bernardal", "bernardal");
-            } catch (SQLException e) {
-                System.err.println("La connexion avec la base de données a echoué.");
-            }
-            
-        } catch (ClassNotFoundException e) {
-            System.err.println("Problème de connexion avec la base de données.");
-        }
-    }
-
-    public void deconnexion(){
-        try {
-            this.connexion.close();
-        } catch (SQLException e) {
-            System.err.println("Problème avec la fermeture de la Base de données.");
-        }
+    public Connection getConnexion(){
+        return this.connexion;
     }
 
     /**
@@ -81,9 +62,9 @@ public class PrereservationFactoryP{
             sql.setString(1, n);
             sql.setString(2, p);
             ResultSet result = sql.executeQuery();
-            Set<Prereservation> prereservations =  ;
+            Set<Prereservation> prereservations = new HashSet<>();
             while(result.next())
-                prereservations.add((Prereservation) result.getObject(1)); //faire prereservation
+                prereservations.add((Prereservation) result.getObject(1)); //Creer un objet prereservation
             return prereservations;
         } catch (Exception e) {
             throw new IllegalStateException("Il n'y a pas de préréservation avec un Client ayant pour nom et prenom : " + n + " et " + p);
