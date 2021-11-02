@@ -32,13 +32,71 @@ public class ReservationFactoryP implements ReservationFactory {
     public Chambre getChambre(Prereservation p) {
         Objects.requireNonNull(p,"La préréservation est null.");
         try {
-            PreparedStatement sql = this.connexion.prepareStatement("SELECT * FROM Chambre WHERE type = ? NOT IN (SELECT Chambre FROM Reservation ...");
-            //Requête SQL a retravailler : il faut vérifier que chaque chambre soit bien disponible dans 
-            //les reservations du jour mais aussi pas réservée dans les jours précédents sur une plus longue 
-            //durée
-            sql.setObject(1, p.getTypeChambre());
+            //Requête qui récupère toutes les réservations de l'Hôtel
+            PreparedStatement sql = this.connexion.prepareStatement("SELECT reference, debut, nuits, chambre, client FROM Reservation");
             ResultSet result = sql.executeQuery();
-            return (Chambre) result;
+            Set<Reservation> reservations = new HashSet<>();
+            while( result.next() ){
+                //Requête qui permt de récupérer la catégorie de la Chambre afin de l'instancier
+                PreparedStatement sql2 = this.connexion.prepareStatement("SELECT categorie FROM Chambre WHERE id = ?");
+                sql2.setInt(1, result.getInt(4));
+                ResultSet result2 = sql2.executeQuery();
+                //Requête qui permet de récupérer le type de la chambre afin de l'instancier
+                PreparedStatement sql3 = this.connexion.prepareStatement("SELECT single FROM TypeChambre WHERE id = ?");
+                sql3.setInt(1, result2.getInt(1));
+                ResultSet result3 = sql3.executeQuery();
+                //Requête qui permet de récupérer le nom et prénom du client afin de l'instancie
+                PreparedStatement sql4 = this.connexion.prepareStatement("SELECT nom, prenom FROM Client WHERE id = ?");
+                sql4.setInt(1, result.getInt(5));
+                ResultSet result4 = sql4.executeQuery();
+                TypeChambre type = null;
+                if (result3.getString(1).equals("UNLS")){
+                    type = TypeChambre.UNLS;
+                } else if (result3.getString(1).equals("DEUXLS")){
+                type = TypeChambre.DEUXLS;
+                } else if (result3.getString(1).equals("UNLD")){
+                    type = TypeChambre.UNLD;
+                }
+                reservations.add(new ReservationP(result.getString(1),(LocalDate) result.getObject(2), result.getInt(3), new ChambreP(result.getInt(4),type), new ClientP(result.getInt(5), result4.getString(2), result4.getString(1))) );
+            }
+            //Requête qui permet de récupérer la chambre afin de l'instancier
+            PreparedStatement sql_ch = this.connexion.prepareStatement("SELECT id, categorie FROM Chambre WHERE categorie = ?");
+            sql_ch.setObject(1, p.getTypeChambre());
+            ResultSet result_ch = sql_ch.executeQuery();
+            Set<Chambre> chambres = new HashSet<>();
+            //Requête qui permet de récupérer le type de la chambre afin de l'instancier
+            PreparedStatement sql3 = this.connexion.prepareStatement("SELECT single FROM TypeChambre WHERE id = ?");
+            sql3.setInt(1, result_ch.getInt(2));
+            ResultSet result3 = sql3.executeQuery();
+            TypeChambre type = null;
+                if (result3.getString(1).equals("UNLS")){
+                    type = TypeChambre.UNLS;
+                } else if (result3.getString(1).equals("DEUXLS")){
+                type = TypeChambre.DEUXLS;
+                } else if (result3.getString(1).equals("UNLD")){
+                    type = TypeChambre.UNLD;
+                }
+            while( result_ch.next() ){
+                chambres.add(new ChambreP(result_ch.getInt(1), type));
+            }
+            Chambre chambre = null;
+            for (Reservation r : reservations){
+                for(Chambre c : chambres){
+                    if ( c.getType().equals(r.getChambre().getType())) {
+                        //Si c'est la même date
+                        if (p.getDateDebut().equals(r.getDateDebut())){
+                            chambres.remove(c);
+                            //Si c'est pas la même date mais dans la reservation (nb de jour)
+                        } else if ((r.getDateDebut().compareTo(p.getDateDebut()))<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(p.getDateDebut())<=0 )  {
+                            chambres.remove(c);
+                        }else{
+                            chambre = c;
+                            break;
+                        }
+                    }
+                }
+            }
+            return chambre;
         } catch (SQLException e) {
             throw new IllegalStateException("L'Hôtel ne dispose plus de chambre disponible pour le type "+ p.getTypeChambre());
         }

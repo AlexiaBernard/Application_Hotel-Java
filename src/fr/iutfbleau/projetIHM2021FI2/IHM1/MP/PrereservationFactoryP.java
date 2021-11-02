@@ -7,12 +7,7 @@ import java.util.*;
  *
  */
 public class PrereservationFactoryP implements PrereservationFactory{
-
     
-    // plutôt que d'utiliser un ensemble, on utilise un HashMap car on suppose qu'on va devoir chercher
-    // plutôt les préréservations avec le numéro de référence (un String, voir Prereservation).
-    // Pour la recherche par nom et prenom on va devoir traverser le HashMap.
-    private HashMap<String,Prereservation> brain =new HashMap<String,Prereservation>();//Creating HashMap 
     private Connection connexion;
 
     public PrereservationFactoryP(Connection connexion){
