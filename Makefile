@@ -190,7 +190,7 @@ ${BUILD}/IHM1/Model/AjoutReservation.class : ${SRC}/IHM1/Model/AjoutReservation.
 
 ${BUILD}/IHM1/View/Menu.class : ${SRC}/IHM1/View/Menu.java\
 										${BUILD}/IHM1/Controller/TraitementReference.class\
-										${BUILD}/IHM1/Controller/TraitementNomPrenom.class\									
+										${SRC}/IHM1/Controller/TraitementNomPrenom.java\									
 										${BUILD}/API/Prereservation.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/Menu.java
 
