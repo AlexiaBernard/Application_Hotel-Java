@@ -126,11 +126,11 @@ ${BUILD}/IHM1/Controller/TraitementListeValider.class : ${SRC}/IHM1/Controller/T
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementListeValider.java
 
 ${BUILD}/IHM1/Controller/TraitementListeValiderReference.class : ${SRC}/IHM1/Controller/TraitementListeValiderReference.java\
+										${SRC}/IHM1/Model/VerificationReference.java\
+										${SRC}/IHM1/View/AfficherReservations.java\
 										${BUILD}/API/Prereservation.class\
 										${BUILD}/API/PrereservationFactory.class\
-										${BUILD}/API/ReservationFactory.class\
-										${SRC}/IHM1/Model/VerificationReference.java\
-										${SRC}/IHM1/View/AfficherReservations.java
+										${BUILD}/API/ReservationFactory.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementListeValiderReference.java
 
 ${BUILD}/IHM1/Controller/TraitementNomPrenom.class : ${SRC}/IHM1/Controller/TraitementNomPrenom.java\
@@ -146,9 +146,9 @@ ${BUILD}/IHM1/Controller/TraitementReference.class : ${SRC}/IHM1/Controller/Trai
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementReference.java
 
 ${BUILD}/IHM1/Controller/TraitementRetourMenu.class : ${SRC}/IHM1/Controller/TraitementRetourMenu.java\
+										${SRC}/IHM1/View/Menu.java\
 										${BUILD}/API/PrereservationFactory.class\
-										${BUILD}/API/ReservationFactory.class\
-										${BUILD}/IHM1/View/Menu.class
+										${BUILD}/API/ReservationFactory.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementRetourMenu.java
 
 ${BUILD}/IHM1/Controller/TraitementValider.class : ${SRC}/IHM1/Controller/TraitementValider.java\
@@ -189,8 +189,8 @@ ${BUILD}/IHM1/Model/AjoutReservation.class : ${SRC}/IHM1/Model/AjoutReservation.
 ## View ##
 
 ${BUILD}/IHM1/View/Menu.class : ${SRC}/IHM1/View/Menu.java\
-										${BUILD}/IHM1/Controller/TraitementNomPrenom.class\
-										${BUILD}/IHM1/Controller/TraitementReference.class\									
+										${BUILD}/IHM1/Controller/TraitementReference.class\
+										${BUILD}/IHM1/Controller/TraitementNomPrenom.class\									
 										${BUILD}/API/Prereservation.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/Menu.java
 
@@ -210,10 +210,10 @@ ${BUILD}/IHM1/View/AfficherListe.class : ${SRC}/IHM1/View/AfficherListe.java\
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/AfficherListe.java
 
 ${BUILD}/IHM1/View/AfficherReservations.class : ${SRC}/IHM1/View/AfficherReservations.java\
+										${SRC}/IHM1/Controller/TraitementListeValiderReference.java\
 										${BUILD}/API/Prereservation.class\
 										${BUILD}/API/PrereservationFactory.class\
-										${BUILD}/API/ReservationFactory.class\
-										${SRC}/IHM1/Controller/TraitementListeValiderReference.java
+										${BUILD}/API/ReservationFactory.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/AfficherReservations.java
 
 
