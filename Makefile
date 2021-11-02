@@ -129,7 +129,7 @@ ${BUILD}/IHM1/Controller/TraitementListeValiderReference.class : ${SRC}/IHM1/Con
 										${BUILD}/API/Prereservation.class\
 										${BUILD}/API/PrereservationFactory.class\
 										${BUILD}/API/ReservationFactory.class\
-										${BUILD}/IHM1/Model/VerificationReference.class\
+										${SRC}/IHM1/Model/VerificationReference.java\
 										${SRC}/IHM1/View/AfficherReservations.java
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementListeValiderReference.java
 
