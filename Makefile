@@ -140,9 +140,9 @@ ${BUILD}/IHM1/Controller/TraitementNomPrenom.class : ${SRC}/IHM1/Controller/Trai
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementNomPrenom.java
 
 ${BUILD}/IHM1/Controller/TraitementReference.class : ${SRC}/IHM1/Controller/TraitementReference.java\
+										${BUILD}/IHM1/Model/VerificationReference.class\
 										${BUILD}/API/PrereservationFactory.class\
-										${BUILD}/API/ReservationFactory.class\
-										${BUILD}/IHM1/Model/VerificationReference.class
+										${BUILD}/API/ReservationFactory.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementReference.java
 
 ${BUILD}/IHM1/Controller/TraitementRetourMenu.class : ${SRC}/IHM1/Controller/TraitementRetourMenu.java\
@@ -226,14 +226,14 @@ ${BUILD}/IHM1/View/Fin.class : ${SRC}/IHM1/View/Fin.java\
 
 
 ${BUILD}/IHM1/View/Main.class : ${SRC}/IHM1/View/Main.java\
-										${BUILD}/IHM1/View/Menu.class\
 										${BUILD}/API/PrereservationFactory.class\
 										${BUILD}/API/ReservationFactory.class\
 										${BUILD}/API/Client.class\
 										${BUILD}/API/TypeChambre.class\
 										${BUILD}/MNP/ClientNP.class\
 										${BUILD}/MNP/PrereservationFactoryNP.class\
-										${BUILD}/MNP/ReservationFactoryNP.class
+										${BUILD}/MNP/ReservationFactoryNP.class\
+										${BUILD}/IHM1/View/Menu.class
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM1/View/Main.java
 
 
