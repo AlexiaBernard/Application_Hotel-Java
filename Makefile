@@ -1,8 +1,8 @@
 # COMMANDES #
 JAVAC = javac
 # note $$ to get a single shell $
-JAVAC_OPTIONS = -d build -cp"C:/Users/chouc/Downloads/mariadb-client.jar" build:$$CLASSPATH -sourcepath src -implicit:none
-#JAVAC_OPTIONS = -d build -cp build:$$CLASSPATH -sourcepath src -implicit:none //Depuis liut
+#JAVAC_OPTIONS = -d build -cp"C:/Users/chouc/Downloads/mariadb-client.jar" build:$$CLASSPATH -sourcepath src -implicit:none
+JAVAC_OPTIONS = -d build -cp build:$$CLASSPATH -sourcepath src -implicit:none
 JAVA = java
 JAR = jar
 EXEC_JAR = ${JAVA} -jar
