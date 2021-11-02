@@ -2,8 +2,7 @@ package fr.iutfbleau.projetIHM2021FI2.IHM1.View;
 
 import javax.swing.*;
 
-import fr.iutfbleau.projetIHM2021FI2.API.PrereservationFactory;
-import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
+import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Controller.*;
 
 import java.awt.*;

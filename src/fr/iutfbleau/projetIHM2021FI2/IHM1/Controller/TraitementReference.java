@@ -3,7 +3,7 @@ package fr.iutfbleau.projetIHM2021FI2.IHM1.Controller;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.VerificationReference;
 
 import java.awt.event.*;
 /**

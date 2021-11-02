@@ -1,6 +1,5 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM1.View;
 
-import java.time.*;
 import javax.swing.*;
 import java.sql.*;
 

@@ -18,19 +18,7 @@ public class ReservationFactoryP implements ReservationFactory {
         return this.connexion;
     }
 
-
-    /**
-     * Recherche une chambre adéquate à partir de
-     * @param  p une  préréservation 
-     * @return la chambre
-     * @throws NullPointerException si un argument est null
-     * @throws IllegalStateException si une chambre correspondant à cette Préréservation n'existe pas.
-     *
-     * Ne devrait pas retourner un objet null.
-     */
-    @Override
-    public Chambre getChambre(Prereservation p) {
-        Objects.requireNonNull(p,"La préréservation est null.");
+    public Set<Reservation> getAllReservation(){
         try {
             //Requête qui récupère toutes les réservations de l'Hôtel
             PreparedStatement sql = this.connexion.prepareStatement("SELECT reference, debut, nuits, chambre, client FROM Reservation");
@@ -59,26 +47,75 @@ public class ReservationFactoryP implements ReservationFactory {
                 }
                 reservations.add(new ReservationP(result.getString(1),(LocalDate) result.getObject(2), result.getInt(3), new ChambreP(result.getInt(4),type), new ClientP(result.getInt(5), result4.getString(2), result4.getString(1))) );
             }
-            //Requête qui permet de récupérer la chambre afin de l'instancier
-            PreparedStatement sql_ch = this.connexion.prepareStatement("SELECT id, categorie FROM Chambre WHERE categorie = ?");
-            sql_ch.setObject(1, p.getTypeChambre());
-            ResultSet result_ch = sql_ch.executeQuery();
+            return reservations;
+        }catch(SQLException e){
+            throw new IllegalStateException("Problème de récupération des réservations");
+
+        }
+    }
+
+    public Set<Chambre> getAllChambreCategorie(TypeChambre type){
+        try {
+            //Requête qui permet de récupérer les chambres afin de l'instancier
+            PreparedStatement sql = this.connexion.prepareStatement("SELECT id, categorie FROM Chambre WHERE categorie IN (SELECT id FROM TypeChambre WHERE single = ?");
+            sql.setObject(1, type);
+            ResultSet result = sql.executeQuery();
             Set<Chambre> chambres = new HashSet<>();
+            while( result.next() ){
+                chambres.add(new ChambreP(result.getInt(1), type));
+            } 
+            return chambres;
+        } catch (SQLException e) {
+            throw new IllegalStateException("Problème de récupération des chambres avec le type "+type);
+        }
+    }
+
+    public Set<Chambre> getAllChambreId(int id){
+        try {
+            //Requête qui permet de récupérer les chambrees afin de l'instancier
+            PreparedStatement sql_ch = this.connexion.prepareStatement("SELECT id, categorie FROM Chambre WHERE categorie = ?");
+            sql_ch.setInt(1, id);
+            ResultSet result_ch = sql_ch.executeQuery();
+            
             //Requête qui permet de récupérer le type de la chambre afin de l'instancier
             PreparedStatement sql3 = this.connexion.prepareStatement("SELECT single FROM TypeChambre WHERE id = ?");
             sql3.setInt(1, result_ch.getInt(2));
             ResultSet result3 = sql3.executeQuery();
-            TypeChambre type = null;
-                if (result3.getString(1).equals("UNLS")){
-                    type = TypeChambre.UNLS;
-                } else if (result3.getString(1).equals("DEUXLS")){
-                type = TypeChambre.DEUXLS;
-                } else if (result3.getString(1).equals("UNLD")){
-                    type = TypeChambre.UNLD;
-                }
-            while( result_ch.next() ){
-                chambres.add(new ChambreP(result_ch.getInt(1), type));
+            TypeChambre type2 = null;
+            if (result3.getString(1).equals("UNLS")){
+                type2 = TypeChambre.UNLS;
+            } else if (result3.getString(1).equals("DEUXLS")){
+            type2 = TypeChambre.DEUXLS;
+            } else if (result3.getString(1).equals("UNLD")){
+                type2 = TypeChambre.UNLD;
             }
+            Set<Chambre> chambres = new HashSet<>();
+            while( result_ch.next() ){
+                chambres.add(new ChambreP(result_ch.getInt(1), type2));
+            } 
+            return chambres;
+        } catch (SQLException e) {
+            throw new IllegalStateException("Problème de récupération des chambres");
+        }
+        
+    }
+
+
+    /**
+     * Recherche une chambre adéquate à partir de
+     * @param  p une  préréservation 
+     * @return la chambre
+     * @throws NullPointerException si un argument est null
+     * @throws IllegalStateException si une chambre correspondant à cette Préréservation n'existe pas.
+     *
+     * Ne devrait pas retourner un objet null.
+     */
+    @Override
+    public Chambre getChambre(Prereservation p) {
+        Objects.requireNonNull(p,"La préréservation est null.");
+        try{
+            Set<Reservation> reservations = this.getAllReservation();
+            Set<Chambre> chambres = this.getAllChambreCategorie(p.getTypeChambre());
             Chambre chambre = null;
             for (Reservation r : reservations){
                 for(Chambre c : chambres){
@@ -97,7 +134,7 @@ public class ReservationFactoryP implements ReservationFactory {
                 }
             }
             return chambre;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new IllegalStateException("L'Hôtel ne dispose plus de chambre disponible pour le type "+ p.getTypeChambre());
         }
     }
@@ -116,17 +153,23 @@ public class ReservationFactoryP implements ReservationFactory {
     public Set<Chambre> getChambres(Prereservation p) {
         Objects.requireNonNull(p,"La préréservation est null.");
         try {
-            PreparedStatement sql = this.connexion.prepareStatement("SELECT * FROM Chambre WHERE type = ? NOT IN (SELECT Chambre FROM Reservation ...");
-            //Requête SQL a retravailler : il faut vérifier que chaque chambre soit bien disponible dans 
-            //les reservations du jour mais aussi pas réservée dans les jours précédents sur une plus longue 
-            //durée
-            Set<Chambre> disponibles = new HashSet<>();
-            sql.setObject(1, p.getTypeChambre());
-            ResultSet result = sql.executeQuery();
-            while(result.next())
-                disponibles.add((Chambre) result.getObject(1));//Creer un objet chambre
-            return disponibles;
-        } catch (SQLException e) {
+            Set<Reservation> reservations = this.getAllReservation();
+            Set<Chambre> chambres = this.getAllChambreCategorie(p.getTypeChambre());
+            for (Reservation r : reservations){
+                for(Chambre c : chambres){
+                    if ( c.getType().equals(r.getChambre().getType())) {
+                        //Si c'est la même date
+                        if (p.getDateDebut().equals(r.getDateDebut())){
+                            chambres.remove(c);
+                            //Si c'est pas la même date mais dans la reservation (nb de jour)
+                        } else if ((r.getDateDebut().compareTo(p.getDateDebut()))<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(p.getDateDebut())<=0 )  {
+                            chambres.remove(c);
+                        }
+                    }
+                }
+            }
+            return chambres;
+        } catch (Exception e) {
             throw new IllegalStateException("L'Hôtel ne dispose plus de chambre disponible pour le type "+ p.getTypeChambre());
         }
     }
@@ -160,7 +203,7 @@ public class ReservationFactoryP implements ReservationFactory {
             if (result.getObject(1) != result2.getObject(1) ) {
                 throw new IllegalArgumentException("Erreur sur le type de la chambre: la préréservation indique " + p.getTypeChambre() + " mais la chambre est  " + c.getType());
             } else {
-                //Ici il faut vérifier que la chmabre mise en argument ne soit pas déjà dans une reservation
+                //Ici il faut vérifier que la chambre mise en argument ne soit pas déjà dans une reservation
                 try {
                     //Si la chambre n'est pas disponible pour cette date)
                     sql = this.connexion.prepareStatement("INSERT INTO Reservation VALUES (?,?,?,?,?)");
