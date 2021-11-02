@@ -134,7 +134,7 @@ ${BUILD}/IHM1/Controller/TraitementListeValiderReference.class : ${SRC}/IHM1/Con
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementListeValiderReference.java
 
 ${BUILD}/IHM1/Controller/TraitementNomPrenom.class : ${SRC}/IHM1/Controller/TraitementNomPrenom.java\
-										${SRC}/IHM1/Model/VerificationNomPrenom.java\
+										${BUILD}/IHM1/Model/VerificationNomPrenom.class\
 										${BUILD}/API/PrereservationFactory.class\
 										${BUILD}/API/ReservationFactory.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementNomPrenom.java
@@ -163,7 +163,7 @@ ${BUILD}/IHM1/Controller/TraitementValider.class : ${SRC}/IHM1/Controller/Traite
 ## Model ##
 ${BUILD}/IHM1/Model/VerificationNomPrenom.class : ${SRC}/IHM1/Model/VerificationNomPrenom.java\
 										${SRC}/IHM1/View/Menu.java\
-										${SRC}/IHM1/View/AfficherReservations.java\
+										${BUILD}/IHM1/View/AfficherReservations.class\
 										${BUILD}/API/Prereservation.class\
 										${BUILD}/API/PrereservationFactory.class\
 										${BUILD}/API/ReservationFactory.class
@@ -190,7 +190,7 @@ ${BUILD}/IHM1/Model/AjoutReservation.class : ${SRC}/IHM1/Model/AjoutReservation.
 
 ${BUILD}/IHM1/View/Menu.class : ${SRC}/IHM1/View/Menu.java\
 										${BUILD}/IHM1/Controller/TraitementReference.class\
-										${SRC}/IHM1/Controller/TraitementNomPrenom.java\									
+										${BUILD}/IHM1/Controller/TraitementNomPrenom.class\									
 										${BUILD}/API/Prereservation.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/Menu.java
 
@@ -210,7 +210,7 @@ ${BUILD}/IHM1/View/AfficherListe.class : ${SRC}/IHM1/View/AfficherListe.java\
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/AfficherListe.java
 
 ${BUILD}/IHM1/View/AfficherReservations.class : ${SRC}/IHM1/View/AfficherReservations.java\
-										${SRC}/IHM1/Controller/TraitementListeValiderReference.java\
+										${BUILD}/IHM1/Controller/TraitementListeValiderReference.class\
 										${BUILD}/API/Prereservation.class\
 										${BUILD}/API/PrereservationFactory.class\
 										${BUILD}/API/ReservationFactory.class
