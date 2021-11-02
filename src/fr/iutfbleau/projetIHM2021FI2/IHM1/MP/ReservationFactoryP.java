@@ -203,23 +203,31 @@ public class ReservationFactoryP implements ReservationFactory {
             if (result.getObject(1) != result2.getObject(1) ) {
                 throw new IllegalArgumentException("Erreur sur le type de la chambre: la préréservation indique " + p.getTypeChambre() + " mais la chambre est  " + c.getType());
             } else {
-                //Ici il faut vérifier que la chambre mise en argument ne soit pas déjà dans une reservation
                 try {
-                    //Si la chambre n'est pas disponible pour cette date)
+                    //Vérification que la chambre en argument soit toujours disponible
+                    Set<Reservation> reservations = this.getAllReservation();
+                    for(Reservation r : reservations){
+                        if ( c.getType().equals(r.getChambre().getType())) {
+                            //Si c'est la même date
+                            if (p.getDateDebut().equals(r.getDateDebut())){
+                                throw new IllegalStateException("La chambre n'est plus disponible.");
+                                //Si c'est pas la même date mais dans la reservation (nb de jour)
+                            } else if ((r.getDateDebut().compareTo(p.getDateDebut()))<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(p.getDateDebut())<=0 )  {
+                                throw new IllegalStateException("La chambre n'est plus disponible.");
+                            }
+                        }
+                    }
                     sql = this.connexion.prepareStatement("INSERT INTO Reservation VALUES (?,?,?,?,?)");
                     sql.setObject(1, p.getReference());
                     sql.setObject(2, p.getDateDebut());
                     sql.setInt(3, p.getJours());
                     sql.setObject(4, p.getClient());
                     sql.setInt(5, c.getNumero());
-                    //Ici il faut faire la requête d'insertion dans reservation
                     sql.executeUpdate();
                     sql = this.connexion.prepareStatement("DELETE FROM Prereservation WHERE reference = ?");
                     sql.setObject(1, p.getReference());
                     sql.executeUpdate();
-                    //Reservation reserv = new ReservationP(p.getReference(), p.getDateDebut(), p.getJours(), c, p.getClient());
-                    //return reserv;
-                    return null;
+                    return (new ReservationP(p.getReference(), p.getDateDebut(), p.getJours(), c, p.getClient()));
                 } catch (Exception e) {
                     throw new IllegalArgumentException("La chambre " + c.monPrint() + " n'est pas disponible pour fabriquer une réservation à partir de la préréservation " + p.monPrint());
                 }
