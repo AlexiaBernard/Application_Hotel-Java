@@ -170,7 +170,7 @@ ${BUILD}/IHM1/Model/VerificationNomPrenom.class : ${SRC}/IHM1/Model/Verification
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Model/VerificationNomPrenom.java
 
 ${BUILD}/IHM1/Model/VerificationReference.class : ${SRC}/IHM1/Model/VerificationReference.java\
-										${BUILD}/IHM1/View/Menu.class\
+										${SRC}/IHM1/View/Menu.java\
 										${BUILD}/IHM1/View/Afficher.class\
 										${BUILD}/API/Prereservation.class\
 										${BUILD}/API/PrereservationFactory.class\
