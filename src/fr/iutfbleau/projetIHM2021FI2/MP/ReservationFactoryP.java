@@ -41,7 +41,7 @@ public class ReservationFactoryP implements ReservationFactory {
                 if (result3.getString(1).equals("UNLS")){
                     type = TypeChambre.UNLS;
                 } else if (result3.getString(1).equals("DEUXLS")){
-                type = TypeChambre.DEUXLS;
+                    type = TypeChambre.DEUXLS;
                 } else if (result3.getString(1).equals("UNLD")){
                     type = TypeChambre.UNLD;
                 }
@@ -50,7 +50,6 @@ public class ReservationFactoryP implements ReservationFactory {
             return reservations;
         }catch(SQLException e){
             throw new IllegalStateException("Problème de récupération des réservations");
-
         }
     }
 
@@ -68,7 +67,7 @@ public class ReservationFactoryP implements ReservationFactory {
                 if (result2.getString(1).equals("UNLS")){
                     type2 = TypeChambre.UNLS;
                 } else if (result2.getString(1).equals("DEUXLS")){
-                type2 = TypeChambre.DEUXLS;
+                    type2 = TypeChambre.DEUXLS;
                 } else if (result2.getString(1).equals("UNLD")){
                     type2 = TypeChambre.UNLD;
                 }
@@ -102,7 +101,6 @@ public class ReservationFactoryP implements ReservationFactory {
             PreparedStatement sql_ch = this.connexion.prepareStatement("SELECT id, categorie FROM Chambre WHERE categorie = ?");
             sql_ch.setInt(1, id);
             ResultSet result_ch = sql_ch.executeQuery();
-            
             //Requête qui permet de récupérer le type de la chambre afin de l'instancier
             PreparedStatement sql3 = this.connexion.prepareStatement("SELECT single FROM Categorie WHERE id = ?");
             sql3.setInt(1, result_ch.getInt(2));
@@ -124,7 +122,6 @@ public class ReservationFactoryP implements ReservationFactory {
             throw new IllegalStateException("Problème de récupération des chambres");
         }
     }
-
 
     /**
      * Recherche une chambre adéquate à partir de
@@ -166,7 +163,6 @@ public class ReservationFactoryP implements ReservationFactory {
             throw new IllegalStateException("L'Hôtel ne dispose plus de chambre disponible pour le type "+ p.getTypeChambre());
         }
     }
-
 
      /**
      * Recherche toutes les chambres adéquates à partir de
@@ -383,6 +379,8 @@ public class ReservationFactoryP implements ReservationFactory {
         int reservees = 0;
         Set<Reservation> reservations = this.getReservation(d);
         for (Reservation r : reservations)
+            //Le nombre de chambre réservées correspond au nombre de reservation
+            //car une reservation a obligatoirement une et une seule chambre
             reservees++;
         int ratio = (reservees*100)/reservables;
         return ratio;
@@ -451,6 +449,7 @@ public class ReservationFactoryP implements ReservationFactory {
             throw new IllegalStateException("La première date doit être antérieur à la seconde.");
         Set<Reservation> reservations = this.getAllReservation();
         Set<Chambre> chambres = this.getAllChambreCategorie(t);
+        int compteur = 0;
         for (Reservation r : reservations){
            try {
             //Permet de récupérer le type de chambre de la réservation
@@ -466,7 +465,17 @@ public class ReservationFactoryP implements ReservationFactory {
                 type = TypeChambre.UNLD;
             }
             if ( type.equals(t)) {
-                //Ici enlever les réservations 
+                compteur = 0;
+                //Permet de parcourir les reservations et leur durée et voir si a un moment dans leur
+                //durée elle sont dans la periode d1 d2
+                for (int i=0; i<=r.getJours(); i++){
+                    if (r.getDateDebut().plusDays(i).compareTo(d1)>=0 && r.getDateDebut().plusDays(i).compareTo(d2)<=0){
+                        compteur++;
+                    }
+                }
+                if (compteur == 0){
+                    reservations.remove(r);
+                }
             } else {
                 reservations.remove(r);
             }
@@ -474,8 +483,7 @@ public class ReservationFactoryP implements ReservationFactory {
                 throw new IllegalStateException("Problème de récupération des chambres");
            }
         }
-
-        return null;
+        return reservations;
     }
 
     /**
@@ -496,9 +504,12 @@ public class ReservationFactoryP implements ReservationFactory {
         Objects.requireNonNull(t,"Le type proposé est null.");
         if (d1.compareTo(d2)>0)
             throw new IllegalStateException("La première date doit être antérieur à la seconde.");
-
-        // TODO Auto-generated method stub
-        return 0;
+        Set<Chambre> chambres = this.getAllChambreCategorie(t);
+        //Les chambres réservées ou non c'est à dire toutes les chambres du type t
+        int compteur = 0;
+        for (Chambre c : chambres)
+            compteur++;
+        return compteur;
     }
 
     /**
@@ -512,8 +523,20 @@ public class ReservationFactoryP implements ReservationFactory {
     public int getRatio(LocalDate d1, LocalDate d2) {
         Objects.requireNonNull(d1,"La première date proposée est nulle.");
         Objects.requireNonNull(d2,"La seconde date proposée est nulle.");
-        int reservables = 0;
+        int reservables = this.getDisponibles(d1, d2);
         int reservees = 0;
+        //Les reservations entre les deux dates avec pour type de chambre UNLS
+        Set<Reservation> reservations = this.getReservation(d1, d2, TypeChambre.UNLS);
+        //Les reservations entre les deux dates avec poour type de chambre DEUXLS
+        for (Reservation r : this.getReservation(d1, d2, TypeChambre.DEUXLS))
+            reservations.add(r);
+        //Les reservations entre les deux dates avec pour type de chambre UNLD
+        for (Reservation r : this.getReservation(d1, d2, TypeChambre.UNLD))
+            reservations.add(r);
+        for (Reservation r : reservations)
+            //Le nombre de chambre réservées correspond au nombre de reservation
+            //car une reservation a obligatoirement une et une seule chambre
+            reservees++;
         int ratio = (reservees*100)/reservables;
         return ratio;
     }
@@ -531,10 +554,14 @@ public class ReservationFactoryP implements ReservationFactory {
         Objects.requireNonNull(d1,"La première date proposée est nulle.");
         Objects.requireNonNull(d2,"La seconde date proposée est nulle.");
         Objects.requireNonNull(t,"Le type proposé est null.");
-        int reservables = 0;
+        int reservables = this.getDisponibles(d1, d2);
         int reservees = 0;
+        Set<Reservation> reservations = this.getReservation(d1, d2,t);
+        for (Reservation r : reservations)
+            //Le nombre de chambre réservées correspond au nombre de reservation
+            //car une reservation a obligatoirement une et une seule chambre
+            reservees++;
         int ratio = (reservees*100)/reservables;
         return ratio;
     }
-
 }
