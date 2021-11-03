@@ -57,7 +57,7 @@ public class Afficher {
                     this.grandLivreDOrAPISeulement, this.fenetre, this.prereservation);
             liste.run();
         }else{
-            TraitementFin fin = new TraitementFin(this.fenetre);
+            TraitementFin fin = new TraitementFin(this.grandLivreDOrAPISeulement, this.fenetre);
             fin.run();
         }
     }

@@ -57,7 +57,7 @@ public class TraitementListeValiderReference implements ActionListener {
             ref.run();
         }else{
             JOptionPane.showMessageDialog(this.fenetre,"Problème avec la prereservation selectionnée.");
-            TraitementFin fin = new TraitementFin(this.fenetre);
+            TraitementFin fin = new TraitementFin(this.grandLivreDOrAPISeulement, this.fenetre);
             fin.run();
         }        
     }

@@ -50,7 +50,7 @@ public class TraitementListe{
         }
         catch(IllegalStateException e){
             JOptionPane.showMessageDialog(this.fenetre,"Problème avec la base de données.");
-            TraitementFin fin = new TraitementFin(this.fenetre);
+            TraitementFin fin = new TraitementFin(this.grandLivreDOrAPISeulement ,this.fenetre);
             fin.run();
         }      
 }

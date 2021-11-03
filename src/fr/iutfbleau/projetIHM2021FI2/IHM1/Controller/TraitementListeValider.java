@@ -60,7 +60,7 @@ public class TraitementListeValider implements ActionListener {
             reser.run();
         }else{
             JOptionPane.showMessageDialog(this.fenetre,"Problème avec la chambre selectionnée.");
-            TraitementFin fin = new TraitementFin(this.fenetre);
+            TraitementFin fin = new TraitementFin(this.grandLivreDOrAPISeulement ,this.fenetre);
             fin.run();
         }        
     }

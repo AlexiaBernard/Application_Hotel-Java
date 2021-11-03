@@ -37,7 +37,7 @@ public class MainMP {
                 System.err.println("La connexion avec la base de données a echoué.");
             }  
         } catch (ClassNotFoundException e) {
-            System.err.println("Problème de connexion avec la base de données.");
+            System.err.println("Impossible de se connecter à la base de données.");
         }
     }    
 }

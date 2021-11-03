@@ -140,6 +140,7 @@ ${BUILD}/Test/TestTexteMNP.class : ${SRC}/Test/TestTexteMNP.java \
 #### IHM 1 ####
 ## Controller ##
 ${BUILD}/IHM1/Controller/TraitementFin.class : ${SRC}/IHM1/Controller/TraitementFin.java
+										${BUILD}/API/ReservationFactory.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementFin.java
 
 ${BUILD}/IHM1/Controller/TraitementListe.class : ${SRC}/IHM1/Controller/TraitementListe.java\

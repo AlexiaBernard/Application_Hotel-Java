@@ -39,7 +39,6 @@ public class ReservationNP implements Reservation {
         this.client=client;
     }
 
-    
     /**
      * permet de récupérer 
      * @return la référence.

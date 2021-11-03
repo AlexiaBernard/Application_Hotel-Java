@@ -38,7 +38,7 @@ public class Fin {
             TraitementRetourMenu menu = new TraitementRetourMenu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement,this.fenetre);
             menu.run();
         }else{
-            TraitementFin fin = new TraitementFin(this.fenetre);
+            TraitementFin fin = new TraitementFin(this.grandLivreDOrAPISeulement, this.fenetre);
             fin.run();
         }
     }

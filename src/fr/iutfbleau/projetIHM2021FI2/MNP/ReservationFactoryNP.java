@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Predicate;
 import java.lang.*;
+import java.sql.Connection;
 
 /**
  * Usine non persistante stockant les réservations dans une structure de données permettant de simuler un ensemble.
@@ -374,6 +375,11 @@ public class ReservationFactoryNP implements ReservationFactory{
      */    
     public int getRatio(LocalDate d1, LocalDate d2, TypeChambre t){
         throw new UnsupportedOperationException("pas encore implanté");
+    }
+
+    @Override
+    public Connection getConnexion() {
+        return null;
     }
     
     
