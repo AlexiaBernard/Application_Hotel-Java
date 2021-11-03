@@ -1,4 +1,4 @@
-package fr.iutfbleau.projetIHM2021FI2.IHM1.MP;
+package fr.iutfbleau.projetIHM2021FI2.MP;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 
 import java.sql.*;

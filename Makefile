@@ -14,6 +14,7 @@ DOC = doc/fr/iutfbleau/projetIHM2021FI2
 
 # CHOIX NOMS
 JAR_MNP = test-mnp.jar
+JAR_IHM1_MNP = ihm1MNP.jar
 JAR_IHM1 = ihm1.jar
 
 # BUTS FACTICES #
@@ -23,12 +24,15 @@ JAR_IHM1 = ihm1.jar
 run_mnp : ${JAR_MNP}
 	${EXEC_JAR} ${JAR_MNP}
 
+run_ihm1_mnp : ${JAR_IHM1_MNP}
+	${EXEC_JAR_MNP} ${JAR_IHM1_MNP}
+
 run_ihm1 : ${JAR_IHM1}
 	${EXEC_JAR} ${JAR_IHM1}
 
 # AUTRE BUTS
 doc :
-	javadoc -d doc src/fr/iutfbleau/projetIHM2021FI2/API/*.java src/fr/iutfbleau/projetIHM2021FI2/MNP/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM1/View/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM1/Model/*.java	src/fr/iutfbleau/projetIHM2021FI2/IHM1/Controller/*.java
+	javadoc -d doc src/fr/iutfbleau/projetIHM2021FI2/API/*.java src/fr/iutfbleau/projetIHM2021FI2/MNP/*.java src/fr/iutfbleau/projetIHM2021FI2/MP/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM1/View/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM1/Model/*.java	src/fr/iutfbleau/projetIHM2021FI2/IHM1/Controller/*.java
 
 clean :
 	rm -rf ${BUILD}/* *.jar
@@ -96,6 +100,35 @@ ${BUILD}/MNP/ReservationFactoryNP.class : ${SRC}/MNP/ReservationFactoryNP.java \
 				  			  ${BUILD}/MNP/ReservationNP.class \
 							  ${BUILD}/API/ReservationFactory.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MNP/ReservationFactoryNP.java
+
+## MP ##
+${BUILD}/MP/ClientP.class : ${SRC}/MP/ClientP.java \
+							  ${BUILD}/API/Client.class 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MP/ClientP.java
+
+${BUILD}/MP/ChambreP.class : ${SRC}/MP/ChambreP.java \
+							  ${BUILD}/API/Chambre.class 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MP/ChambreP.java
+
+${BUILD}/MP/PrereservationP.class : ${SRC}/MP/PrereservationP.java \
+			${BUILD}/MP/ClientP.class \
+						${BUILD}/API/Prereservation.class 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MP/PrereservationP.java
+
+${BUILD}/MP/ReservationP.class : ${SRC}/MP/ReservationP.java \
+							  ${BUILD}/API/Reservation.class 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MP/ReservationP.java
+
+${BUILD}/MP/PrereservationFactoryP.class : ${SRC}/MP/PrereservationFactoryP.java \
+							  ${BUILD}/API/PrereservationFactory.class 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MP/PrereservationFactoryP.java
+
+${BUILD}/MP/ReservationFactoryP.class : ${SRC}/MP/ReservationFactoryP.java \
+				  			  ${BUILD}/MP/ChambreP.class \
+				  			  ${BUILD}/MP/ReservationP.class \
+							  ${BUILD}/API/ReservationFactory.class 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MP/ReservationFactoryP.java
+
 
 ## TEST ##
 ${BUILD}/Test/TestTexteMNP.class : ${SRC}/Test/TestTexteMNP.java \
@@ -236,10 +269,23 @@ ${BUILD}/IHM1/View/Main.class : ${SRC}/IHM1/View/Main.java\
 										${BUILD}/IHM1/View/Menu.class
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM1/View/Main.java
 
+${BUILD}/IHM1/View/MainMP.class : ${SRC}/IHM1/View/MainMP.java\
+										${BUILD}/API/PrereservationFactory.class\
+										${BUILD}/API/ReservationFactory.class\
+										${BUILD}/API/Client.class\
+										${BUILD}/API/TypeChambre.class\
+										${BUILD}/MP/PrereservationFactoryNP.class\
+										${BUILD}/MP/ReservationFactoryNP.class\
+										${BUILD}/IHM1/View/Menu.class
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM1/View/MainMPs.java
+
 
 # ## JARS ##
  ${JAR_MNP} : ${BUILD}/Test/TestTexteMNP.class
 	${JAR} cvfe ${JAR_MNP} fr.iutfbleau.projetIHM2021FI2.Test.TestTexteMNP -C build fr
 
-${JAR_IHM1} : ${BUILD}/IHM1/View/Main.class
-	${JAR} cvfe ${JAR_IHM1} fr.iutfbleau.projetIHM2021FI2.IHM1.View.Main -C build fr
+${JAR_IHM1_MNP} : ${BUILD}/IHM1/View/Main.class
+	${JAR} cvfe ${JAR_IHM1_MNP} fr.iutfbleau.projetIHM2021FI2.IHM1.View.Main -C build fr
+
+${JAR_IHM1} : ${BUILD}/IHM1/View/MainMP.class
+	${JAR} cvfe ${JAR_IHM1} fr.iutfbleau.projetIHM2021FI2.IHM1.View.MainMP -C build fr

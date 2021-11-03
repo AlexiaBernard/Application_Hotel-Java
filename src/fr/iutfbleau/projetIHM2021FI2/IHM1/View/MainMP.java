@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.sql.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.MP.*;
+import fr.iutfbleau.projetIHM2021FI2.MP.*;
 
 public class MainMP {
 
