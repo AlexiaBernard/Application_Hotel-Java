@@ -1,18 +1,16 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM1.View;
 
 import javax.swing.*;
+import java.awt.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Controller.*;
-
-import java.awt.*;
 
 public class Menu {
 
     private PrereservationFactory bookingPointComAPISeulement;
     private ReservationFactory grandLivreDOrAPISeulement;
 	private JFrame fenetre = new JFrame("Menu");
-
 
     /**
      * Constructeur qui crée et affiche le Menu

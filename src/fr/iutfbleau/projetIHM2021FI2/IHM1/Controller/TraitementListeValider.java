@@ -1,11 +1,11 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM1.Controller;
 
-import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.*;
-
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
+
+import fr.iutfbleau.projetIHM2021FI2.API.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.*;
 
 public class TraitementListeValider implements ActionListener {
 

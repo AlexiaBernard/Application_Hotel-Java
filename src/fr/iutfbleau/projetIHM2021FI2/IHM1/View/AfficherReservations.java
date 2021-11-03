@@ -62,7 +62,6 @@ public class AfficherReservations{
         valider1.addActionListener(new TraitementListeValiderReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, group, this.prereservations, this.centre));
     }
 
-
     /**
      * 
      * @param centre

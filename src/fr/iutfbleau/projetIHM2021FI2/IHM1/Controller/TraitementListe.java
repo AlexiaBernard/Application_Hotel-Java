@@ -6,9 +6,6 @@ import javax.swing.*;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.View.*;
 
-
-
-
 /**
  * <code>TraitementListe</code> est un contrôleur.
  * Il gère le bouton ...

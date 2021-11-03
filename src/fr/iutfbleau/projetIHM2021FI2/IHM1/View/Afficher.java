@@ -61,5 +61,4 @@ public class Afficher {
             fin.run();
         }
     }
-    
 }
