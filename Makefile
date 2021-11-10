@@ -118,8 +118,11 @@ ${BUILD}/MP/ReservationP.class : ${SRC}/MP/ReservationP.java \
 							  ${BUILD}/API/Reservation.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MP/ReservationP.java
 
+
 ${BUILD}/MP/PrereservationFactoryP.class : ${SRC}/MP/PrereservationFactoryP.java \
-							  ${BUILD}/API/PrereservationFactory.class 
+							${BUILD}/MP/ClientP.class\
+							${BUILD}/MP/PrereservationP.class\
+							${BUILD}/API/PrereservationFactory.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MP/PrereservationFactoryP.java
 
 ${BUILD}/MP/ReservationFactoryP.class : ${SRC}/MP/ReservationFactoryP.java \

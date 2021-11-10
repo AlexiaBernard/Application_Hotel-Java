@@ -62,7 +62,7 @@ public class PrereservationFactoryP implements PrereservationFactory{
             ResultSet result = sql.executeQuery();
             Set<Prereservation> prereservations = new HashSet<>();
 
-            while(result.next()){
+            while(result.next()){ //ne se lance qu'un fois !! :/
                 System.out.println("dans le while");
                 PreparedStatement sql2 = this.connexion.prepareStatement("SELECT sigle FROM Categorie WHERE id = ?");
                 sql2.setInt(1, result.getInt(4));
@@ -83,7 +83,10 @@ public class PrereservationFactoryP implements PrereservationFactory{
                 System.out.println("14");
                 ResultSet result3 = sql3.executeQuery();
                 System.out.println("15");
+		result3.next();
+		System.out.println("16");
                 Client client = new ClientP(result3.getInt(1), result3.getString(2), result3.getString(3));
+		System.out.println("17: Client fait");
                 Prereservation pre = new PrereservationP(result.getString(1), (LocalDate) result.getObject(2), result.getInt(3), type, client);
                 prereservations.add(pre);
             }
