@@ -47,6 +47,8 @@ public class TraitementNomPrenom implements ActionListener{
     public void actionPerformed(ActionEvent e){
         VerificationNomPrenom np = new VerificationNomPrenom(this.bookingPointComAPISeulement, 
                 this.grandLivreDOrAPISeulement, this.fenetre, this.nom.getText(), this.prenom.getText());
+        this.nom.setText("");
+        this.prenom.setText("");
         np.run();
     }
     

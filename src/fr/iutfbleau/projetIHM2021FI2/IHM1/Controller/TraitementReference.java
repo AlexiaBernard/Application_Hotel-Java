@@ -44,6 +44,7 @@ public class TraitementReference implements ActionListener{
         JPanel centre = new JPanel();
         VerificationReference verif = new VerificationReference(this.bookingPointComAPISeulement, 
                 this.grandLivreDOrAPISeulement, this.fenetre, this.reference.getText(), centre);
+        this.reference.setText("");
         verif.run();
     }
 }
