@@ -15,26 +15,31 @@ import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.*;
  */
 
 public class TraitementNomPrenom implements ActionListener{
-    private JFrame fenetre;
-    private JTextField prenom;
-    private JTextField nom;
+
     private PrereservationFactory bookingPointComAPISeulement;
     private ReservationFactory grandLivreDOrAPISeulement;
+    private JFrame fenetre;
+    private JPanel centre;
+    private JTextField prenom;
+    private JTextField nom;
+
     
     /**
      * Constructeur qui permer d'accéder à la fenêtre par la suite
      * @param bookingPointComAPISeulement
      * @param grandLivreDOrAPISeulement
      * @param fenetre the linked window
+     * @param centre
      * @param nom
      * @param prenom
      */
     public TraitementNomPrenom(PrereservationFactory bookingPointComAPISeulement, 
             ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, 
-            JTextField nom, JTextField prenom) {
+            JPanel centre, JTextField nom, JTextField prenom) {
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
+        this.centre = centre;
         this.prenom = prenom;
         this.nom = nom;
     }
@@ -46,7 +51,7 @@ public class TraitementNomPrenom implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         VerificationNomPrenom np = new VerificationNomPrenom(this.bookingPointComAPISeulement, 
-                this.grandLivreDOrAPISeulement, this.fenetre, this.nom.getText(), this.prenom.getText());
+                this.grandLivreDOrAPISeulement, this.fenetre, this.centre, this.nom.getText(), this.prenom.getText());
         this.nom.setText("");
         this.prenom.setText("");
         np.run();

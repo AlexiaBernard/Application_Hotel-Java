@@ -51,7 +51,7 @@ public class Afficher {
             valider.run();
         }else if(result==1){
             AfficherReservations aff = new AfficherReservations(this.bookingPointComAPISeulement, 
-                    this.grandLivreDOrAPISeulement, this.fenetre, null);
+                    this.grandLivreDOrAPISeulement, this.fenetre, this.centre, null);
             aff.deleteRef(this.centre);
             TraitementListe liste = new  TraitementListe(this.bookingPointComAPISeulement, 
                     this.grandLivreDOrAPISeulement, this.fenetre, this.prereservation);

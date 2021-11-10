@@ -38,8 +38,9 @@ public class Main {
 
 	ReservationFactory grandLivreDOrAPISeulement  = new ReservationFactoryNP();
 
+	JPanel centre = new JPanel();
 	//Lancement du menu
-	Menu menu = new Menu(bookingPointComAPISeulement, grandLivreDOrAPISeulement,fenetre);
+	Menu menu = new Menu(bookingPointComAPISeulement, grandLivreDOrAPISeulement,fenetre, centre);
 	menu.run();
  }    
 }

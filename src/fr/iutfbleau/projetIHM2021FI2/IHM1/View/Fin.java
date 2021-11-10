@@ -35,7 +35,7 @@ public class Fin {
                 AfficherListe aff = new AfficherListe(bookingPointComAPISeulement, grandLivreDOrAPISeulement, fenetre, null, null);
                 aff.deleteRef(centre);
             }
-            TraitementRetourMenu menu = new TraitementRetourMenu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement,this.fenetre);
+            TraitementRetourMenu menu = new TraitementRetourMenu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement,this.fenetre, this.centre);
             menu.run();
         }else{
             TraitementFin fin = new TraitementFin(this.grandLivreDOrAPISeulement, this.fenetre);

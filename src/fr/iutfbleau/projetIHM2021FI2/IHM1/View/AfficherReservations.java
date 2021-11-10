@@ -13,23 +13,24 @@ public class AfficherReservations{
     private ReservationFactory grandLivreDOrAPISeulement;
     private JFrame fenetre;
     private Set<Prereservation> prereservations;
-    JPanel centre;
+    private JPanel centre;
 
     /**
      * 
      * @param bookingPointComAPISeulement
      * @param grandLivreDOrAPISeulement
      * @param fenetre
+     * @param centre
      * @param prereservations
      */
     public AfficherReservations(PrereservationFactory bookingPointComAPISeulement,
             ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, 
-            Set<Prereservation> prereservations) {
+            JPanel centre, Set<Prereservation> prereservations) {
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
+        this.centre = centre;
         this.prereservations = prereservations;
-        this.centre = new JPanel();
     }
     
     public void run(){

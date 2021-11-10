@@ -1,7 +1,6 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM2.Controller;
 
 import java.awt.event.*;
-import java.text.*;
 import java.time.*;
 import java.time.format.*;
 import javax.swing.*;

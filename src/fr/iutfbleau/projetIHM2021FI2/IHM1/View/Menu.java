@@ -10,19 +10,22 @@ public class Menu {
 
     private PrereservationFactory bookingPointComAPISeulement;
     private ReservationFactory grandLivreDOrAPISeulement;
-	private JFrame fenetre = new JFrame("Menu");
+	private JFrame fenetre;
+    private JPanel centre;
 
     /**
      * Constructeur qui crée et affiche le Menu
      * @param bookingPointComAPISeulement
      * @param grandLivreDOrAPISeulement
      * @param fenetre
+     * @param centre
      */
     public Menu(PrereservationFactory bookingPointComAPISeulement, 
-            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre){
+            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JPanel centre){
 		this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
-        this.fenetre = fenetre;        
+        this.fenetre = fenetre;
+        this.centre = centre;
     }
 
     public void run(){
@@ -80,12 +83,19 @@ public class Menu {
 		retrouver_np.add(valider_np);
 		retrouver_np.add(test);
 
+        /* Nettoie le centre */
+        if (this.centre!=null){
+            this.fenetre.remove(centre);
+            this.fenetre.repaint();
+            this.fenetre.revalidate();
+        }
+        
         this.fenetre.add(retrouver_ref,BorderLayout.SOUTH);
         this.fenetre.add(retrouver_np,BorderLayout.NORTH);
 
         /* Les Listener */
-        valider_ref.addActionListener(new TraitementReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement ,this.fenetre, reference));
-        valider_np.addActionListener(new TraitementNomPrenom(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, nom, prenom));
+        valider_ref.addActionListener(new TraitementReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement ,this.fenetre, this.centre, reference));
+        valider_np.addActionListener(new TraitementNomPrenom(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.centre, nom, prenom));
 
 		this.fenetre.setVisible(true);
     }

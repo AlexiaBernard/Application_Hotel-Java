@@ -37,7 +37,6 @@ public class TraitementListeValider implements ActionListener {
                 this.group = group;
                 this.disponibles = disponibles;
                 this.centre  = centre;
-                this.disponibles = disponibles;
     }
 
     @Override

@@ -11,6 +11,7 @@ public class VerificationNomPrenom {
     private PrereservationFactory bookingPointComAPISeulement;
     private ReservationFactory grandLivreDOrAPISeulement;
     private JFrame fenetre;
+    private JPanel centre;
     private String nom;
     private String prenom;
 
@@ -19,13 +20,16 @@ public class VerificationNomPrenom {
      * @param bookingPointComAPISeulement
      * @param grandLivreDOrAPISeulement
      * @param fenetre
+     * @param centre
      * @param nom
      * @param prenom
      */
-    public VerificationNomPrenom(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, String nom, String prenom){
+    public VerificationNomPrenom(PrereservationFactory bookingPointComAPISeulement, 
+            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JPanel centre, String nom, String prenom){
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
+        this.centre = centre;
         this.nom = nom;
         this.prenom = prenom;      
     }
@@ -33,11 +37,11 @@ public class VerificationNomPrenom {
     public void run(){
         try{
             Set<Prereservation> prereservations = this.bookingPointComAPISeulement.getPrereservations(this.nom, this.prenom);
-            AfficherReservations rese = new AfficherReservations(bookingPointComAPISeulement, grandLivreDOrAPISeulement, fenetre, prereservations);
+            AfficherReservations rese = new AfficherReservations(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.centre, prereservations);
             rese.run();
         }catch(IllegalStateException e){
             JOptionPane.showMessageDialog(this.fenetre,"Pas de préréservation pour ce client.");
-            Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre);
+            Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.centre);
             menu.run();
         }    
     }

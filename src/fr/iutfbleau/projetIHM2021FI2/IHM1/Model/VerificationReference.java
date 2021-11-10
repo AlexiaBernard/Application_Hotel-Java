@@ -43,7 +43,7 @@ public void run(){
         }
         catch(IllegalStateException e){
             JOptionPane.showMessageDialog(this.fenetre,"Problème pour récupérer la préréservation.");
-            Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre);
+            Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.centre);
             menu.run();
         }
         Afficher afficher = new Afficher(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, 
@@ -51,7 +51,7 @@ public void run(){
         afficher.run();
     }catch(IllegalStateException e){
         JOptionPane.showMessageDialog(this.fenetre,"Pas de préreservation trouvée avec cette référence.");
-        Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre);
+        Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.centre);
         menu.run();
     }
    }

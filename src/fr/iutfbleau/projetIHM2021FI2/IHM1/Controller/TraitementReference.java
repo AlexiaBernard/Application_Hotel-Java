@@ -15,23 +15,27 @@ import java.awt.event.*;
  */
 
 public class TraitementReference implements ActionListener{
-    private JFrame fenetre;
-    private JTextField reference;
+    
     private PrereservationFactory bookingPointComAPISeulement;
     private ReservationFactory grandLivreDOrAPISeulement;
+    private JFrame fenetre;
+    private JPanel centre;
+    private JTextField reference;
     
     /**
      * Constructeur qui permer d'accéder à la fenêtre par la suite
      * @param bookingPointComAPISeulement
      * @param grandLivreDOrAPISeulement
      * @param fenetre the linked window
+     * @param centre
      * @param reference
      */
     public TraitementReference(PrereservationFactory bookingPointComAPISeulement, 
-            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JTextField reference) {
+            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JPanel centre, JTextField reference) {
         this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
+        this.centre = centre;
         this.reference = reference;
     }
 
@@ -41,9 +45,8 @@ public class TraitementReference implements ActionListener{
      */
     @Override
     public void actionPerformed(ActionEvent e){
-        JPanel centre = new JPanel();
         VerificationReference verif = new VerificationReference(this.bookingPointComAPISeulement, 
-                this.grandLivreDOrAPISeulement, this.fenetre, this.reference.getText(), centre);
+                this.grandLivreDOrAPISeulement, this.fenetre, this.reference.getText(), this.centre);
         this.reference.setText("");
         verif.run();
     }

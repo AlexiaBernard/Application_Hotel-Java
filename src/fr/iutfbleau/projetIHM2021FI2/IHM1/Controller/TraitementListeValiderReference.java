@@ -51,7 +51,7 @@ public class TraitementListeValiderReference implements ActionListener {
             }
         }
         if(choisi!=null){
-            AfficherReservations del = new AfficherReservations(bookingPointComAPISeulement, grandLivreDOrAPISeulement, fenetre, prereservations);
+            AfficherReservations del = new AfficherReservations(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.centre, prereservations);
             del.deleteRef(this.centre);
             VerificationReference ref = new VerificationReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, choisi.getReference(), this.centre);
             ref.run();
