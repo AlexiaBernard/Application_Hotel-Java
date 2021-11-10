@@ -1,8 +1,7 @@
 # COMMANDES #
 JAVAC = javac
 # note $$ to get a single shell $
-#JAVAC_OPTIONS = -d build -cp"C:/Users/chouc/Downloads/mariadb-client.jar" build:$$CLASSPATH -sourcepath src -implicit:none
-JAVAC_OPTIONS = -d build -cp build:$$CLASSPATH -sourcepath src -implicit:none
+JAVAC_OPTIONS = -d build -cp ".:/export/documents/mariadb-client.jar" -sourcepath src -implicit:none
 JAVA = java
 JAR = jar
 EXEC_JAR = ${JAVA} -jar
@@ -111,7 +110,7 @@ ${BUILD}/MP/ChambreP.class : ${SRC}/MP/ChambreP.java \
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MP/ChambreP.java
 
 ${BUILD}/MP/PrereservationP.class : ${SRC}/MP/PrereservationP.java \
-			${BUILD}/MP/ClientP.class \
+						${BUILD}/MP/ClientP.class \
 						${BUILD}/API/Prereservation.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MP/PrereservationP.java
 
@@ -286,10 +285,10 @@ ${BUILD}/IHM1/View/MainMP.class : ${SRC}/IHM1/View/MainMP.java\
 										${BUILD}/API/ReservationFactory.class\
 										${BUILD}/API/Client.class\
 										${BUILD}/API/TypeChambre.class\
-										${BUILD}/MP/PrereservationFactoryNP.class\
-										${BUILD}/MP/ReservationFactoryNP.class\
+										${BUILD}/MP/PrereservationFactoryP.class\
+										${BUILD}/MP/ReservationFactoryP.class\
 										${BUILD}/IHM1/View/Menu.class
-	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM1/View/MainMPs.java
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM1/View/MainMP.java
 
 
 # ## JARS ##
