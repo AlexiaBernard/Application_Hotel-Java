@@ -377,10 +377,7 @@ public class ReservationFactoryNP implements ReservationFactory{
         throw new UnsupportedOperationException("pas encore implanté");
     }
 
-    @Override
     public Connection getConnexion() {
         return null;
-    }
-    
-    
+    }    
 }

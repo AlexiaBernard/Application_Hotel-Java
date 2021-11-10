@@ -1,7 +1,8 @@
 package fr.iutfbleau.projetIHM2021FI2.API;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.*;
-import java.sql.*;
+
 /**
  * Cette interface est une usine abstraite.
  * 
@@ -28,13 +29,8 @@ import java.sql.*;
  */
 public interface ReservationFactory{
 
-    /**
-     * AJOUT 
-     * Retourne la connection pour le modèle Persistant.
-     * @return la connexion
-     */
     public Connection getConnexion();
-
+    
     /**
      * Recherche une chambre adéquate à partir de
      * @param  p une  préréservation 

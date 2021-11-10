@@ -30,8 +30,10 @@ public class MainMP {
 
                 ReservationFactory grandLivreDOrAPISeulement  = new ReservationFactoryP(connexion);
 
+                JPanel centre = new JPanel();
+
                 //Lancement du menu
-                Menu menu = new Menu(bookingPointComAPISeulement, grandLivreDOrAPISeulement,fenetre);
+                Menu menu = new Menu(bookingPointComAPISeulement, grandLivreDOrAPISeulement,fenetre, centre);
                 menu.run();
             } catch (SQLException e) {
                 System.err.println("La connexion avec la base de données a echoué.");

@@ -1,7 +1,7 @@
 # COMMANDES #
 JAVAC = javac
 # note $$ to get a single shell $
-JAVAC_OPTIONS = -d build -cp ".:/export/documents/mariadb-client.jar" -sourcepath src -implicit:none
+JAVAC_OPTIONS = -d build -cp build:$$CLASSPATH:"./mariadb-client.jar" -sourcepath src -implicit:none
 JAVA = java
 JAR = jar
 EXEC_JAR = ${JAVA} -jar
@@ -138,7 +138,7 @@ ${BUILD}/Test/TestTexteMNP.class : ${SRC}/Test/TestTexteMNP.java \
 
 #### IHM 1 ####
 ## Controller ##
-${BUILD}/IHM1/Controller/TraitementFin.class : ${SRC}/IHM1/Controller/TraitementFin.java
+${BUILD}/IHM1/Controller/TraitementFin.class : ${SRC}/IHM1/Controller/TraitementFin.java \
 										${BUILD}/API/ReservationFactory.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/Controller/TraitementFin.java
 
@@ -239,9 +239,9 @@ ${BUILD}/IHM1/View/Afficher.class : ${SRC}/IHM1/View/Afficher.java\
 										${BUILD}/API/PrereservationFactory.class\
 										${BUILD}/API/ReservationFactory.class\
 										${BUILD}/IHM1/Controller/TraitementValider.class\
-										${BUILD}/IHM1/Controller/TraitementListe.class\								
+										${BUILD}/IHM1/Controller/TraitementListe.class\
 										${BUILD}/IHM1/Controller/TraitementFin.class\
-										${SRC}/IHM1/Model/AfficherReservations.java	
+										${SRC}/IHM1/View/AfficherReservations.java	
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/IHM1/View/Afficher.java
 
 ${BUILD}/IHM1/View/AfficherListe.class : ${SRC}/IHM1/View/AfficherListe.java\
@@ -299,4 +299,4 @@ ${JAR_IHM1_MNP} : ${BUILD}/IHM1/View/Main.class
 	${JAR} cvfe ${JAR_IHM1_MNP} fr.iutfbleau.projetIHM2021FI2.IHM1.View.Main -C build fr
 
 ${JAR_IHM1} : ${BUILD}/IHM1/View/MainMP.class
-	${JAR} cvfe ${JAR_IHM1} fr.iutfbleau.projetIHM2021FI2.IHM1.View.MainMP -C build fr
+	${JAR} cvfe ${JAR_IHM1} fr.iutfbleau.projetIHM2021FI2.IHM1.View.MainMP -C build fr org

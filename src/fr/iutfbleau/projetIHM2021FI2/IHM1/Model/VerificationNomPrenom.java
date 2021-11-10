@@ -36,7 +36,9 @@ public class VerificationNomPrenom {
 
     public void run(){
         try{
+            System.out.println("appel va etre lancé");
             Set<Prereservation> prereservations = this.bookingPointComAPISeulement.getPrereservations(this.nom, this.prenom);
+            System.out.println("appel fait");
             AfficherReservations rese = new AfficherReservations(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.centre, prereservations);
             rese.run();
         }catch(IllegalStateException e){
