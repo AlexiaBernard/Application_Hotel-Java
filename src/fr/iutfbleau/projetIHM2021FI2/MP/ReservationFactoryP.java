@@ -41,7 +41,7 @@ public class ReservationFactoryP implements ReservationFactory {
                 result2.next();
                 System.out.println("res 9");
                 //Requête qui permet de récupérer le type de la chambre afin de l'instancier
-                PreparedStatement sql3 = this.connexion.prepareStatement("SELECT single FROM TypeChambre WHERE id = ?");
+                PreparedStatement sql3 = this.connexion.prepareStatement("SELECT sigle FROM TypeChambre WHERE id = ?");
                 System.out.println("res 10");
                 sql3.setInt(1, result2.getInt(1));
                 System.out.println("res 11");
