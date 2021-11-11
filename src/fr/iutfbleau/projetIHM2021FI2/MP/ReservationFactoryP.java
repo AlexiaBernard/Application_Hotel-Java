@@ -25,18 +25,21 @@ public class ReservationFactoryP implements ReservationFactory {
             ResultSet result = sql.executeQuery();
             Set<Reservation> reservations = new HashSet<>();
             while( result.next() ){
-                //Requête qui permt de récupérer la catégorie de la Chambre afin de l'instancier
+                //Requête qui permet de récupérer la catégorie de la Chambre afin de l'instancier
                 PreparedStatement sql2 = this.connexion.prepareStatement("SELECT categorie FROM Chambre WHERE id = ?");
                 sql2.setInt(1, result.getInt(4));
                 ResultSet result2 = sql2.executeQuery();
+                result2.next();
                 //Requête qui permet de récupérer le type de la chambre afin de l'instancier
                 PreparedStatement sql3 = this.connexion.prepareStatement("SELECT single FROM TypeChambre WHERE id = ?");
                 sql3.setInt(1, result2.getInt(1));
                 ResultSet result3 = sql3.executeQuery();
+                result3.next();
                 //Requête qui permet de récupérer le nom et prénom du client afin de l'instancie
                 PreparedStatement sql4 = this.connexion.prepareStatement("SELECT nom, prenom FROM Client WHERE id = ?");
                 sql4.setInt(1, result.getInt(5));
                 ResultSet result4 = sql4.executeQuery();
+                result4.next();
                 TypeChambre type = null;
                 if (result3.getString(1).equals("UNLS")){
                     type = TypeChambre.UNLS;
@@ -45,7 +48,11 @@ public class ReservationFactoryP implements ReservationFactory {
                 } else if (result3.getString(1).equals("UNLD")){
                     type = TypeChambre.UNLD;
                 }
-                reservations.add(new ReservationP(result.getString(1),(LocalDate) result.getObject(2), result.getInt(3), new ChambreP(result.getInt(4),type), new ClientP(result.getInt(5), result4.getString(2), result4.getString(1))) );
+                //Création de la chambre 
+                Chambre chambre = new ChambreP(result.getInt(4),type);
+                //Création du client 
+                Client client =  new ClientP(result.getInt(5),result4.getString(2), result4.getString(1));
+                reservations.add(new ReservationP(result.getString(1),result.getDate(2).toLocalDate(),result.getInt(3), chambre, client));
             }
             return reservations;
         }catch(SQLException e){
@@ -63,6 +70,7 @@ public class ReservationFactoryP implements ReservationFactory {
                 PreparedStatement sql2 = this.connexion.prepareStatement("SELECT single FROM Categorie WHERE id = ?");
                 sql2.setInt(1, result.getInt(2));
                 ResultSet result2 = sql2.executeQuery();
+                result2.next();
                 TypeChambre type2 = null;
                 if (result2.getString(1).equals("UNLS")){
                     type2 = TypeChambre.UNLS;
@@ -105,6 +113,7 @@ public class ReservationFactoryP implements ReservationFactory {
             PreparedStatement sql3 = this.connexion.prepareStatement("SELECT single FROM Categorie WHERE id = ?");
             sql3.setInt(1, result_ch.getInt(2));
             ResultSet result3 = sql3.executeQuery();
+            result3.next();
             TypeChambre type2 = null;
             if (result3.getString(1).equals("UNLS")){
                 type2 = TypeChambre.UNLS;
