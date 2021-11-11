@@ -294,12 +294,16 @@ public class ReservationFactoryP implements ReservationFactory {
                     Set<Reservation> reservations = this.getAllReservation();
 		    System.out.println("1");
                     for(Reservation r : reservations){
+                        System.out.println("2");
                         if ( c.getType().equals(r.getChambre().getType())) {
+                            System.out.println("3");
                             //Si c'est la même date
                             if (p.getDateDebut().equals(r.getDateDebut())){
+                                System.out.println("4");
                                 throw new IllegalStateException("La chambre n'est plus disponible.");
                                 //Si c'est pas la même date mais dans la reservation (nb de jour)
                             } else if ((r.getDateDebut().compareTo(p.getDateDebut()))<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(p.getDateDebut())<=0 )  {
+                                System.out.println("5");
                                 throw new IllegalStateException("La chambre n'est plus disponible.");
                             }
                         }
