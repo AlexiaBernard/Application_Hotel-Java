@@ -40,8 +40,10 @@ public void run(){
         Chambre libre=null;
         try{
             libre = this.grandLivreDOrAPISeulement.getChambre(prereservation);
+            System.out.println("1 get chambre effectué ");
             Afficher afficher = new Afficher(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, 
                 this.fenetre, libre, prereservation, this.centre);
+            System.out.println("affiché créé");
             afficher.run();
         }
         catch(IllegalStateException e){
@@ -49,7 +51,6 @@ public void run(){
             Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.centre);
             menu.run();
         }
-        
     }catch(IllegalStateException e){
         JOptionPane.showMessageDialog(this.fenetre,"Pas de préreservation trouvée avec cette référence.");
         Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.centre);
