@@ -273,7 +273,7 @@ public class ReservationFactoryP implements ReservationFactory {
     @Override
     public Reservation createReservation(Prereservation p, Chambre c) {
         Objects.requireNonNull(p,"La préréservation est null.");
-        Objects.requireNonNull(p,"La chambre est null.");
+        Objects.requireNonNull(c,"La chambre est null.");
         try {
             //Requête pour récuperer le type de chambre de la prereservation
             PreparedStatement sql = this.connexion.prepareStatement("SELECT categorie FROM Prereservation WHERE reference = ?");
@@ -295,6 +295,7 @@ public class ReservationFactoryP implements ReservationFactory {
 		    System.out.println("1");
                     for(Reservation r : reservations){
                         System.out.println("2");
+                        //si c'est le meme type
                         if ( c.getType().equals(r.getChambre().getType())) {
                             System.out.println("3");
                             //Si c'est la même date
@@ -302,7 +303,7 @@ public class ReservationFactoryP implements ReservationFactory {
                                 System.out.println("4");
                                 throw new IllegalStateException("La chambre n'est plus disponible.");
                                 //Si c'est pas la même date mais dans la reservation (nb de jour)
-                            } else if ((r.getDateDebut().compareTo(p.getDateDebut()))<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(p.getDateDebut())<=0 )  {
+                            } else if ((r.getDateDebut().compareTo(p.getDateDebut()))<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(p.getDateDebut())<0 )  {
                                 System.out.println("5");
                                 throw new IllegalStateException("La chambre n'est plus disponible.");
                             }
