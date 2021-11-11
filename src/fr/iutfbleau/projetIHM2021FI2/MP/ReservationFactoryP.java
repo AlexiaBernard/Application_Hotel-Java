@@ -90,12 +90,30 @@ public class ReservationFactoryP implements ReservationFactory {
     public Set<Chambre> getAllChambreCategorie(TypeChambre type){
         try {
             //Requête qui permet de récupérer les chambres afin de l'instancier
-            PreparedStatement sql = this.connexion.prepareStatement("SELECT id, categorie FROM Chambre WHERE categorie IN (SELECT id FROM TypeChambre WHERE single = ?");
-            sql.setObject(1, type);
+            PreparedStatement sql = this.connexion.prepareStatement("SELECT id, categorie FROM Chambre WHERE categorie IN (SELECT id FROM Categorie WHERE sigle = ?)");
+	    System.out.println("sql fait , 1");
+	    String string = null;
+	    if (type == TypeChambre.UNLS){
+		string = "UNLS";
+		System.out.println(string);
+	    } else if (type == TypeChambre.DEUXLS){
+		string = "DEUXLS";
+		System.out.println(string);
+	    } else if (type == TypeChambre.UNLD){
+		string = "UNLD";
+		System.out.println(string);
+	    }
+            sql.setString(1, string);
+	    System.out.println("setString fait");
             ResultSet result = sql.executeQuery();
-            Set<Chambre> chambres = new HashSet<>();
+	    System.out.println("result fait");
+            Set<Chambre> chambres = new HashSet<Chambre>();
+	    System.out.println("chalbres fait");
             while( result.next() ){
-                chambres.add(new ChambreP(result.getInt(1), type));
+		System.out.println("entre dans boucle");
+		Chambre chambre = new ChambreP(result.getInt(1), type);
+		System.out.println("Chambre créé, 4");
+                chambres.add(chambre);
             } 
             return chambres;
         } catch (SQLException e) {
@@ -110,7 +128,7 @@ public class ReservationFactoryP implements ReservationFactory {
             sql_ch.setInt(1, id);
             ResultSet result_ch = sql_ch.executeQuery();
             //Requête qui permet de récupérer le type de la chambre afin de l'instancier
-            PreparedStatement sql3 = this.connexion.prepareStatement("SELECT single FROM Categorie WHERE id = ?");
+            PreparedStatement sql3 = this.connexion.prepareStatement("SELECT sigle FROM Categorie WHERE id = ?");
             sql3.setInt(1, result_ch.getInt(2));
             ResultSet result3 = sql3.executeQuery();
             result3.next();
@@ -123,8 +141,8 @@ public class ReservationFactoryP implements ReservationFactory {
                 type2 = TypeChambre.UNLD;
             }
             Set<Chambre> chambres = new HashSet<>();
-            while( result_ch.next() ){
-                chambres.add(new ChambreP(result_ch.getInt(1), type2));
+	     while( result_ch.next() ){
+		chambres.add(new ChambreP(result_ch.getInt(1), type2));
             } 
             return chambres;
         } catch (SQLException e) {
@@ -145,9 +163,13 @@ public class ReservationFactoryP implements ReservationFactory {
     public Chambre getChambre(Prereservation p) {
         Objects.requireNonNull(p,"La préréservation est null.");
         try{
+	    System.out.println("1");
             Set<Reservation> reservations = this.getAllReservation();
+	    System.out.println("reservatons fait, 2");
             Set<Chambre> chambres = this.getAllChambreCategorie(p.getTypeChambre());
+	    System.out.println("chambres faites : 3");
             Chambre chambre = null;
+	    System.out.println("chambre null, 4");
             for (Reservation r : reservations){
                 for(Chambre c : chambres){
                     //Si c'est le même type
@@ -167,6 +189,13 @@ public class ReservationFactoryP implements ReservationFactory {
                     }
                 }
             }
+	    if (chambre == null){
+		System.out.println("null oui");
+		for (Chambre c : chambres){
+		    chambre = c;
+		    break;
+		}
+	    }
             return chambre;
         } catch (Exception e) {
             throw new IllegalStateException("L'Hôtel ne dispose plus de chambre disponible pour le type "+ p.getTypeChambre());
