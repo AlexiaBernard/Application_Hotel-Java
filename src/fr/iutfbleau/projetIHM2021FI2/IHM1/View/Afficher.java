@@ -43,17 +43,14 @@ public class Afficher {
      * Affiche une boite de dialogue lorsqu'une préreservation a été trouvée afin de savoir quelle action effectuer
      */
     public void run(){
-        System.out.println("entrée dans le run");
         int result = JOptionPane.showConfirmDialog(this.fenetre, 
                 "La chambre numéro "+this.chambre.getNumero()+" est disponible. Vous convient-elle?");
         System.out.println("result effectué");
         if(result==0){
-            System.out.println("egal 0");
             TraitementValider valider = new TraitementValider(this.bookingPointComAPISeulement, 
                     this.grandLivreDOrAPISeulement ,this.fenetre, this.chambre, this.prereservation);
             valider.run();
         }else if(result==1){
-            System.out.println("egal 1");
             AfficherReservations aff = new AfficherReservations(this.bookingPointComAPISeulement, 
                     this.grandLivreDOrAPISeulement, this.fenetre, this.centre, null);
             aff.deleteRef(this.centre);
@@ -61,7 +58,6 @@ public class Afficher {
                     this.grandLivreDOrAPISeulement, this.fenetre, this.prereservation);
             liste.run();
         }else{
-            System.out.println("sinon");
             TraitementFin fin = new TraitementFin(this.grandLivreDOrAPISeulement, this.fenetre);
             fin.run();
         }

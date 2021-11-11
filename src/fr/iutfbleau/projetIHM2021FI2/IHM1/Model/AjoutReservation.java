@@ -49,8 +49,7 @@ public class AjoutReservation {
             Fin fin = new Fin(this.bookingPointComAPISeulement,this.grandLivreDOrAPISeulement, 
                     this.fenetre, this.centre);
             fin.run();
-        }
-        catch(IllegalStateException e){
+        }catch(IllegalStateException e){
             JOptionPane.showMessageDialog(this.fenetre,"L'ajout de la réservation a échoué.");
             if(i==0){
                 AfficherListe aff = new AfficherListe(this.bookingPointComAPISeulement, 

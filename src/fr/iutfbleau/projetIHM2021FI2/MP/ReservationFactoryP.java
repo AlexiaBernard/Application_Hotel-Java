@@ -22,24 +22,15 @@ public class ReservationFactoryP implements ReservationFactory {
     public Set<Reservation> getAllReservation(){
         try {
             //Requête qui récupère toutes les réservations de l'Hôtel
-            System.out.println("res 1");
             PreparedStatement sql = this.connexion.prepareStatement("SELECT reference, debut, nuits, chambre, client FROM Reservation");
-            System.out.println("res 2");
             ResultSet result = sql.executeQuery();
-            System.out.println("res 3");
             Set<Reservation> reservations = new HashSet<Reservation>();
-            System.out.println("res 4");
             while( result.next() ){
-                System.out.println("res 5 dans while");
                 //Requête qui permet de récupérer le type de la chambre afin de l'instancier
                 PreparedStatement sql2 = this.connexion.prepareStatement("SELECT sigle FROM Categorie WHERE id IN (SELECT categorie FROM Chambre WHERE id = ?)");
-                System.out.println("res 10");
                 sql2.setInt(1, result.getInt(4));
-                System.out.println("res 11");
                 ResultSet result2 = sql2.executeQuery();
-                System.out.println("res 12");
                 result2.next();
-                System.out.println("res 13");
                 TypeChambre type = null;
                 if (result2.getString(1).equals("UNLS")){
                     type = TypeChambre.UNLS;
@@ -52,13 +43,9 @@ public class ReservationFactoryP implements ReservationFactory {
                 Chambre chambre = new ChambreP(result.getInt(4),type);
                 //Requête qui permet de récupérer le nom et prénom du client afin de l'instancie
                 PreparedStatement sql4 = this.connexion.prepareStatement("SELECT nom, prenom FROM Client WHERE id = ?");
-                System.out.println("res 14");
                 sql4.setInt(1, result.getInt(5));
-                System.out.println("res 15");
                 ResultSet result4 = sql4.executeQuery();
-                System.out.println("res 16");
                 result4.next();
-                System.out.println("res 17");
                 //Création du client 
                 Client client =  new ClientP(result.getInt(5),result4.getString(2), result4.getString(1));
                 reservations.add(new ReservationP(result.getString(1),result.getDate(2).toLocalDate(),result.getInt(3), chambre, client));
@@ -163,58 +150,43 @@ public class ReservationFactoryP implements ReservationFactory {
     public Chambre getChambre(Prereservation p) {
         Objects.requireNonNull(p,"La préréservation est null.");
         try{
-            System.out.println("1");
             Set<Reservation> reservations = this.getAllReservation();
-            System.out.println("2, reservations fait");
             Set<Chambre> chambres = this.getAllChambreCategorie(p.getTypeChambre());
-            System.out.println("3, chambres fait");
             Chambre chambre = null;
-            System.out.println("4, chambre null");
             int verif = 0;
             for (Reservation r : reservations){
-                System.out.println("dans for reservations");
                 verif = 0;
                 for(Chambre c : chambres){
-                    System.out.println("dans for chambres");
                     //Si c'est le même type
                     if ( c.getType().equals(r.getChambre().getType())) {
-                        System.out.println("5, meme type");
                         //Si c'est la même date
                         if (p.getDateDebut().equals(r.getDateDebut())){
-                            System.out.println("6, meme date");
                             chambres.remove(c);
                             verif = 1;
                             //Si c'est pas la même date mais dans la reservation (nb de jour)
                         } else if ((r.getDateDebut().compareTo(p.getDateDebut()))<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(p.getDateDebut())<=0 )  {
-                            System.out.println("6, dans la reservation date");
                             chambres.remove(c);
                             verif = 1;
                         }else{
-                            System.out.println("6, sinon dispo");
                             chambre = c;
                             verif = 2;
                         }
                     } else {
-                        System.out.println("5, pas meme date : dispo");
                         chambre = c;
                         verif = 2;
                     }
                     //Permet de sortir si la chambre de la réservation a été trouvée
                     if (verif == 1){
-                        System.out.println("chambre de res trouvée : break");
                         break;
                     }
                 }
                 //Permet de sortir si une chambre disponible a été trouvée
                 if (verif == 2){
-                    System.out.println("chambre dispo trouvée : break");
                     break;
                 }
             }
             if (chambre == null){
-                System.out.println("chambre null");
                 for (Chambre c : chambres){
-                    System.out.println("dans for chambres");
                     chambre = c;
                     break;
                 }
@@ -292,38 +264,25 @@ public class ReservationFactoryP implements ReservationFactory {
                 try {
                     //Vérification que la chambre en argument soit toujours disponible
                     Set<Reservation> reservations = this.getAllReservation();
-		    System.out.println("1");
                     for(Reservation r : reservations){
-                        System.out.println("2");
                         //si c'est la meme chambre
                         if (c.getNumero() == r.getChambre().getNumero()) {
-                            System.out.println("3");
                             //Si c'est la même date
                             if (p.getDateDebut().equals(r.getDateDebut())){
-                                System.out.println("4");
                                 throw new IllegalStateException("La chambre n'est plus disponible.");
                                 //Si c'est pas la même date mais dans la reservation (nb de jour)
                             } else if ((r.getDateDebut().compareTo(p.getDateDebut()))<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(p.getDateDebut())<0 )  {
-                                System.out.println("5");
                                 throw new IllegalStateException("La chambre n'est plus disponible.");
                             }
                         }
                     }
-		    System.out.println("apres for, 2");
                     PreparedStatement sql2 = this.connexion.prepareStatement("INSERT INTO Reservation (reference, debut, nuits, client, chambre) VALUES (?,?,?,?,?)");
-		    System.out.println("3, sql2");
                     sql2.setString(1, p.getReference());
-		    System.out.println("3,ref fait");
                     sql2.setDate(2,Date.valueOf(p.getDateDebut()));
-		    System.out.println("4,date fait");
                     sql2.setInt(3, p.getJours());
-		    System.out.println("5,jour fait");
                     sql2.setInt(4, p.getClient().getId());
-		    System.out.println("6, client fait");
                     sql2.setInt(5, c.getNumero());
-		    System.out.println("7,num fait");
                     sql2.executeUpdate();
-		    System.out.println("8, update fait");
                     PreparedStatement sql3 = this.connexion.prepareStatement("DELETE FROM Prereservation WHERE reference = ?");
                     sql3.setObject(1, p.getReference());
                     sql3.executeUpdate();
