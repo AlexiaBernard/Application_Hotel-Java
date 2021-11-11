@@ -256,6 +256,7 @@ public class ReservationFactoryP implements ReservationFactory {
                 try {
                     //Vérification que la chambre en argument soit toujours disponible
                     Set<Reservation> reservations = this.getAllReservation();
+		    System.out.println("1");
                     for(Reservation r : reservations){
                         if ( c.getType().equals(r.getChambre().getType())) {
                             //Si c'est la même date
@@ -267,13 +268,21 @@ public class ReservationFactoryP implements ReservationFactory {
                             }
                         }
                     }
+		    System.out.println("apres for, 2");
                     PreparedStatement sql2 = this.connexion.prepareStatement("INSERT INTO Reservation (reference, debut, nuits, client, chambre) VALUES (?,?,?,?,?)");
+		    System.out.println("3, sql2");
                     sql2.setString(1, p.getReference());
+		    System.out.println("3,ref fait");
                     sql2.setDate(2,Date.valueOf(p.getDateDebut()));
+		    System.out.println("4,date fait");
                     sql2.setInt(3, p.getJours());
-                    sql2.setObject(4, p.getClient());
+		    System.out.println("5,jour fait");
+                    sql2.setInt(4, p.getClient().getId());
+		    System.out.println("6, client fait");
                     sql2.setInt(5, c.getNumero());
+		    System.out.println("7,num fait");
                     sql2.executeUpdate();
+		    System.out.println("8, update fait");
                     PreparedStatement sql3 = this.connexion.prepareStatement("DELETE FROM Prereservation WHERE reference = ?");
                     sql3.setObject(1, p.getReference());
                     sql3.executeUpdate();
