@@ -39,6 +39,7 @@ public void run(){
         Prereservation prereservation = this.bookingPointComAPISeulement.getPrereservation(this.reference);
         Chambre libre=null;
         try{
+            System.out.println("avant get chambre");
             libre = this.grandLivreDOrAPISeulement.getChambre(prereservation);
             System.out.println("1 get chambre effectué ");
             Afficher afficher = new Afficher(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, 

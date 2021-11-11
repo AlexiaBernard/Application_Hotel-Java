@@ -155,44 +155,60 @@ public class ReservationFactoryP implements ReservationFactory {
     public Chambre getChambre(Prereservation p) {
         Objects.requireNonNull(p,"La préréservation est null.");
         try{
+            System.out.println("1");
             Set<Reservation> reservations = this.getAllReservation();
+            System.out.println("2, reservations fait");
             Set<Chambre> chambres = this.getAllChambreCategorie(p.getTypeChambre());
+            System.out.println("3, chambres fait");
             Chambre chambre = null;
+            System.out.println("4, chambre null");
             int verif = 0;
             for (Reservation r : reservations){
+                System.out.println("dans for reservations");
                 verif = 0;
                 for(Chambre c : chambres){
+                    System.out.println("dans for chambres");
                     //Si c'est le même type
                     if ( c.getType().equals(r.getChambre().getType())) {
+                        System.out.println("5, meme type");
                         //Si c'est la même date
                         if (p.getDateDebut().equals(r.getDateDebut())){
+                            System.out.println("6, meme date");
                             chambres.remove(c);
                             verif = 1;
                             //Si c'est pas la même date mais dans la reservation (nb de jour)
                         } else if ((r.getDateDebut().compareTo(p.getDateDebut()))<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(p.getDateDebut())<=0 )  {
+                            System.out.println("6, dans la reservation date");
                             chambres.remove(c);
                             verif = 1;
                         }else{
+                            System.out.println("6, sinon dispo");
                             chambre = c;
                             verif = 2;
                         }
                     } else {
+                        System.out.println("5, pas meme date : dispo");
                         chambre = c;
                         verif = 2;
                     }
                     //Permet de sortir si la chambre de la réservation a été trouvée
                     if (verif == 1){
+                        System.out.println("chambre de res trouvée : break");
                         break;
                     }
                 }
                 //Permet de sortir si une chambre disponible a été trouvée
                 if (verif == 2){
+                    System.out.println("chambre dispo trouvée : break");
                     break;
                 }
             }
             if (chambre == null){
+                System.out.println("chambre null");
                 for (Chambre c : chambres){
+                    System.out.println("dans for chambres");
                     chambre = c;
+                    break;
                 }
 	        }
             return chambre;
