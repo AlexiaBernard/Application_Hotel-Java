@@ -22,25 +22,42 @@ public class ReservationFactoryP implements ReservationFactory {
     public Set<Reservation> getAllReservation(){
         try {
             //Requête qui récupère toutes les réservations de l'Hôtel
+            System.out.println("res 1");
             PreparedStatement sql = this.connexion.prepareStatement("SELECT reference, debut, nuits, chambre, client FROM Reservation");
+            System.out.println("res 2");
             ResultSet result = sql.executeQuery();
-            Set<Reservation> reservations = new HashSet<>();
+            System.out.println("res 3");
+            Set<Reservation> reservations = new HashSet<Reservation>();
+            System.out.println("res 4");
             while( result.next() ){
+                System.out.println("res 5 dans while");
                 //Requête qui permet de récupérer la catégorie de la Chambre afin de l'instancier
                 PreparedStatement sql2 = this.connexion.prepareStatement("SELECT categorie FROM Chambre WHERE id = ?");
+                System.out.println("res 6");
                 sql2.setInt(1, result.getInt(4));
+                System.out.println("res 7");
                 ResultSet result2 = sql2.executeQuery();
+                System.out.println("res 8");
                 result2.next();
+                System.out.println("res 9");
                 //Requête qui permet de récupérer le type de la chambre afin de l'instancier
                 PreparedStatement sql3 = this.connexion.prepareStatement("SELECT single FROM TypeChambre WHERE id = ?");
+                System.out.println("res 10");
                 sql3.setInt(1, result2.getInt(1));
+                System.out.println("res 11");
                 ResultSet result3 = sql3.executeQuery();
+                System.out.println("res 12");
                 result3.next();
+                System.out.println("res 13");
                 //Requête qui permet de récupérer le nom et prénom du client afin de l'instancie
                 PreparedStatement sql4 = this.connexion.prepareStatement("SELECT nom, prenom FROM Client WHERE id = ?");
+                System.out.println("res 14");
                 sql4.setInt(1, result.getInt(5));
+                System.out.println("res 15");
                 ResultSet result4 = sql4.executeQuery();
+                System.out.println("res 16");
                 result4.next();
+                System.out.println("res 17");
                 TypeChambre type = null;
                 if (result3.getString(1).equals("UNLS")){
                     type = TypeChambre.UNLS;
@@ -49,6 +66,7 @@ public class ReservationFactoryP implements ReservationFactory {
                 } else if (result3.getString(1).equals("UNLD")){
                     type = TypeChambre.UNLD;
                 }
+                System.out.println("res 18");
                 //Création de la chambre 
                 Chambre chambre = new ChambreP(result.getInt(4),type);
                 //Création du client 
