@@ -295,8 +295,8 @@ public class ReservationFactoryP implements ReservationFactory {
 		    System.out.println("1");
                     for(Reservation r : reservations){
                         System.out.println("2");
-                        //si c'est le meme type
-                        if ( c.getType().equals(r.getChambre().getType())) {
+                        //si c'est la meme chambre
+                        if (c.getNumero() == r.getChambre().getNumero()) {
                             System.out.println("3");
                             //Si c'est la même date
                             if (p.getDateDebut().equals(r.getDateDebut())){
