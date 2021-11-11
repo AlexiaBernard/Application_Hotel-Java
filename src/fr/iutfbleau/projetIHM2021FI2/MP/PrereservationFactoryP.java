@@ -82,7 +82,7 @@ public class PrereservationFactoryP implements PrereservationFactory{
 
         try {
             //Requête qui récupère la préréservation
-            PreparedStatement sql = this.connexion.prepareStatement("SELECT reference, debut, nuits, categorie, client FROM Prereservation WHERE client IN (SELECT id FROM Client WHERE nom=(?) AND prenom=(?) ) ");
+            PreparedStatement sql = this.connexion.prepareStatement("SELECT reference, debut, nuits, categorie, client FROM Prereservation WHERE client IN (SELECT id FROM Client WHERE nom=? AND prenom=? ) ");
             sql.setString(1, n);
             sql.setString(2, p);
             ResultSet result = sql.executeQuery();
