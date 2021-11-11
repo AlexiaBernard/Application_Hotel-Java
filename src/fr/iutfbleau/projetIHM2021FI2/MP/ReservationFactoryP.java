@@ -173,16 +173,17 @@ public class ReservationFactoryP implements ReservationFactory {
                             break;
                         }
                     } else {
-                        chambres.remove(c);
+                        chambre = c;
+                        break;
                     }
                 }
             }
-	    if (chambre == null){
-		for (Chambre c : chambres){
-		    chambre = c;
-		    break;
-		}
-	    }
+            if (chambre == null){
+                for (Chambre c : chambres){
+                    chambre = c;
+                    break;
+                }
+	        }
             return chambre;
         } catch (Exception e) {
             throw new IllegalStateException("L'Hôtel ne dispose plus de chambre disponible pour le type "+ p.getTypeChambre());
