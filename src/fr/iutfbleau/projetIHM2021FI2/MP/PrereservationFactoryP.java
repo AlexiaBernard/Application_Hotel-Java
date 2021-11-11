@@ -88,8 +88,7 @@ public class PrereservationFactoryP implements PrereservationFactory{
             ResultSet result = sql.executeQuery();
             Set<Prereservation> prereservations = new HashSet<Prereservation>();
 
-            while(result.next()){ //ne se lance qu'une fois !! :/
-                System.out.println("dans le while");
+            while(result.next()){
                 //Requête qui récupère la catégorie de la chambre de la préréservation
                 PreparedStatement sql2 = this.connexion.prepareStatement("SELECT sigle FROM Categorie WHERE id = ?");
                 sql2.setInt(1, result.getInt(4));
@@ -103,17 +102,12 @@ public class PrereservationFactoryP implements PrereservationFactory{
                 } else if (result2.getString(1).equals("DEUXLS")){
                     type = TypeChambre.DEUXLS;
                 }
-                System.out.println("12");
                 //Créé le client
                 Client client = new ClientP(result.getInt(5), p, n);
-		System.out.println("13: Client fait");
                 //Créé la préréservation
-                System.out.println(result.getObject(2));
                 Prereservation pre = new PrereservationP(result.getString(1), result.getDate(2).toLocalDate(), result.getInt(3), type, client);
-		System.out.println("prereservation faite");
                 //l'ajoute a la liste
                 prereservations.add(pre);
-		System.out.println("Ajout effectué");
             }
             return prereservations;
         } catch (Exception e) {

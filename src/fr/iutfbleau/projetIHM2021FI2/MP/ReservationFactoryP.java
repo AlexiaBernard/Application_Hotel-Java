@@ -1,6 +1,7 @@
 package fr.iutfbleau.projetIHM2021FI2.MP;
 
 import java.sql.*;
+import java.sql.Date;
 import java.time.*;
 import java.util.*;
 
@@ -91,28 +92,19 @@ public class ReservationFactoryP implements ReservationFactory {
         try {
             //Requête qui permet de récupérer les chambres afin de l'instancier
             PreparedStatement sql = this.connexion.prepareStatement("SELECT id, categorie FROM Chambre WHERE categorie IN (SELECT id FROM Categorie WHERE sigle = ?)");
-	    System.out.println("sql fait , 1");
-	    String string = null;
-	    if (type == TypeChambre.UNLS){
-		string = "UNLS";
-		System.out.println(string);
-	    } else if (type == TypeChambre.DEUXLS){
-		string = "DEUXLS";
-		System.out.println(string);
-	    } else if (type == TypeChambre.UNLD){
-		string = "UNLD";
-		System.out.println(string);
-	    }
+            String string = null;
+            if (type == TypeChambre.UNLS){
+            string = "UNLS";
+            } else if (type == TypeChambre.DEUXLS){
+            string = "DEUXLS";
+            } else if (type == TypeChambre.UNLD){
+            string = "UNLD";
+            }
             sql.setString(1, string);
-	    System.out.println("setString fait");
             ResultSet result = sql.executeQuery();
-	    System.out.println("result fait");
             Set<Chambre> chambres = new HashSet<Chambre>();
-	    System.out.println("chalbres fait");
             while( result.next() ){
-		System.out.println("entre dans boucle");
 		Chambre chambre = new ChambreP(result.getInt(1), type);
-		System.out.println("Chambre créé, 4");
                 chambres.add(chambre);
             } 
             return chambres;
@@ -141,8 +133,8 @@ public class ReservationFactoryP implements ReservationFactory {
                 type2 = TypeChambre.UNLD;
             }
             Set<Chambre> chambres = new HashSet<>();
-	     while( result_ch.next() ){
-		chambres.add(new ChambreP(result_ch.getInt(1), type2));
+	        while( result_ch.next() ){
+		        chambres.add(new ChambreP(result_ch.getInt(1), type2));
             } 
             return chambres;
         } catch (SQLException e) {
@@ -163,13 +155,9 @@ public class ReservationFactoryP implements ReservationFactory {
     public Chambre getChambre(Prereservation p) {
         Objects.requireNonNull(p,"La préréservation est null.");
         try{
-	    System.out.println("1");
             Set<Reservation> reservations = this.getAllReservation();
-	    System.out.println("reservatons fait, 2");
             Set<Chambre> chambres = this.getAllChambreCategorie(p.getTypeChambre());
-	    System.out.println("chambres faites : 3");
             Chambre chambre = null;
-	    System.out.println("chambre null, 4");
             for (Reservation r : reservations){
                 for(Chambre c : chambres){
                     //Si c'est le même type
@@ -190,7 +178,6 @@ public class ReservationFactoryP implements ReservationFactory {
                 }
             }
 	    if (chambre == null){
-		System.out.println("null oui");
 		for (Chambre c : chambres){
 		    chambre = c;
 		    break;
@@ -253,16 +240,18 @@ public class ReservationFactoryP implements ReservationFactory {
         Objects.requireNonNull(p,"La chambre est null.");
         try {
             //Requête pour récuperer le type de chambre de la prereservation
-            PreparedStatement sql = this.connexion.prepareStatement("SELECT TypeChambre FROM Prereservation WHERE reference = ?");
-            sql.setObject(1, p.getReference());
+            PreparedStatement sql = this.connexion.prepareStatement("SELECT categorie FROM Prereservation WHERE reference = ?");
+            sql.setString(1, p.getReference());
             ResultSet result = sql.executeQuery();
+            result.next();
 
             //Requête pour récuperer le type de chambre de la chambre
-            sql = this.connexion.prepareStatement("SELECT TypeChambre FROM Chambre WHERE id = ?");
-            sql.setInt(1, c.getNumero());
-            ResultSet result2 = sql.executeQuery();
-            if (result.getObject(1) != result2.getObject(1) ) {
-                throw new IllegalArgumentException("Erreur sur le type de la chambre: la préréservation indique " + p.getTypeChambre() + " mais la chambre est  " + c.getType());
+            PreparedStatement sql1 = this.connexion.prepareStatement("SELECT categorie FROM Chambre WHERE id = ?");
+            sql1.setInt(1, c.getNumero());
+            ResultSet result2 = sql1.executeQuery();
+            result2.next();
+            if (result.getInt(1) != result2.getInt(1) ) {
+                throw new IllegalArgumentException("Erreur sur le type de la chambre.");
             } else {
                 try {
                     //Vérification que la chambre en argument soit toujours disponible
@@ -278,16 +267,16 @@ public class ReservationFactoryP implements ReservationFactory {
                             }
                         }
                     }
-                    sql = this.connexion.prepareStatement("INSERT INTO Reservation VALUES (?,?,?,?,?)");
-                    sql.setObject(1, p.getReference());
-                    sql.setObject(2, p.getDateDebut());
-                    sql.setInt(3, p.getJours());
-                    sql.setObject(4, p.getClient());
-                    sql.setInt(5, c.getNumero());
-                    sql.executeUpdate();
-                    sql = this.connexion.prepareStatement("DELETE FROM Prereservation WHERE reference = ?");
-                    sql.setObject(1, p.getReference());
-                    sql.executeUpdate();
+                    PreparedStatement sql2 = this.connexion.prepareStatement("INSERT INTO Reservation (reference, debut, nuits, client, chambre) VALUES (?,?,?,?,?)");
+                    sql2.setString(1, p.getReference());
+                    sql2.setDate(2,Date.valueOf(p.getDateDebut()));
+                    sql2.setInt(3, p.getJours());
+                    sql2.setObject(4, p.getClient());
+                    sql2.setInt(5, c.getNumero());
+                    sql2.executeUpdate();
+                    PreparedStatement sql3 = this.connexion.prepareStatement("DELETE FROM Prereservation WHERE reference = ?");
+                    sql3.setObject(1, p.getReference());
+                    sql3.executeUpdate();
                     return (new ReservationP(p.getReference(), p.getDateDebut(), p.getJours(), c, p.getClient()));
                 } catch (Exception e) {
                     throw new IllegalArgumentException("La chambre " + c.monPrint() + " n'est pas disponible pour fabriquer une réservation à partir de la préréservation " + p.monPrint());
