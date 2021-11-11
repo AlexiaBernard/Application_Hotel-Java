@@ -5,6 +5,7 @@ import fr.iutfbleau.projetIHM2021FI2.API.*;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
+
 /**
  *
  */
@@ -33,10 +34,34 @@ public class PrereservationFactoryP implements PrereservationFactory{
     public Prereservation getPrereservation(String r){
         Objects.requireNonNull(r,"La référence recherchée est null.");
         try {
-            PreparedStatement sql = this.connexion.prepareStatement("SELECT * FROM Prereservation WHERE reference = ?");
+            //Requête qui récupère la préreservation
+            PreparedStatement sql = this.connexion.prepareStatement("SELECT reference, debut, nuits, categorie, client FROM Prereservation WHERE reference = ?");
             sql.setString(1, r);
             ResultSet result = sql.executeQuery();
-            return (Prereservation) result.getObject(1);
+            result.next();
+            //Requête qui récupère le type de chambre
+            PreparedStatement sql2 = this.connexion.prepareStatement("SELECT sigle FROM Categorie WHERE id = ?");
+            sql2.setInt(1, result.getInt(4));
+            ResultSet result2 = sql2.executeQuery();
+            result2.next();
+            TypeChambre type = null;
+            if (result2.getString(1).equals("UNLS")){
+                type = TypeChambre.UNLS;
+            } else if (result2.getString(1).equals("UNLD")){
+                type = TypeChambre.UNLD;
+            } else if (result2.getString(1).equals("DEUXLS")){
+                type = TypeChambre.DEUXLS;
+            }
+            //Requête qui récupère le client
+            PreparedStatement sql3 = this.connexion.prepareStatement("SELECT prenom, nom FROM Client WHERE id = ?");
+            sql3.setInt(1, result.getInt(5));
+            ResultSet result3 = sql3.executeQuery();
+            result3.next();
+            //Créé le client
+            Client client = new ClientP(result.getInt(5), result3.getString(1), result3.getString(2));
+            //Créé la préréservation
+            Prereservation prereservation = new PrereservationP(r, (LocalDate) result.getObject(2), result.getInt(3), type, client);
+            return prereservation;
         } catch (SQLException e) {
             throw new IllegalStateException("Il n'y a pas de préréservation avec la référence : " + r);
         }
@@ -56,14 +81,16 @@ public class PrereservationFactoryP implements PrereservationFactory{
         Objects.requireNonNull(p,"Le prénom recherché est null.");
 
         try {
+            //Requête qui récupère la préréservation
             PreparedStatement sql = this.connexion.prepareStatement("SELECT reference, debut, nuits, categorie, client FROM Prereservation WHERE client IN (SELECT id FROM Client WHERE nom=(?) AND prenom=(?) ) ");
             sql.setString(1, n);
             sql.setString(2, p);
             ResultSet result = sql.executeQuery();
-            Set<Prereservation> prereservations = new HashSet<>();
+            Set<Prereservation> prereservations = new HashSet<Prereservation>();
 
-            while(result.next()){ //ne se lance qu'un fois !! :/
+            while(result.next()){ //ne se lance qu'une fois !! :/
                 System.out.println("dans le while");
+                //Requête qui récupère la catégorie de la chambre de la préréservation
                 PreparedStatement sql2 = this.connexion.prepareStatement("SELECT sigle FROM Categorie WHERE id = ?");
                 sql2.setInt(1, result.getInt(4));
                 ResultSet result2 = sql2.executeQuery();
@@ -77,17 +104,13 @@ public class PrereservationFactoryP implements PrereservationFactory{
                     type = TypeChambre.DEUXLS;
                 }
                 System.out.println("12");
-                PreparedStatement sql3 = this.connexion.prepareStatement("SELECT id, prenom, nom FROM Client WHERE id = ?");
-                System.out.println("13");
-                sql3.setInt(1, result.getInt(5));
-                System.out.println("14");
-                ResultSet result3 = sql3.executeQuery();
-                System.out.println("15");
-		result3.next();
-		System.out.println("16");
-                Client client = new ClientP(result3.getInt(1), result3.getString(2), result3.getString(3));
-		System.out.println("17: Client fait");
+                //Créé le client
+                Client client = new ClientP(result.getInt(5), p, n);
+		        System.out.println("13: Client fait");
+                //Créé la préréservation
+                System.out.println(result.getObject(2));
                 Prereservation pre = new PrereservationP(result.getString(1), (LocalDate) result.getObject(2), result.getInt(3), type, client);
+                //l'ajoute a la liste
                 prereservations.add(pre);
             }
             return prereservations;

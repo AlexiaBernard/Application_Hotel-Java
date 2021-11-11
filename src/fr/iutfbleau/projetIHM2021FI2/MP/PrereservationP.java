@@ -30,9 +30,9 @@ public class PrereservationP implements Prereservation {
         }
         Objects.requireNonNull(t,"On ne peut pas créer une préréservation avec un type de chambre à null.");
         Objects.requireNonNull(client,"On ne peut pas créer une préréservation avec un client à null.");
+        
         this.reference=reference;
         this.dateDebut=dateDebut;
-
         this.jours=jours;
         this.type=t;
         this.client=client;
