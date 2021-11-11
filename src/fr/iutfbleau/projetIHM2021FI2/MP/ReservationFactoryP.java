@@ -158,30 +158,41 @@ public class ReservationFactoryP implements ReservationFactory {
             Set<Reservation> reservations = this.getAllReservation();
             Set<Chambre> chambres = this.getAllChambreCategorie(p.getTypeChambre());
             Chambre chambre = null;
+            int verif = 0;
             for (Reservation r : reservations){
+                verif = 0;
                 for(Chambre c : chambres){
                     //Si c'est le même type
                     if ( c.getType().equals(r.getChambre().getType())) {
                         //Si c'est la même date
                         if (p.getDateDebut().equals(r.getDateDebut())){
                             chambres.remove(c);
+                            verif = 1;
                             //Si c'est pas la même date mais dans la reservation (nb de jour)
                         } else if ((r.getDateDebut().compareTo(p.getDateDebut()))<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(p.getDateDebut())<=0 )  {
                             chambres.remove(c);
+                            verif = 1;
                         }else{
                             chambre = c;
-                            break;
+                            verif = 2;
                         }
                     } else {
                         chambre = c;
+                        verif = 2;
+                    }
+                    //Permet de sortir si la chambre de la réservation a été trouvée
+                    if (verif == 1){
                         break;
                     }
+                }
+                //Permet de sortir si une chambre disponible a été trouvée
+                if (verif == 2){
+                    break;
                 }
             }
             if (chambre == null){
                 for (Chambre c : chambres){
                     chambre = c;
-                    break;
                 }
 	        }
             return chambre;
