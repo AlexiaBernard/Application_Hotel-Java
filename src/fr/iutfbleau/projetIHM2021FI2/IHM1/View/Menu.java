@@ -6,48 +6,58 @@ import java.awt.*;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Controller.*;
 
+/**
+ * <code>Menu</code> est une vue Elle affiche le menu de l'IHM
+ * 
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
+ */
 public class Menu {
 
     private PrereservationFactory bookingPointComAPISeulement;
     private ReservationFactory grandLivreDOrAPISeulement;
-	private JFrame fenetre;
+    private JFrame fenetre;
     private JPanel centre;
 
     /**
-     * Constructeur qui crée et affiche le Menu
+     * Récupération des informations pour la création du menu
+     * 
      * @param bookingPointComAPISeulement
      * @param grandLivreDOrAPISeulement
      * @param fenetre
      * @param centre
      */
-    public Menu(PrereservationFactory bookingPointComAPISeulement, 
-            ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JPanel centre){
-		this.bookingPointComAPISeulement = bookingPointComAPISeulement;
+    public Menu(PrereservationFactory bookingPointComAPISeulement, ReservationFactory grandLivreDOrAPISeulement,
+            JFrame fenetre, JPanel centre) {
+        this.bookingPointComAPISeulement = bookingPointComAPISeulement;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.fenetre = fenetre;
         this.centre = centre;
     }
 
-    public void run(){
+    /**
+     * Affichage du menu
+     */
+    public void run() {
 
-    /*Pour Référence*/
-    JLabel textRetrouver_ref = new JLabel("Retrouver réservation avec les références.");
-    JPanel retrouver_ref = new JPanel();
-    JTextField reference = new JTextField();
-    JButton valider_ref = new JButton("Valider");
+        /* Pour Référence */
+        JLabel textRetrouver_ref = new JLabel("Retrouver réservation avec les références.");
+        JPanel retrouver_ref = new JPanel();
+        JTextField reference = new JTextField();
+        JButton valider_ref = new JButton("Valider");
 
-    /*Pour Nom et Prénom*/
-    JLabel textRetrouver_np = new JLabel("Retrouver réservation avec le nom et le prénom du client.");
-    JPanel retrouver_np = new JPanel();
-    JPanel jp_nom = new JPanel();
-    JPanel jp_prenom = new JPanel();
-    JLabel jl_nom = new JLabel("Nom : ");
-    JLabel jl_prenom = new JLabel("Prénom : ");
-    JTextField nom = new JTextField();
-    JTextField prenom = new JTextField();
-    JButton valider_np = new JButton("Valider");
+        /* Pour Nom et Prénom */
+        JLabel textRetrouver_np = new JLabel("Retrouver réservation avec le nom et le prénom du client.");
+        JPanel retrouver_np = new JPanel();
+        JPanel jp_nom = new JPanel();
+        JPanel jp_prenom = new JPanel();
+        JLabel jl_nom = new JLabel("Nom : ");
+        JLabel jl_prenom = new JLabel("Prénom : ");
+        JTextField nom = new JTextField();
+        JTextField prenom = new JTextField();
+        JButton valider_np = new JButton("Valider");
 
-	JLabel test = new JLabel(" ");
+        JLabel test = new JLabel(" ");
 
         /* Pour les JTextField */
         nom.setFont(new Font("Serif", Font.BOLD, 20));
@@ -67,36 +77,38 @@ public class Menu {
         jp_prenom.add(jl_prenom);
         jp_prenom.add(prenom);
 
-		/* Pour référence */
-		retrouver_ref.setLayout(new GridLayout(4,1));
-		retrouver_ref.add(textRetrouver_ref);
-		retrouver_ref.add(reference);
-		retrouver_ref.add(valider_ref);
-		retrouver_ref.add(test);
+        /* Pour référence */
+        retrouver_ref.setLayout(new GridLayout(4, 1));
+        retrouver_ref.add(textRetrouver_ref);
+        retrouver_ref.add(reference);
+        retrouver_ref.add(valider_ref);
+        retrouver_ref.add(test);
 
-		/* Pour Nom Prénom */
-		jl_prenom.setLabelFor(prenom);
-		retrouver_np.setLayout(new GridLayout(5,1));
-		retrouver_np.add(textRetrouver_np);
-		retrouver_np.add(jp_nom);
-		retrouver_np.add(jp_prenom);
-		retrouver_np.add(valider_np);
-		retrouver_np.add(test);
+        /* Pour Nom Prénom */
+        jl_prenom.setLabelFor(prenom);
+        retrouver_np.setLayout(new GridLayout(5, 1));
+        retrouver_np.add(textRetrouver_np);
+        retrouver_np.add(jp_nom);
+        retrouver_np.add(jp_prenom);
+        retrouver_np.add(valider_np);
+        retrouver_np.add(test);
 
         /* Nettoie le centre */
-        if (this.centre!=null){
+        if (this.centre != null) {
             this.fenetre.remove(centre);
             this.fenetre.repaint();
             this.fenetre.revalidate();
         }
-        
-        this.fenetre.add(retrouver_ref,BorderLayout.SOUTH);
-        this.fenetre.add(retrouver_np,BorderLayout.NORTH);
+
+        this.fenetre.add(retrouver_ref, BorderLayout.SOUTH);
+        this.fenetre.add(retrouver_np, BorderLayout.NORTH);
 
         /* Les Listener */
-        valider_ref.addActionListener(new TraitementReference(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement ,this.fenetre, this.centre, reference));
-        valider_np.addActionListener(new TraitementNomPrenom(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.centre, nom, prenom));
+        valider_ref.addActionListener(new TraitementReference(this.bookingPointComAPISeulement,
+                this.grandLivreDOrAPISeulement, this.fenetre, this.centre, reference));
+        valider_np.addActionListener(new TraitementNomPrenom(this.bookingPointComAPISeulement,
+                this.grandLivreDOrAPISeulement, this.fenetre, this.centre, nom, prenom));
 
-		this.fenetre.setVisible(true);
+        this.fenetre.setVisible(true);
     }
 }

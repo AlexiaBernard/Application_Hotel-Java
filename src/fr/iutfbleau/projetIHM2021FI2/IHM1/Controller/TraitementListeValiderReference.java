@@ -8,6 +8,13 @@ import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.View.*;
 
+/**
+ * <code>TraitementListeValiderReference</code> est un contrôleur. Il gère le bouton
+ * <b>Valider</b> après la liste de chambres disponibles
+ * 
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
+ */
 public class TraitementListeValiderReference implements ActionListener {
 
     private PrereservationFactory bookingPointComAPISeulement;
@@ -17,15 +24,17 @@ public class TraitementListeValiderReference implements ActionListener {
     private Set<Prereservation> prereservations;
     private JPanel centre;
 
-        /**
-         * 
-         * @param bookingPointComAPISeulement
-         * @param grandLivreDOrAPISeulement
-         * @param fenetre
-         * @param group
-         * @param prereservations
-         * @param centre
-         */
+    /**
+     * Constructeur permettant d'accéder à la chambre sélectionnée dans la liste des
+     * chambres libres par la suite
+     * 
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement   modèle non persistant de Réservation
+     * @param fenetre                     la fenetre
+     * @param group                       Boutons-radio
+     * @param prereservations             la préreservation
+     * @param centre                      centre de la fenetre
+     */
     public TraitementListeValiderReference(PrereservationFactory bookingPointComAPISeulement,
             ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, ButtonGroup group,
             Set<Prereservation> prereservations, JPanel centre) {

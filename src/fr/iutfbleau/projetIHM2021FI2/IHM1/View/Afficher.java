@@ -47,10 +47,14 @@ public class Afficher {
     public void run() {
         int result = JOptionPane.showConfirmDialog(this.fenetre,
                 "La chambre numéro " + this.chambre.getNumero() + " est disponible. Vous convient-elle?");
+
+            /**Si la chambre convient */
         if (result == 0) {
             TraitementValider valider = new TraitementValider(this.bookingPointComAPISeulement,
                     this.grandLivreDOrAPISeulement, this.fenetre, this.chambre, this.prereservation);
             valider.run();
+
+            /*Si la chambre ne convient pas*/
         } else if (result == 1) {
             AfficherReservations aff = new AfficherReservations(this.bookingPointComAPISeulement,
                     this.grandLivreDOrAPISeulement, this.fenetre, this.centre, null);
@@ -58,6 +62,8 @@ public class Afficher {
             TraitementListe liste = new TraitementListe(this.bookingPointComAPISeulement,
                     this.grandLivreDOrAPISeulement, this.fenetre, this.prereservation);
             liste.run();
+
+            /**Si annuler */
         } else {
             TraitementFin fin = new TraitementFin(this.grandLivreDOrAPISeulement, this.fenetre);
             fin.run();

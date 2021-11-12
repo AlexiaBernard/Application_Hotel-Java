@@ -35,7 +35,7 @@ public class Fin {
     }
 
     /**
-     * Afiche une boite de dialogue 
+     * Afiche une boite de dialogue après qu'une chambre ait été validée
      */
     public void run(){
         int result = JOptionPane.showConfirmDialog(this.fenetre, "Réservation Validée, voulez-vous retourner au menu?");

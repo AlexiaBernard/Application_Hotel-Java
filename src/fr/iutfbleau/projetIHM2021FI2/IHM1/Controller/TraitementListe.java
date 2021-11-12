@@ -8,7 +8,7 @@ import fr.iutfbleau.projetIHM2021FI2.IHM1.View.*;
 
 /**
  * <code>TraitementListe</code> est un contrôleur.
- * Il gère le bouton ...
+ * Il gère le bouton 
  * 
  * @author Enora GERMOND, Aléxia Bernard
  * @version 1.0
@@ -37,6 +37,10 @@ public class TraitementListe{
         this.prereservation = prereservation;
     }   
 
+    /**
+     * Action effectuée quand on demande à changer de chambre
+     * récupère les chambres libres et les envoie à AfficherListe pour les afficher
+     */
     public void run(){
         Set<Chambre> disponibles=null;
         try{

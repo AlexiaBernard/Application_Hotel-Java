@@ -8,7 +8,7 @@ import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.*;
 
 /**
  * <code>TraitementNomPrenom</code> est un contrôleur.
- * Il gère le bouton lancer du menu
+ * Il gère le bouton Valider en dessous de nom et prénom
  * 
  * @author Enora GERMOND, Aléxia Bernard
  * @version 1.0
@@ -23,15 +23,15 @@ public class TraitementNomPrenom implements ActionListener{
     private JTextField prenom;
     private JTextField nom;
 
-    
     /**
-     * Constructeur qui permer d'accéder à la fenêtre par la suite
-     * @param bookingPointComAPISeulement
-     * @param grandLivreDOrAPISeulement
-     * @param fenetre the linked window
-     * @param centre
-     * @param nom
-     * @param prenom
+     * 
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API
+     *                                    correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement   modèle non persistant de Réservation
+     * @param fenetre                     la fenetre
+     * @param centre                      centre de la fenetre
+     * @param nom                         nom du client
+     * @param prenom                      prénom du client
      */
     public TraitementNomPrenom(PrereservationFactory bookingPointComAPISeulement, 
             ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, 

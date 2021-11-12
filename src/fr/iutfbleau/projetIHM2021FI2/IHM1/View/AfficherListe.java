@@ -42,7 +42,7 @@ public class AfficherListe {
 
     /**
      * Affiche la liste de chambres disponibles au centre de la fenetre sous forme de liste
-     * Il est possible d'en choisir une grâce à des boutons-radio
+     * Il est possible d'en choisir une grâce à des boutons-radio et un bouton Valider
      */
     public void run(){
         int compteur = 0;
