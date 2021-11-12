@@ -1,10 +1,15 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM2.Model;
 
-import java.time.*;
-import javax.swing.*;
+import java.time.LocalDate;
 
-import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM2.View.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
+import fr.iutfbleau.projetIHM2021FI2.API.TypeChambre;
+import fr.iutfbleau.projetIHM2021FI2.IHM2.View.AfficherRatio;
+import fr.iutfbleau.projetIHM2021FI2.IHM2.View.Bureau;
 
 public class VerificationDateType {
 

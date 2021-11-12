@@ -1,13 +1,18 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM2.Controller;
 
-import java.awt.event.*;
-import java.time.*;
-import java.time.format.*;
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM2.Model.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM2.View.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
+import fr.iutfbleau.projetIHM2021FI2.API.TypeChambre;
+import fr.iutfbleau.projetIHM2021FI2.IHM2.Model.VerificationDateType;
+import fr.iutfbleau.projetIHM2021FI2.IHM2.View.Bureau;
 
 public class TraitementTauxType implements ActionListener {
 
@@ -59,7 +64,5 @@ public class TraitementTauxType implements ActionListener {
             Bureau bureau = new Bureau(this.fenetre, this.grandLivreDOrAPISeulement, this.centre);
             bureau.run();
         }
-
     }
-    
 }

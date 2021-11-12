@@ -1,9 +1,6 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM2.Model;
 
-import java.sql.*;
 import java.time.*;
-
-import javax.management.loading.PrivateClassLoader;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
@@ -33,8 +30,11 @@ public class VerificationDate {
 
     public void run(){
         try {
+            System.out.println("1");
             int ratio = grandLivreDOrAPISeulement.getRatio(this.date);
+            System.out.println("2");
             AfficherRatio aff = new AfficherRatio(this.fenetre, this.grandLivreDOrAPISeulement, this.date, ratio, this.centre);
+            System.out.println("3");
             if (this.centre != null)
                 aff.deleteCentre();
             aff.run();
