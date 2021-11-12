@@ -7,6 +7,13 @@ import java.awt.*;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Controller.*;
 
+/**
+ * <code>AfficherReservations</code> est une vue
+ * Elle affiche la liste des réservations faites par une personne qui a donné son nom et prénom
+ * 
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
+ */
 public class AfficherReservations{
 
     private PrereservationFactory bookingPointComAPISeulement;
@@ -16,12 +23,12 @@ public class AfficherReservations{
     private JPanel centre;
 
     /**
-     * 
-     * @param bookingPointComAPISeulement
-     * @param grandLivreDOrAPISeulement
-     * @param fenetre
-     * @param centre
-     * @param prereservations
+     * Constructeur permettant d'accéder à la liste des réservations effectuées par une personne
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
+     * @param fenetre la fenetre
+     * @param centre centre de la fenetre
+     * @param prereservation la préreservation 
      */
     public AfficherReservations(PrereservationFactory bookingPointComAPISeulement,
             ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, 
@@ -33,6 +40,10 @@ public class AfficherReservations{
         this.prereservations = prereservations;
     }
     
+    /**
+     * Affiche la liste des réservations au centre de la fenetre sous forme de liste
+     * Il est possible d'en choisir une grâce à des boutons-radio
+     */
     public void run(){
         int compteur = 0;
         JPanel panel_liste = new JPanel();
@@ -64,8 +75,8 @@ public class AfficherReservations{
     }
 
     /**
-     * 
-     * @param centre
+     * Enlève les informations affichées au centre
+     * @param centre centre de la fenêtre
      */
     public void deleteRef(JPanel centre){
         this.fenetre.remove(centre);

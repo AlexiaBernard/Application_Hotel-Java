@@ -7,6 +7,13 @@ import java.awt.*;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Controller.*;
 
+/**
+ * <code>AfficherListe</code> est une vue
+ * Elle affiche la liste des chambres libres de la même catégorie que la chambre à changer
+ * 
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
+ */
 public class AfficherListe {
 
     private PrereservationFactory bookingPointComAPISeulement;
@@ -16,12 +23,12 @@ public class AfficherListe {
     private Set<Chambre> disponibles;
 
     /**
-     * 
-     * @param bookingPointComAPISeulement
-     * @param grandLivreDOrAPISeulement
-     * @param fenetre
-     * @param prereservation
-     * @param disponibles
+     * Constructeur permettant d'accéder à la liste des chambres libres par la suite
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
+     * @param fenetre la fenetre
+     * @param prereservation la préreservation 
+     * @param disponibles chambres disponibles
      */
     public AfficherListe(PrereservationFactory bookingPointComAPISeulement, 
             ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, 
@@ -33,6 +40,10 @@ public class AfficherListe {
         this.disponibles = disponibles;
     }    
 
+    /**
+     * Affiche la liste de chambres disponibles au centre de la fenetre sous forme de liste
+     * Il est possible d'en choisir une grâce à des boutons-radio
+     */
     public void run(){
         int compteur = 0;
         JPanel panel_liste1 = new JPanel();
@@ -67,8 +78,8 @@ public class AfficherListe {
     }
 
      /**
-     * 
-     * @param centre
+     * Enlève les informations affichées au centre
+     * @param centre centre de la fenêtre
      */
     public void deleteRef(JPanel centre){
         this.fenetre.remove(centre);
