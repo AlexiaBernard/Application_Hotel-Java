@@ -1,10 +1,10 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM2.Controller;
 
 import java.awt.event.*;
+
 import javax.swing.*;
 
-import fr.iutfbleau.projetIHM2021FI2.API.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM2.Model.*;
+import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
 
 public class TraitementGraphique implements ActionListener {
 
@@ -27,7 +27,5 @@ public class TraitementGraphique implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Bouton Graphique.");
-        
     }
-    
 }

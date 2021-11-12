@@ -1,11 +1,11 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM2.View;
 
-import javax.swing.*;
 import java.awt.*;
+
+import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
 import fr.iutfbleau.projetIHM2021FI2.IHM2.Controller.*;
-import fr.iutfbleau.projetIHM2021FI2.IHM2.Model.*;
 
 public class Bureau {
 

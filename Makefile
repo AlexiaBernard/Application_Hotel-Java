@@ -15,6 +15,7 @@ DOC = doc/fr/iutfbleau/projetIHM2021FI2
 JAR_MNP = test-mnp.jar
 JAR_IHM1_MNP = ihm1MNP.jar
 JAR_IHM1 = ihm1.jar
+JAR_IHM2 = ihm2.jar
 
 # BUTS FACTICES #
 .PHONY : run clean doc
@@ -29,9 +30,12 @@ run_ihm1_mnp : ${JAR_IHM1_MNP}
 run_ihm1 : ${JAR_IHM1}
 	${EXEC_JAR} ${JAR_IHM1}
 
+run_ihm2 : ${JAR_IHM2}
+	${EXEC_JAR} ${JAR_IHM2}
+
 # AUTRE BUTS
 doc :
-	javadoc -d doc src/fr/iutfbleau/projetIHM2021FI2/API/*.java src/fr/iutfbleau/projetIHM2021FI2/MNP/*.java src/fr/iutfbleau/projetIHM2021FI2/MP/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM1/View/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM1/Model/*.java	src/fr/iutfbleau/projetIHM2021FI2/IHM1/Controller/*.java
+	javadoc -d doc src/fr/iutfbleau/projetIHM2021FI2/API/*.java src/fr/iutfbleau/projetIHM2021FI2/MNP/*.java src/fr/iutfbleau/projetIHM2021FI2/MP/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM1/View/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM1/Model/*.java	src/fr/iutfbleau/projetIHM2021FI2/IHM1/Controller/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM2/View/*.java src/fr/iutfbleau/projetIHM2021FI2/IHM2/Model/*.java	src/fr/iutfbleau/projetIHM2021FI2/IHM2/Controller/*.java
 
 clean :
 	rm -rf ${BUILD}/* *.jar
@@ -294,6 +298,69 @@ ${BUILD}/IHM1/View/MainMP.class : ${SRC}/IHM1/View/MainMP.java\
 										${BUILD}/IHM1/View/Menu.class
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM1/View/MainMP.java
 
+#### IHM2 ####
+### Controller ###
+${BUILD}/IHM2/Controller/TraitementTaux.class : ${SRC}/IHM2/Controller/TraitementTaux.java\
+										${BUILD}/API/ReservationFactory.class\
+										${BUILD}/IHM2/Model/VerificationDate.class
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/Controller/TraitementTaux.java
+
+
+${BUILD}/IHM2/Controller/TraitementTauxType.class : ${SRC}/IHM2/Controller/TraitementTauxType.java\
+										${BUILD}/API/ReservationFactory.class\
+										${BUILD}/API/TypeChambre.class\
+										${BUILD}/IHM2/Model/VerificationDate.class\
+										${SRC}/IHM2/View/Bureau.java
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/Controller/TraitementTauxType.java
+
+${BUILD}/IHM2/Controller/TraitementGraphique.class : ${SRC}/IHM2/Controller/TraitementGraphique.java\
+										${BUILD}/API/ReservationFactory.class
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/Controller/TraitementGraphique.java
+
+
+### Model ###
+
+${BUILD}/IHM2/Model/VerificationDateType.class : ${SRC}/IHM2/Model/VerificationDateType.java\
+										${BUILD}/API/ReservationFactory.class\
+										${BUILD}/API/TypeChambre.class\
+										${BUILD}/IHM2/View/AfficherRatio.class\
+										${SRC}/IHM2/View/Bureau.java
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/Model/VerificationDateType.java
+
+${BUILD}/IHM2/Model/VerificationDate.class : ${SRC}/IHM2/Model/VerificationDate.java\
+										${BUILD}/API/ReservationFactory.class\
+										${BUILD}/IHM2/View/AfficherRatio.class\
+										${SRC}/IHM2/View/Bureau.java
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/Model/VerificationDate.java
+
+${BUILD}/IHM2/Model/BD.class : ${SRC}/IHM2/Model/BD.java\
+										${BUILD}/API/ReservationFactory.class\
+										${BUILD}/MP/ReservationFactoryP.class
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/Model/BD.java
+
+
+
+### View ###
+${BUILD}/IHM2/View/AfficherRatio.class : ${SRC}/IHM2/View/AfficherRatio.java\
+										${BUILD}/API/ReservationFactory.class
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/View/AfficherRatio.java
+
+
+
+${BUILD}/IHM2/View/Bureau.class : ${SRC}/IHM2/View/Bureau.java\
+										${BUILD}/API/ReservationFactory.class\
+										${BUILD}/IHM2/Controller/TraitementGraphqiue.class\
+										${BUILD}/IHM2/Controller/TraitementTaux.class\
+										${BUILD}/IHM2/Controller/TraitementTauxType.class
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/View/Bureau.java
+
+
+${BUILD}/IHM2/View/Main.class : ${SRC}/IHM2/View/Main.java\
+										${BUILD}/API/ReservationFactory.class\
+										${BUILD}/IHM2/Model/BD.class
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/View/Main.java
+
+
 
 # ## JARS ##
  ${JAR_MNP} : ${BUILD}/Test/TestTexteMNP.class
@@ -304,3 +371,6 @@ ${JAR_IHM1_MNP} : ${BUILD}/IHM1/View/Main.class
 
 ${JAR_IHM1} : ${BUILD}/IHM1/View/MainMP.class
 	${JAR} cvfe ${JAR_IHM1} fr.iutfbleau.projetIHM2021FI2.IHM1.View.MainMP -C build fr org
+
+${JAR_IHM2} : ${BUILD}/IHM2/View/MainMP.class
+	${JAR} cvfe ${JAR_IHM2} fr.iutfbleau.projetIHM2021FI2.IHM2.View.Main -C build fr org

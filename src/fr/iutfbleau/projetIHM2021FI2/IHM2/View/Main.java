@@ -1,11 +1,11 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM2.View;
 
-import java.sql.*;
-import javax.swing.*;
-import javax.swing.text.Style;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
-import fr.iutfbleau.projetIHM2021FI2.IHM2.Model.*;
+import fr.iutfbleau.projetIHM2021FI2.IHM2.Model.BD;
 
 public class Main {
     
