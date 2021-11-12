@@ -126,6 +126,7 @@ ${BUILD}/MP/PrereservationFactoryP.class : ${SRC}/MP/PrereservationFactoryP.java
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MP/PrereservationFactoryP.java
 
 ${BUILD}/MP/ReservationFactoryP.class : ${SRC}/MP/ReservationFactoryP.java \
+							  ${BUILD}/MP/ClientP.class\
 				  			  ${BUILD}/MP/ChambreP.class \
 				  			  ${BUILD}/MP/ReservationP.class \
 							  ${BUILD}/API/ReservationFactory.class 

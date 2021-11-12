@@ -45,7 +45,6 @@ public class Afficher {
     public void run(){
         int result = JOptionPane.showConfirmDialog(this.fenetre, 
                 "La chambre numéro "+this.chambre.getNumero()+" est disponible. Vous convient-elle?");
-        System.out.println("result effectué");
         if(result==0){
             TraitementValider valider = new TraitementValider(this.bookingPointComAPISeulement, 
                     this.grandLivreDOrAPISeulement ,this.fenetre, this.chambre, this.prereservation);
