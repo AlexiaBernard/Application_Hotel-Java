@@ -20,7 +20,7 @@ public class Main {
         JPanel centre = new JPanel();
         
         BD baseDeDonnées = new BD();
-        ReservationFactory grandLivreDOrAPISeulement = baseDeDonnées.Connexion();
+        ReservationFactory grandLivreDOrAPISeulement = baseDeDonnées.Connexion(fenetre);
         JOptionPane.showMessageDialog(fenetre,"La Base de données est prête.");
         Bureau bureau = new Bureau(fenetre, grandLivreDOrAPISeulement, centre);
         bureau.run();

@@ -300,16 +300,23 @@ ${BUILD}/IHM1/View/MainMP.class : ${SRC}/IHM1/View/MainMP.java\
 
 #### IHM2 ####
 ### Controller ###
+
+${BUILD}/IHM2/Controller/TraitementEffacer.class : ${SRC}/IHM2/Controller/TraitementEffacer.java\
+										${BUILD}/API/ReservationFactory.class
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/Controller/TraitementEffacer.java
+
+
 ${BUILD}/IHM2/Controller/TraitementTaux.class : ${SRC}/IHM2/Controller/TraitementTaux.java\
 										${BUILD}/API/ReservationFactory.class\
-										${BUILD}/IHM2/Model/VerificationDate.class
+										${BUILD}/IHM2/Model/VerificationDate.class\
+										${SRC}/IHM2/View/Bureau.java
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/Controller/TraitementTaux.java
 
 
 ${BUILD}/IHM2/Controller/TraitementTauxType.class : ${SRC}/IHM2/Controller/TraitementTauxType.java\
 										${BUILD}/API/ReservationFactory.class\
 										${BUILD}/API/TypeChambre.class\
-										${BUILD}/IHM2/Model/VerificationDate.class\
+										${BUILD}/IHM2/Model/VerificationDateType.class\
 										${SRC}/IHM2/View/Bureau.java
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/Controller/TraitementTauxType.java
 
@@ -323,7 +330,7 @@ ${BUILD}/IHM2/Controller/TraitementGraphique.class : ${SRC}/IHM2/Controller/Trai
 ${BUILD}/IHM2/Model/VerificationDateType.class : ${SRC}/IHM2/Model/VerificationDateType.java\
 										${BUILD}/API/ReservationFactory.class\
 										${BUILD}/API/TypeChambre.class\
-										${BUILD}/IHM2/View/AfficherRatio.class\
+										${BUILD}/IHM2/View/AfficherRatioType.class\
 										${SRC}/IHM2/View/Bureau.java
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/Model/VerificationDateType.java
 
@@ -341,6 +348,11 @@ ${BUILD}/IHM2/Model/BD.class : ${SRC}/IHM2/Model/BD.java\
 
 
 ### View ###
+
+${BUILD}/IHM2/View/AfficherRatioType.class : ${SRC}/IHM2/View/AfficherRatioType.java\
+										${BUILD}/API/ReservationFactory.class
+	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/View/AfficherRatioType.java
+
 ${BUILD}/IHM2/View/AfficherRatio.class : ${SRC}/IHM2/View/AfficherRatio.java\
 										${BUILD}/API/ReservationFactory.class
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/View/AfficherRatio.java
@@ -349,7 +361,8 @@ ${BUILD}/IHM2/View/AfficherRatio.class : ${SRC}/IHM2/View/AfficherRatio.java\
 
 ${BUILD}/IHM2/View/Bureau.class : ${SRC}/IHM2/View/Bureau.java\
 										${BUILD}/API/ReservationFactory.class\
-										${BUILD}/IHM2/Controller/TraitementGraphqiue.class\
+										${BUILD}/IHM2/Controller/TraitementEffacer.class\
+										${BUILD}/IHM2/Controller/TraitementGraphique.class\
 										${BUILD}/IHM2/Controller/TraitementTaux.class\
 										${BUILD}/IHM2/Controller/TraitementTauxType.class
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/View/Bureau.java
@@ -357,7 +370,8 @@ ${BUILD}/IHM2/View/Bureau.class : ${SRC}/IHM2/View/Bureau.java\
 
 ${BUILD}/IHM2/View/Main.class : ${SRC}/IHM2/View/Main.java\
 										${BUILD}/API/ReservationFactory.class\
-										${BUILD}/IHM2/Model/BD.class
+										${BUILD}/IHM2/Model/BD.class\
+										${BUILD}/IHM2/View/Bureau.class
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/View/Main.java
 
 
@@ -372,5 +386,5 @@ ${JAR_IHM1_MNP} : ${BUILD}/IHM1/View/Main.class
 ${JAR_IHM1} : ${BUILD}/IHM1/View/MainMP.class
 	${JAR} cvfe ${JAR_IHM1} fr.iutfbleau.projetIHM2021FI2.IHM1.View.MainMP -C build fr org
 
-${JAR_IHM2} : ${BUILD}/IHM2/View/MainMP.class
+${JAR_IHM2} : ${BUILD}/IHM2/View/Main.class
 	${JAR} cvfe ${JAR_IHM2} fr.iutfbleau.projetIHM2021FI2.IHM2.View.Main -C build fr org

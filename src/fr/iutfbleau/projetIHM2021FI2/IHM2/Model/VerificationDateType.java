@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
 import fr.iutfbleau.projetIHM2021FI2.API.TypeChambre;
-import fr.iutfbleau.projetIHM2021FI2.IHM2.View.AfficherRatio;
+import fr.iutfbleau.projetIHM2021FI2.IHM2.View.AfficherRatioType;
 import fr.iutfbleau.projetIHM2021FI2.IHM2.View.Bureau;
 
 public class VerificationDateType {
@@ -41,9 +41,7 @@ public class VerificationDateType {
     public void run(){
         try {
             int ratio = grandLivreDOrAPISeulement.getRatio(this.date, this.type);
-            AfficherRatio aff = new AfficherRatio(this.fenetre, this.grandLivreDOrAPISeulement, this.date, ratio, this.centre);
-            if(this.centre != null)
-                aff.deleteCentre();
+            AfficherRatioType aff = new AfficherRatioType(this.fenetre, this.grandLivreDOrAPISeulement, this.date, ratio, this.type, this.centre);
             aff.run();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(fenetre,"Problème de calcul du ratio pour cette date et ce type de chambre.");

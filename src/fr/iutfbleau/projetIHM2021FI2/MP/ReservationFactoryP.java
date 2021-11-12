@@ -61,9 +61,9 @@ public class ReservationFactoryP implements ReservationFactory {
             //Requête qui permet de récupérer les chambres afin de l'instancier
             PreparedStatement sql = this.connexion.prepareStatement("SELECT id, categorie FROM Chambre");
             ResultSet result = sql.executeQuery();
-            Set<Chambre> chambres = new HashSet<>();
+            Set<Chambre> chambres = new HashSet<Chambre>();
             while( result.next() ){
-                PreparedStatement sql2 = this.connexion.prepareStatement("SELECT single FROM Categorie WHERE id = ?");
+                PreparedStatement sql2 = this.connexion.prepareStatement("SELECT sigle FROM Categorie WHERE id = ?");
                 sql2.setInt(1, result.getInt(2));
                 ResultSet result2 = sql2.executeQuery();
                 result2.next();
@@ -308,14 +308,15 @@ public class ReservationFactoryP implements ReservationFactory {
     public Set<Reservation> getReservation(LocalDate d) {
         Objects.requireNonNull(d,"La date proposée est nulle.");
         Set<Reservation> reservations = this.getAllReservation();
+        Set<Reservation> reser = new HashSet<Reservation>();
         for (Reservation r : reservations){
-            if(!(r.getDateDebut().equals(d))){
-                if( !(r.getDateDebut().compareTo(d)<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(d)<=0)){
-                    reservations.remove(r);
-                }
+            if((r.getDateDebut().equals(d))){
+                reser.add(r);
+            } else if((r.getDateDebut().compareTo(d)<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(d)<0)){
+                reser.add(r);
             }
         }
-        return reservations;
+        return reser;
     }
 
     /**
@@ -329,13 +330,9 @@ public class ReservationFactoryP implements ReservationFactory {
     @Override
     public int getDisponibles(LocalDate d) {
         Objects.requireNonNull(d,"La date proposée est nulle.");
-        int compteur = 0;
         Set<Chambre> chambres = this.getAllChambre();
         //Réservées ou non ça veut dire toutes les chambres.
-        for (Chambre c : chambres){
-            compteur++;
-        }
-        return compteur;
+        return chambres.size();
     }
 
     /**
@@ -352,12 +349,14 @@ public class ReservationFactoryP implements ReservationFactory {
         Objects.requireNonNull(d,"La date proposée est nulle.");
         Objects.requireNonNull(t,"Le tupe de chambre proposé est null.");
         Set<Reservation> reservations = this.getReservation(d);
+        Set<Reservation> reser = new HashSet<Reservation>();
         for (Reservation r : reservations){
             try{
                 //Recupération du type de chambre de la chambre de la réservation
-                PreparedStatement sql = this.connexion.prepareStatement("SELECT single FROM Categorie WHERE id IN(SELECT Categorie FROM Chambre WHERE id = ?)");
-                sql.setObject(1, r.getChambre());
+                PreparedStatement sql = this.connexion.prepareStatement("SELECT sigle FROM Categorie WHERE id IN (SELECT Categorie FROM Chambre WHERE id = ?)");
+                sql.setInt(1, r.getChambre().getNumero());
                 ResultSet result = sql.executeQuery();
+                result.next();
                 TypeChambre type = null;
                 //Identifiqation du type récupérer afin de l'instancier et 
                 //de le comparer au type entré en argument
@@ -368,16 +367,15 @@ public class ReservationFactoryP implements ReservationFactory {
                 } else if (result.getString(1).equals("UNLD")){
                     type = TypeChambre.UNLD;
                 }
-                //Si le type de la réservation et le type d'argument n'est pas le même
-                //on le supprime de de l'ensemble
-                if( !type.equals(t)){
-                    reservations.remove(r);
+
+                if( type.equals(t)){
+                    reser.add(r);
                 }
             } catch (SQLException e) {
                 throw new IllegalStateException("Problème de récupération des données de réservation.");
             }
         }
-        return reservations;
+        return reser;
     }
 
     /**
@@ -393,13 +391,9 @@ public class ReservationFactoryP implements ReservationFactory {
     public int getDisponibles(LocalDate d, TypeChambre t) {
         Objects.requireNonNull(d,"La date proposée est nulle.");
         Objects.requireNonNull(t,"Le tupe de chambre proposé est null.");
-        int compteur = 0;
         Set<Chambre> chambres = this.getAllChambreCategorie(t);
         //Réservées ou non c'est à dire toutes les chambres.
-        for (Chambre c : chambres){
-            compteur++;
-        }
-        return compteur;
+        return chambres.size();
     }
 
     /**
@@ -412,12 +406,10 @@ public class ReservationFactoryP implements ReservationFactory {
     public int getRatio(LocalDate d) {
         Objects.requireNonNull(d,"La date proposée est nulle.");
         int reservables = this.getDisponibles(d);
-        int reservees = 0;
         Set<Reservation> reservations = this.getReservation(d);
-        for (Reservation r : reservations)
-            //Le nombre de chambre réservées correspond au nombre de reservation
-            //car une reservation a obligatoirement une et une seule chambre
-            reservees++;
+        //Le nombre de chambre réservées correspond au nombre de reservation
+        //car une reservation a obligatoirement une et une seule chambre
+        int reservees = reservations.size();
         int ratio = (reservees*100)/reservables;
         return ratio;
     }
@@ -434,10 +426,8 @@ public class ReservationFactoryP implements ReservationFactory {
         Objects.requireNonNull(d,"La date proposée est nulle.");
         Objects.requireNonNull(t,"Le type proposé est null.");
         int reservables = this.getDisponibles(d, t);
-        int reservees = 0;
         Set<Reservation> reservations = this.getReservation(d, t);
-        for (Reservation r : reservations)
-            reservees++;
+        int reservees = reservations.size();
         int ratio = (reservees*100)/reservables;
         return ratio;
     }

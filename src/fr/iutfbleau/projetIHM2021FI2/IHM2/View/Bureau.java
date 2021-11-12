@@ -27,6 +27,9 @@ public class Bureau {
 
     public void run() {
 
+        //Bouton effacer
+        JButton eff = new JButton("Effacer");
+
         //Taux d'occupation
         JPanel taux_p = new JPanel();
         JLabel taux_l = new JLabel("Taux d'occupation d'une journée");
@@ -42,7 +45,8 @@ public class Bureau {
         JPanel graphique_p = new JPanel();
         JLabel graphique_l = new JLabel("Graphique d'occupation");
         JButton graphique = new JButton("Demander");
-        graphique_p.setLayout(new GridLayout(2,1));
+        graphique_p.setLayout(new GridLayout(3,1));
+        graphique_p.add(eff);
         graphique_p.add(graphique_l);
         graphique_p.add(graphique);
 
@@ -53,6 +57,7 @@ public class Bureau {
         this.fenetre.setVisible(true);
 
         //Listener
+        eff.addActionListener(new TraitementEffacer(this.fenetre, this.grandLivreDOrAPISeulement, this.centre));
         taux_date.addActionListener(new TraitementTaux(this.fenetre, this.grandLivreDOrAPISeulement, this.centre));
         taux_type.addActionListener(new TraitementTauxType(this.fenetre, this.grandLivreDOrAPISeulement, this.centre));
         graphique.addActionListener(new TraitementGraphique(this.fenetre, this.grandLivreDOrAPISeulement, this.centre));
