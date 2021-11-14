@@ -474,14 +474,15 @@ public class ReservationFactoryP implements ReservationFactory {
         if (d1.compareTo(d2)>0)
             throw new IllegalStateException("La première date doit être antérieur à la seconde.");
         Set<Reservation> reservations = this.getAllReservation();
-        Set<Chambre> chambres = this.getAllChambreCategorie(t);
+        Set<Reservation> reser = new HashSet<Reservation>();
         int compteur = 0;
         for (Reservation r : reservations){
            try {
             //Permet de récupérer le type de chambre de la réservation
-            PreparedStatement sql = this.connexion.prepareStatement("SELECT single FROM Categorie WHERE id IN(SELECT Categorie FROM Chambre WHERE id = ?)");
-            sql.setObject(1, r.getChambre());
+            PreparedStatement sql = this.connexion.prepareStatement("SELECT sigle FROM Categorie WHERE id IN(SELECT Categorie FROM Chambre WHERE id = ?)");
+            sql.setInt(1, r.getChambre().getNumero());
             ResultSet result = sql.executeQuery();
+            result.next();
             TypeChambre type = null;
             if (result.getString(1).equals("UNLS")){
                 type = TypeChambre.UNLS;
@@ -490,26 +491,24 @@ public class ReservationFactoryP implements ReservationFactory {
             } else if (result.getString(1).equals("UNLD")){
                 type = TypeChambre.UNLD;
             }
-            if ( type.equals(t)) {
+            if (type.equals(t)) {
                 compteur = 0;
-                //Permet de parcourir les reservations et leur durée et voir si a un moment dans leur
+                //Permet de parcourir les reservations et leurs durées et voir si a un moment dans leur
                 //durée elle sont dans la periode d1 d2
                 for (int i=0; i<=r.getJours(); i++){
                     if (r.getDateDebut().plusDays(i).compareTo(d1)>=0 && r.getDateDebut().plusDays(i).compareTo(d2)<=0){
                         compteur++;
                     }
                 }
-                if (compteur == 0){
-                    reservations.remove(r);
+                if (compteur != 0){
+                    reser.add(r);
                 }
-            } else {
-                reservations.remove(r);
             }
-           } catch (SQLException e) {
+            } catch (SQLException e) {
                 throw new IllegalStateException("Problème de récupération des chambres");
-           }
+            }
         }
-        return reservations;
+        return reser;
     }
 
     /**
@@ -554,15 +553,18 @@ public class ReservationFactoryP implements ReservationFactory {
         //Les reservations entre les deux dates avec pour type de chambre UNLS
         Set<Reservation> reservations = this.getReservation(d1, d2, TypeChambre.UNLS);
         //Les reservations entre les deux dates avec poour type de chambre DEUXLS
-        for (Reservation r : this.getReservation(d1, d2, TypeChambre.DEUXLS))
-            reservations.add(r);
+        for (Reservation r : this.getReservation(d1, d2, TypeChambre.DEUXLS)){
+            if (reservations.contains(r)==false){
+                reservations.add(r);
+            }
+        }
         //Les reservations entre les deux dates avec pour type de chambre UNLD
-        for (Reservation r : this.getReservation(d1, d2, TypeChambre.UNLD))
-            reservations.add(r);
-        for (Reservation r : reservations)
-            //Le nombre de chambre réservées correspond au nombre de reservation
-            //car une reservation a obligatoirement une et une seule chambre
-            reservees++;
+        for (Reservation r : this.getReservation(d1, d2, TypeChambre.UNLD)){
+            if (reservations.contains(r)==false){
+                reservations.add(r);
+            }
+        }
+        reservees = reservations.size();
         int ratio = (reservees*100)/reservables;
         return ratio;
     }

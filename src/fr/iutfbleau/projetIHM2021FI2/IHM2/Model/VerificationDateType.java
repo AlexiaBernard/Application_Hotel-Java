@@ -35,13 +35,13 @@ public class VerificationDateType {
         this.date = date;
         this.type = type;
         this.centre = centre;
-
     }
 
     public void run(){
         try {
             int ratio = grandLivreDOrAPISeulement.getRatio(this.date, this.type);
-            AfficherRatioType aff = new AfficherRatioType(this.fenetre, this.grandLivreDOrAPISeulement, this.date, ratio, this.type, this.centre);
+            AfficherRatioType aff = new AfficherRatioType(this.fenetre, this.grandLivreDOrAPISeulement, 
+                    this.date, ratio, this.type, this.centre);
             aff.run();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(fenetre,"Problème de calcul du ratio pour cette date et ce type de chambre.");

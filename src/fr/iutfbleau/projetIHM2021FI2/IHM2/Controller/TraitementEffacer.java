@@ -4,12 +4,13 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
+import fr.iutfbleau.projetIHM2021FI2.IHM2.View.Bureau;
 
 public class TraitementEffacer implements ActionListener {
 
-    public JFrame fenetre;
-    public ReservationFactory grandlivreDOrAPISeulement;
-    public JPanel centre;
+    private JFrame fenetre;
+    private ReservationFactory grandLivreDOrAPISeulement;
+    private JPanel centre;
 
     /**
      * 
@@ -20,7 +21,7 @@ public class TraitementEffacer implements ActionListener {
     public TraitementEffacer(JFrame fenetre, ReservationFactory grandLivreDOrAPISeulement, 
             JPanel centre) {
         this.fenetre = fenetre;
-        this.grandlivreDOrAPISeulement = grandLivreDOrAPISeulement;
+        this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.centre = centre;
     }
 
@@ -35,5 +36,7 @@ public class TraitementEffacer implements ActionListener {
             this.fenetre.revalidate();
             this.fenetre.setVisible(true);
         }
+        Bureau bur = new Bureau(this.fenetre, this.grandLivreDOrAPISeulement, this.centre);
+        bur.run();
     }
 }
