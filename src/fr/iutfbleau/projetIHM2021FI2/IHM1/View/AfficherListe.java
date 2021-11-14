@@ -82,7 +82,8 @@ public class AfficherListe {
      * @param centre centre de la fenêtre
      */
     public void deleteRef(JPanel centre){
-        this.fenetre.remove(centre);
+        centre.removeAll();
+        //this.fenetre.remove(centre);
         this.fenetre.repaint();
         this.fenetre.revalidate();
         this.fenetre.setVisible(true);

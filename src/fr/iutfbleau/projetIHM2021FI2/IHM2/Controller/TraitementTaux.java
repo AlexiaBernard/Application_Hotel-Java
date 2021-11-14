@@ -40,8 +40,5 @@ public class TraitementTaux implements ActionListener {
             Bureau bur = new Bureau(this.fenetre, this.grandLivreDOrAPISeulement, this.centre);
             bur.run();
         }
-        
-
-    }
-    
+    } 
 }
