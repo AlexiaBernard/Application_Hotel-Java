@@ -39,13 +39,17 @@ public class DessinerGraphique extends JComponent {
             secondPinceau.setColor(this.getBackground());
             secondPinceau.fillRect(0, 0, this.getWidth(), this.getHeight());
         }
-        
+        System.out.println("1 ligne verticale");
         //La ligne droite verticale
         secondPinceau.setColor(Color.BLACK);
         secondPinceau.drawLine(20, 20, 20, hauteur-20);
+
+        System.out.println("2 fleche");
         //La flèche au bout de la droite
         secondPinceau.drawLine(10, 10, 20, hauteur-20);
         secondPinceau.drawLine(30, 30, 20, hauteur-20);
+
+        System.out.println("3 petits traits");
         //Les petits traits
         secondPinceau.drawString("100", 10, trait);
         secondPinceau.drawLine(15, trait  , 25, trait);
