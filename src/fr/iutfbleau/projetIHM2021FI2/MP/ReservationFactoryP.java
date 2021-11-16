@@ -452,9 +452,9 @@ public class ReservationFactoryP implements ReservationFactory {
         int compteur = 0;
         System.out.println("2 dispo");
         System.out.println("dispo date un = "+d1);
-        System.out.println("dispo date deux = "+d1);
-        for (LocalDate i = d1; i.compareTo(d2)<0; i.plusDays(1)){
-            System.out.println("dans for dispo");
+        System.out.println("dispo date deux = "+d2);
+        for (LocalDate i = d1; i.compareTo(d2)<=0; i.plusDays(1)){
+            System.out.println("dans for dispo date = "+i);
             compteur += this.getDisponibles(i);
         }
         System.out.println("3 dispo");
