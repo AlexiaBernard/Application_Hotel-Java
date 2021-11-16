@@ -34,7 +34,7 @@ public class TraitementGraphique implements ActionListener {
             String input = JOptionPane.showInputDialog(this.fenetre,"Veuillez entrer la première date afin d'obtenir le graphique. (JJ/MM/AAAA)");
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             try {
-                LocalDate dateDeb = LocalDate.parse(input, inputFormat);
+                LocalDate dateFin = LocalDate.parse(input, inputFormat);
                 Object[] options = {"1 sem", "1 mois", "3 mois", "Annuler" };
                 int retour = JOptionPane.showOptionDialog(this.fenetre,
                                             "Sur quelle durée voulez vous faire le graphique ? ",
@@ -46,15 +46,15 @@ public class TraitementGraphique implements ActionListener {
                                             options[0] );
 
                 if (retour == 0 || retour == 1 || retour ==2){
-                    LocalDate dateFin = null;
+                    LocalDate dateDeb = null;
                     if (retour == 0){
-                        dateFin = dateDeb.plusWeeks(1);
+                        dateDeb = dateFin.minusWeeks(1);
                     } else if (retour == 1) {
-                        dateFin = dateDeb.plusMonths(1);
+                        dateDeb = dateFin.minusMonths(1);
                     } else if (retour == 2) {
-                        dateFin = dateDeb.plusMonths(3);
+                        dateDeb = dateFin.minusMonths(3);
                     }
-                    VerificationDateGraphique verif = new VerificationDateGraphique(this.fenetre, this.grandLivreDOrAPISeulement, dateDeb, dateFin, retour, this.centre);
+                    VerificationDateGraphique verif = new VerificationDateGraphique(this.fenetre, this.grandLivreDOrAPISeulement, dateFin, dateDeb, retour, this.centre);
                     verif.run();
                 } else {
                     Bureau bureau = new Bureau(this.fenetre, this.grandLivreDOrAPISeulement, this.centre);

@@ -44,7 +44,9 @@ public class AfficherGraphique  {
         DessinerGraphique graphique = new DessinerGraphique(this.centre, this.retour, 
                 this.ratio, this.ratioComp);
         this.centre.add(graphique);
+        System.out.println("après dessiner graph");
         this.fenetre.repaint();
+        this.fenetre.revalidate();
         this.fenetre.setVisible(true);
     }
 

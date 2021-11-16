@@ -11,8 +11,8 @@ public class VerificationDateGraphique {
 
     private JFrame fenetre;
     private ReservationFactory grandLivreDOrAPISeulement;
-    private LocalDate dateDeb;
     private LocalDate dateFin;
+    private LocalDate dateDeb;
     private int retour;
     private JPanel centre;
 
@@ -26,11 +26,11 @@ public class VerificationDateGraphique {
      * @param centre
      */
     public VerificationDateGraphique(JFrame fenetre, ReservationFactory grandLivreDOrAPISeulement,
-            LocalDate dateDeb, LocalDate dateFin, int retour, JPanel centre) {
+        LocalDate dateFin,LocalDate dateDeb, int retour, JPanel centre) {
         this.fenetre = fenetre;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
-        this.dateDeb = dateDeb;
         this.dateFin = dateFin;
+        this.dateDeb = dateDeb;
         this.retour = retour;
         this.centre = centre;
     }

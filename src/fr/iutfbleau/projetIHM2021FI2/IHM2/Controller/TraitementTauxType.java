@@ -34,36 +34,41 @@ public class TraitementTauxType implements ActionListener {
         try {
             String input = JOptionPane.showInputDialog(this.fenetre,"Veuillez entrer la date du jour ou vous souhaitez avoir ce taux. (JJ/MM/AAAA)");
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate date = LocalDate.parse(input, inputFormat);
-            Object[] options = {"1LS", "2LS", "1LD", "Annuler" };
-            int retour = JOptionPane.showOptionDialog(this.fenetre,
-                                        "De quel type voulez vous faire le ratio ?(L = lit, S = simple, D = double)",
-                                        "Type de chambre",
-                                        JOptionPane.OK_CANCEL_OPTION,
-                                        JOptionPane.QUESTION_MESSAGE,
-                                        null,
-                                        options,
-                                        options[0] );
-
-            TypeChambre type = null;
-            if (retour == 0 || retour == 1 || retour ==2){
-                if (retour == 0){
-                    type = TypeChambre.UNLS;
-                } else if (retour == 1) {
-                    type = TypeChambre.DEUXLS;
-                } else if (retour == 2) {
-                    type = TypeChambre.UNLD;
+            try {
+                LocalDate date = LocalDate.parse(input, inputFormat);
+                Object[] options = {"1LS", "2LS", "1LD", "Annuler" };
+                int retour = JOptionPane.showOptionDialog(this.fenetre,
+                                            "De quel type voulez vous faire le ratio ?(L = lit, S = simple, D = double)",
+                                            "Type de chambre",
+                                            JOptionPane.OK_CANCEL_OPTION,
+                                            JOptionPane.QUESTION_MESSAGE,
+                                            null,
+                                            options,
+                                            options[0] );
+    
+                TypeChambre type = null;
+                if (retour == 0 || retour == 1 || retour ==2){
+                    if (retour == 0){
+                        type = TypeChambre.UNLS;
+                    } else if (retour == 1) {
+                        type = TypeChambre.DEUXLS;
+                    } else if (retour == 2) {
+                        type = TypeChambre.UNLD;
+                    }
+                    VerificationDateType verif = new VerificationDateType(this.fenetre, this.grandLivreDOrAPISeulement, date, type, this.centre);
+                    verif.run();
+                } else {
+                    Bureau bureau = new Bureau(this.fenetre, this.grandLivreDOrAPISeulement, this.centre);
+                    bureau.run();
                 }
-                VerificationDateType verif = new VerificationDateType(this.fenetre, this.grandLivreDOrAPISeulement, date, type, this.centre);
-                verif.run();
-            } else {
-                Bureau bureau = new Bureau(this.fenetre, this.grandLivreDOrAPISeulement, this.centre);
-                bureau.run();
+            } catch (NullPointerException f){
+                Bureau bur = new Bureau(this.fenetre, this.grandLivreDOrAPISeulement, this.centre);
+                bur.run();
             }
         }catch (DateTimeParseException f){
             JOptionPane.showMessageDialog(this.fenetre,"Le format de la date n'est pas correct.");
-                Bureau bur = new Bureau(this.fenetre, this.grandLivreDOrAPISeulement, this.centre);
-                bur.run();
+            Bureau bur = new Bureau(this.fenetre, this.grandLivreDOrAPISeulement, this.centre);
+            bur.run();
         }
     }
 }
