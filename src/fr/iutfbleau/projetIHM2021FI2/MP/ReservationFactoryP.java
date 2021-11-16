@@ -548,24 +548,32 @@ public class ReservationFactoryP implements ReservationFactory {
     public int getRatio(LocalDate d1, LocalDate d2) {
         Objects.requireNonNull(d1,"La première date proposée est nulle.");
         Objects.requireNonNull(d2,"La seconde date proposée est nulle.");
+        System.out.println("1 ratio");
         int reservables = this.getDisponibles(d1, d2);
+        System.out.println("2 ratio");
         int reservees = 0;
+        System.out.println("3 ratio");
         //Les reservations entre les deux dates avec pour type de chambre UNLS
         Set<Reservation> reservations = this.getReservation(d1, d2, TypeChambre.UNLS);
+        System.out.println("4 ratio");
         //Les reservations entre les deux dates avec poour type de chambre DEUXLS
         for (Reservation r : this.getReservation(d1, d2, TypeChambre.DEUXLS)){
             if (reservations.contains(r)==false){
                 reservations.add(r);
             }
         }
+        System.out.println("5 ratio");
         //Les reservations entre les deux dates avec pour type de chambre UNLD
         for (Reservation r : this.getReservation(d1, d2, TypeChambre.UNLD)){
             if (reservations.contains(r)==false){
                 reservations.add(r);
             }
         }
+        System.out.println("6 ratio");
         reservees = reservations.size();
+        System.out.println("7 ratio");
         int ratio = (reservees*100)/reservables;
+        System.out.println("8 ratio");
         return ratio;
     }
 
