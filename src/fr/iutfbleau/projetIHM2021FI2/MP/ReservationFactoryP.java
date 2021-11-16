@@ -555,6 +555,8 @@ public class ReservationFactoryP implements ReservationFactory {
         Objects.requireNonNull(d1,"La première date proposée est nulle.");
         Objects.requireNonNull(d2,"La seconde date proposée est nulle.");
         System.out.println("1 ratio");
+        System.out.println("date d1 ="+d1);
+        System.out.println("date d2 ="+d2);
         int reservables = this.getDisponibles(d1, d2);
         System.out.println("2 ratio");
         int reservees = 0;

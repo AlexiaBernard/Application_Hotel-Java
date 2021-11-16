@@ -48,9 +48,6 @@ public class TraitementGraphique implements ActionListener {
                 LocalDate dateFin = null;
                 if (retour == 0){
                     dateFin = dateDeb.plusWeeks(1);
-                    System.out.println("Trai date dateDeb ="+ dateDeb);
-                    System.out.println("Trai date dateFin = "+dateFin);
-                    System.out.println("Trai date +7j ="+ dateDeb.plusDays(7));
                 } else if (retour == 1) {
                     dateFin = dateDeb.plusMonths(1);
                 } else if (retour == 2) {
