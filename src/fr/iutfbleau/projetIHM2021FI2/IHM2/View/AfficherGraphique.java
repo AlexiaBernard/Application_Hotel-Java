@@ -43,6 +43,7 @@ public class AfficherGraphique  {
         System.out.println("dans afficher graphique");
         DessinerGraphique graphique = new DessinerGraphique(this.centre, this.retour, 
                 this.ratio, this.ratioComp);
+        this.centre.add(graphique);
         this.fenetre.repaint();
         this.fenetre.setVisible(true);
     }
