@@ -40,8 +40,11 @@ public class AfficherGraphique  {
     }
 
     public void run() {
+        System.out.println("dans afficher graphique");
         DessinerGraphique graphique = new DessinerGraphique(this.centre, this.retour, 
                 this.ratio, this.ratioComp);
+        this.fenetre.repaint();
+        this.fenetre.setVisible(true);
     }
 
     public void deleteCentre(JPanel centre) {

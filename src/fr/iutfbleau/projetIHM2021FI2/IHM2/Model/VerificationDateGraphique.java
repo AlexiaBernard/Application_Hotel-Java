@@ -37,11 +37,14 @@ public class VerificationDateGraphique {
 
     public void run() {
         try {
+            System.out.println("Verif Date graph");
             int ratio = grandLivreDOrAPISeulement.getRatio(this.dateDeb,this.dateFin);
+            System.out.println("1");
             int ratioComp = grandLivreDOrAPISeulement.getRatio(this.dateDeb, this.dateDeb.minusYears(3));
+            System.out.println("2");
             AfficherGraphique aff = new AfficherGraphique(this.fenetre, this.grandLivreDOrAPISeulement,
                     this.centre, this.dateDeb, this.dateFin, this.retour, ratio, ratioComp );
-            if (this.centre != null)
+            if (        this.centre != null)
                 aff.deleteCentre(this.centre);
             aff.run();
         } catch (Exception e) {

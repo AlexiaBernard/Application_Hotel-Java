@@ -26,6 +26,7 @@ public class DessinerGraphique extends JComponent {
 
     @Override
     protected void paintComponent(Graphics pinceau) {
+        System.out.println("dans dessiner graphique");
         int hauteur = this.centre.getWidth();
         int largeur = this.centre.getHeight();
         int trait = (hauteur-40)/10;
