@@ -362,6 +362,7 @@ ${BUILD}/IHM2/View/DessinerGraphique.class : ${SRC}/IHM2/View/DessinerGraphique.
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/View/DessinerGraphique.java
 
 ${BUILD}/IHM2/View/AfficherGraphique.class : ${SRC}/IHM2/View/AfficherGraphique.java\
+										${BUILD}/IHM2/View/DessinerGraphique.class\
 										${BUILD}/API/ReservationFactory.class
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/IHM2/View/AfficherGraphique.java
 
