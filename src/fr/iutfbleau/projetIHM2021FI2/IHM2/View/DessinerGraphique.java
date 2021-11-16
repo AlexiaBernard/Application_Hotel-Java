@@ -18,6 +18,7 @@ public class DessinerGraphique extends JComponent {
      * @param ratioComp
      */
     public DessinerGraphique(JPanel centre, int retour, int ratio, int ratioComp) {
+        super();
         this.centre = centre;
         this.retour = retour;
         this.ratio = ratio;
