@@ -38,6 +38,8 @@ public class VerificationDateGraphique {
     public void run() {
         try {
             System.out.println("Verif Date graph");
+            System.out.println("verif date dateDeb ="+ dateDeb);
+            System.out.println("verif date dateFin ="+ dateFin);
             int ratio = grandLivreDOrAPISeulement.getRatio(this.dateDeb,this.dateFin);
             System.out.println("1");
             int ratioComp = grandLivreDOrAPISeulement.getRatio(this.dateDeb, this.dateDeb.minusYears(3));

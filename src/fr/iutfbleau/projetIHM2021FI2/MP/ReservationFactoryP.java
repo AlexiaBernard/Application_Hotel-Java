@@ -451,8 +451,8 @@ public class ReservationFactoryP implements ReservationFactory {
         System.out.println("1 dispo");
         int compteur = 0;
         System.out.println("2 dispo");
-        System.out.println("date un = "+d1);
-        System.out.println("date deux = "+d1);
+        System.out.println("dispo date un = "+d1);
+        System.out.println("dispo date deux = "+d1);
         for (LocalDate i = d1; i.compareTo(d2)<0; i.plusDays(1)){
             System.out.println("dans for dispo");
             compteur += this.getDisponibles(i);
@@ -596,6 +596,8 @@ public class ReservationFactoryP implements ReservationFactory {
         Objects.requireNonNull(d1,"La première date proposée est nulle.");
         Objects.requireNonNull(d2,"La seconde date proposée est nulle.");
         Objects.requireNonNull(t,"Le type proposé est null.");
+        System.out.println("ratio date d1 ="+ d1);
+        System.out.println("ratio date d2 ="+ d2);
         int reservables = this.getDisponibles(d1, d2);
         int reservees = 0;
         Set<Reservation> reservations = this.getReservation(d1, d2,t);
