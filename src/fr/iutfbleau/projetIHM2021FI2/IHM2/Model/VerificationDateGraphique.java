@@ -40,8 +40,8 @@ public class VerificationDateGraphique {
             System.out.println("Verif Date graph");
             int ratio = grandLivreDOrAPISeulement.getRatio(this.dateDeb,this.dateFin);
             System.out.println("1");
-            System.out.print(this.dateDeb.minusYears(3));
-            int ratioComp = grandLivreDOrAPISeulement.getRatio(this.dateDeb, this.dateDeb.minusYears(3));
+            System.out.println(this.dateDeb.minusYears(3));
+            int ratioComp = grandLivreDOrAPISeulement.getRatio(this.dateDeb.minusYears(3),this.dateDeb);
             System.out.println("2");
             AfficherGraphique aff = new AfficherGraphique(this.fenetre, this.grandLivreDOrAPISeulement,
                     this.centre, this.dateDeb, this.dateFin, this.retour, ratio, ratioComp );
