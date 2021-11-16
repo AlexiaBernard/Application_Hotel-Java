@@ -448,16 +448,10 @@ public class ReservationFactoryP implements ReservationFactory {
         Objects.requireNonNull(d2,"La seconde date proposée est nulle.");
         if (d1.compareTo(d2)>0)
             throw new IllegalStateException("La première date doit être antérieur à la seconde.");
-        System.out.println("1 dispo");
         int compteur = 0;
-        System.out.println("2 dispo");
-        System.out.println("dispo date un = "+d1);
-        System.out.println("dispo date deux = "+d2);
         for (LocalDate i = d1; i.compareTo(d2)<=0; i = i.plusDays(1)){
-            System.out.println("dans for dispo date = "+i);
             compteur += this.getDisponibles(i);
         }
-        System.out.println("3 dispo");
         return compteur;
     }
 
