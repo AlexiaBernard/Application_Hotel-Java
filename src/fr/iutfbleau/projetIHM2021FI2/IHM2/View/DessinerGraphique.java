@@ -28,7 +28,7 @@ public class DessinerGraphique extends JComponent {
     @Override
     protected void paintComponent(Graphics pinceau) {
         System.out.println("dans dessiner graphique");
-        int hauteur = this.getWidth()-100;
+        int hauteur = this.getWidth()-150;
         int largeur = this.getHeight();
         int trait = (hauteur-40)/10;
         int un = (hauteur-40)/100;
@@ -41,13 +41,13 @@ public class DessinerGraphique extends JComponent {
         }
         //La ligne droite verticale
         secondPinceau.setColor(Color.BLACK);
-        secondPinceau.drawLine(20, 20, 20, hauteur-20);
+        secondPinceau.drawLine(40, 20, 40, hauteur-20);
 
         //La flèche au bout de la droite
         secondPinceau.setColor(Color.BLACK);
-        secondPinceau.drawLine(20, 20, 10, 30);
+        secondPinceau.drawLine(40, 20, 35, 30);
         secondPinceau.setColor(Color.BLACK);
-        secondPinceau.drawLine(20,20, 30, 30);
+        secondPinceau.drawLine(40, 20, 45, 30);
 
         
         //Les petits traits
@@ -94,7 +94,7 @@ public class DessinerGraphique extends JComponent {
 
         //La ligne horizontale
         secondPinceau.setColor(Color.YELLOW);
-        secondPinceau.drawLine(20, hauteur-20, largeur-20, hauteur-20);
+        secondPinceau.drawLine(40, hauteur-20, largeur-40, hauteur-20);
 
         /*
         //Premier rectangle (3 ans)
