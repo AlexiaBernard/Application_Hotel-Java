@@ -30,7 +30,6 @@ public class DessinerGraphique extends JComponent {
         System.out.println("dans dessiner graphique");
         int hauteur = this.getWidth()-180;
         int largeur = this.fenetre.getHeight();
-        int trait = (hauteur-40)/10;
         int un = (hauteur-40)/100;
 
         Graphics secondPinceau = pinceau.create();
@@ -48,32 +47,32 @@ public class DessinerGraphique extends JComponent {
         secondPinceau.drawLine(40, 20, 45, 30);
 
         //Les petits traits
-        secondPinceau.drawString("100", 10, trait+5);
-        secondPinceau.drawLine(35, trait  , 45, trait);
+        secondPinceau.drawString("100", 10, un*10+5);
+        secondPinceau.drawLine(35, un*10  , 45, un*10);
 
-        secondPinceau.drawString("90", 10, trait*2+5);
-        secondPinceau.drawLine(35, trait*2, 45, trait*2);
+        secondPinceau.drawString("90", 10, un*10*2+5);
+        secondPinceau.drawLine(35, un*10*2, 45, un*10*2);
 
-        secondPinceau.drawString("80", 10, trait*3+5);
-        secondPinceau.drawLine(35, trait*3, 45, trait*3);
+        secondPinceau.drawString("80", 10, un*10*3+5);
+        secondPinceau.drawLine(35, un*10*3, 45, un*10*3);
 
-        secondPinceau.drawString("70", 10, trait*4+5);
-        secondPinceau.drawLine(35, trait*4, 45, trait*4);
+        secondPinceau.drawString("70", 10, un*10*4+5);
+        secondPinceau.drawLine(35, un*10*4, 45, un*10*4);
 
-        secondPinceau.drawString("60", 10, trait*5+5);
-        secondPinceau.drawLine(35, trait*5, 45, trait*5);
+        secondPinceau.drawString("60", 10, un*10*5+5);
+        secondPinceau.drawLine(35, un*10*5, 45, un*10*5);
 
-        secondPinceau.drawString("50", 10, trait*6+5);
-        secondPinceau.drawLine(35, trait*6, 45, trait*6);
+        secondPinceau.drawString("50", 10, un*10*6+5);
+        secondPinceau.drawLine(35, un*10*6, 45, un*10*6);
 
-        secondPinceau.drawString("40", 10, trait*7+5);
-        secondPinceau.drawLine(35, trait*7, 45, trait*7);
+        secondPinceau.drawString("40", 10, un*10*7+5);
+        secondPinceau.drawLine(35, un*10*7, 45, un*10*7);
 
-        secondPinceau.drawString("30", 10, trait*8+5);
-        secondPinceau.drawLine(35, trait*8, 45, trait*8);
+        secondPinceau.drawString("30", 10, un*10*8+5);
+        secondPinceau.drawLine(35, un*10*8, 45, un*10*8);
 
-        secondPinceau.drawString("20", 10, trait*9+5);
-        secondPinceau.drawLine(35, trait*9, 45, trait*9);
+        secondPinceau.drawString("20", 10, un*10*9+5);
+        secondPinceau.drawLine(35, un*10*9, 45, un*10*9);
 
         secondPinceau.drawString("10", 10, (hauteur-40)+5);
         secondPinceau.drawLine(35, (hauteur-40), 45, (hauteur-40));
@@ -87,7 +86,7 @@ public class DessinerGraphique extends JComponent {
         //Premier rectangle (3 ans)
         secondPinceau.setColor(Color.BLACK);
         
-        secondPinceau.drawString("Ratio sur 3 ans", 70, hauteur-5);
+        secondPinceau.drawString("Ratio sur 3 ans", 65, hauteur-5);
         if (ratioComp > 0){
             secondPinceau.setColor(Color.BLUE);
             secondPinceau.fillRect(80, hauteur-20-un*this.ratioComp, 40, un*this.ratioComp);
@@ -96,7 +95,7 @@ public class DessinerGraphique extends JComponent {
         } else if (ratioComp == 0){
             secondPinceau.drawString(""+this.ratioComp, 100, hauteur-30);
             secondPinceau.setColor(Color.BLUE);
-            secondPinceau.fillRect(80, hauteur-20-(30%10*trait)-(30-30%10)*un, 40, (30%10*trait)-(30-30%10)*un);
+            secondPinceau.fillRect(80, hauteur-20-30*un, 40, 30*un);
         }
         
         //Deuxième rectangle (1 semaine, 1 mois ou 3 mois)
@@ -110,7 +109,7 @@ public class DessinerGraphique extends JComponent {
         }
         if (ratio > 0){
             secondPinceau.setColor(Color.ORANGE);
-            secondPinceau.fillRect(290, hauteur-20-(30%10*trait)-(30-30%10)*un, 40, (30%10*trait)-(30-30%10)*un);
+            secondPinceau.fillRect(290, hauteur-20-30*un, 40, 30*un);
             //secondPinceau.fillRect(290, hauteur-20-un*this.ratio, 40, un*this.ratio);
             secondPinceau.setColor(Color.BLACK);
             secondPinceau.drawString(""+this.ratio, 310, hauteur-20-un*this.ratio-10);
