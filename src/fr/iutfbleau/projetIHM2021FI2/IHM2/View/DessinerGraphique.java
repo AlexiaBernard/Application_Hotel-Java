@@ -28,7 +28,7 @@ public class DessinerGraphique extends JComponent {
     @Override
     protected void paintComponent(Graphics pinceau) {
         int hauteur = this.getWidth()-180;
-        int un = (hauteur-20)/100;
+        int un = (hauteur-40)/100;
 
         Graphics secondPinceau = pinceau.create();
         //Pour pas transparent
