@@ -30,7 +30,7 @@ public class DessinerGraphique extends JComponent {
         System.out.println("dans dessiner graphique");
         int hauteur = this.getWidth()-180;
         int largeur = this.fenetre.getHeight();
-        int un = (hauteur-40)/100;
+        int un = hauteur/100;
 
         Graphics secondPinceau = pinceau.create();
         //Pour pas transparent
