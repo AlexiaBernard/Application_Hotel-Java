@@ -20,10 +20,10 @@ public class BD {
                 ReservationFactory grandLivreDOrAPISeulement  = new ReservationFactoryP(connexion);
                 return grandLivreDOrAPISeulement;
             } catch (SQLException e) {
-                System.err.println("La connexion avec la base de données a echoué.");
+                JOptionPane.showMessageDialog(fenetre,"La connexion avec la base de données a echoué.");
             }  
         } catch (ClassNotFoundException e) {
-            System.err.println("Impossible de se connecter à la base de données.");
+            JOptionPane.showMessageDialog(fenetre,"Impossible de se connecter à la base de données.");
         }
         return null;
     }
