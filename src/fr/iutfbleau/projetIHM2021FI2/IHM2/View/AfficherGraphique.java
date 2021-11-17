@@ -41,7 +41,7 @@ public class AfficherGraphique  {
     }
 
     public void run() {
-        DessinerGraphique graphique = new DessinerGraphique(this.centre, this.retour, 
+        DessinerGraphique graphique = new DessinerGraphique(this.fenetre, this.retour, 
                 this.ratio, this.ratioComp);
         this.fenetre.remove(this.centre);
         this.fenetre.add(graphique, BorderLayout.CENTER);
