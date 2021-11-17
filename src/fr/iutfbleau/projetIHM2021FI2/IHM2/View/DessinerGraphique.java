@@ -46,35 +46,35 @@ public class DessinerGraphique extends JComponent {
         secondPinceau.drawLine(40, 20, 45, 30);
 
         //Les petits traits
-        secondPinceau.drawString("100", 10, 20+un);
-        secondPinceau.drawLine(35, 20+un, 45, 20+un);
-
-        secondPinceau.drawString("90", 10, 20+un*2+5);
-        secondPinceau.drawLine(35, 20+un*2, 45, 20+un*2);
-
-        secondPinceau.drawString("80", 10, 20+un*3+5);
-        secondPinceau.drawLine(35, 20+un*3, 45, 20+un*3);
-
-        secondPinceau.drawString("70", 10, 20+un*4+5);
-        secondPinceau.drawLine(35, 20+un*4, 45, 20+un*4);
-
-        secondPinceau.drawString("60", 10, 20+un*5+5);
-        secondPinceau.drawLine(35, 20+un*5, 45, 20+un*5);
-
-        secondPinceau.drawString("50", 10, 20+un*6+5);
-        secondPinceau.drawLine(35, 20+un*6, 45, 20+un*6);
-
-        secondPinceau.drawString("40", 10, 20+un*7+5);
-        secondPinceau.drawLine(35, 20+un*7, 45, 20+un*7);
-
-        secondPinceau.drawString("30", 10, 20+un*8+5);
-        secondPinceau.drawLine(35, 20+un*8, 45, 20+un*8);
-
-        secondPinceau.drawString("20", 10, 20+un*9+5);
-        secondPinceau.drawLine(35, 20+un*9, 45, 20+un*9);
-
-        secondPinceau.drawString("10", 10, 20+un*10+5);
+        secondPinceau.drawString("100", 10, 20+un*10);
         secondPinceau.drawLine(35, 20+un*10, 45, 20+un*10);
+
+        secondPinceau.drawString("90", 10, 20+un*20+5);
+        secondPinceau.drawLine(35, 20+un*20, 45, 20+un*20);
+
+        secondPinceau.drawString("80", 10, 20+un*30+5);
+        secondPinceau.drawLine(35, 20+un*30, 45, 20+un*30);
+
+        secondPinceau.drawString("70", 10, 20+un*40+5);
+        secondPinceau.drawLine(35, 20+un*40, 45, 20+un*40);
+
+        secondPinceau.drawString("60", 10, 20+un*50+5);
+        secondPinceau.drawLine(35, 20+un*50, 45, 20+un*50);
+
+        secondPinceau.drawString("50", 10, 20+un*60+5);
+        secondPinceau.drawLine(35, 20+un*60, 45, 20+un*60);
+
+        secondPinceau.drawString("40", 10, 20+un*70+5);
+        secondPinceau.drawLine(35, 20+un*70, 45, 20+un*70);
+
+        secondPinceau.drawString("30", 10, 20+un*80+5);
+        secondPinceau.drawLine(35, 20+un*80, 45, 20+un*80);
+
+        secondPinceau.drawString("20", 10, 20+un*90+5);
+        secondPinceau.drawLine(35, 20+un*90, 45, 20+un*90);
+
+        secondPinceau.drawString("10", 10, 20+un*100+5);
+        secondPinceau.drawLine(35, 20+un*100, 45, 20+un*100);
         
 
         //La ligne horizontale
