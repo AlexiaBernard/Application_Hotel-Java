@@ -27,14 +27,15 @@ public class TraitementEffacer implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (this.centre == null){
+        this.fenetre.removeAll();
+        /*if (this.centre == null){
             this.fenetre.removeAll();
         } else {
             this.centre.removeAll();
             this.fenetre.repaint();
             this.fenetre.revalidate();
             this.fenetre.setVisible(true);
-        }
+        }*/
         Bureau bur = new Bureau(this.fenetre, this.grandLivreDOrAPISeulement, this.centre);
         bur.run();
     }
