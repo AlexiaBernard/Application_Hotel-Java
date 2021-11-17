@@ -566,7 +566,6 @@ public class ReservationFactoryP implements ReservationFactory {
             }
         }
         reservees = reservations.size();
-        System.out.println(reservations.size());
         int ratio = (reservees*100)/reservables;
         return ratio;
     }

@@ -38,7 +38,7 @@ public class VerificationDateGraphique {
     public void run() {
         try {
             int ratio = grandLivreDOrAPISeulement.getRatio(this.dateDeb,this.dateFin);
-            int ratioComp = grandLivreDOrAPISeulement.getRatio(this.dateDeb.minusYears(3),this.dateDeb);
+            int ratioComp = grandLivreDOrAPISeulement.getRatio(this.dateFin.minusYears(3),this.dateFin);
             AfficherGraphique aff = new AfficherGraphique(this.fenetre, this.grandLivreDOrAPISeulement,
                     this.centre, this.dateDeb, this.dateFin, this.retour, ratio, ratioComp );
             if (        this.centre != null)
