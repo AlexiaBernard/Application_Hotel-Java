@@ -37,12 +37,15 @@ public class TraitementEffacer implements ActionListener {
             }
         }
         if (verif == false){
+            int val = -1;
             for(int i=0; i<comp.length; i++){
                 if(comp[i].getName().equals("graphique")){
                     System.out.println("graphique oui !");
+                    val = i;
                     break;
                 }
             }
+            this.fenetre.remove(comp[val]);
             JOptionPane.showMessageDialog(this.fenetre,"Il n'y a rien a effacer.");
         } else {
             this.centre.removeAll();
