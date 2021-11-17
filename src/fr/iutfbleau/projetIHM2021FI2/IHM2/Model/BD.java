@@ -21,9 +21,11 @@ public class BD {
                 return grandLivreDOrAPISeulement;
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(fenetre,"La connexion avec la base de données a echoué.");
+                System.exit(1);
             }  
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(fenetre,"Impossible de se connecter à la base de données.");
+            System.exit(1);
         }
         return null;
     }
