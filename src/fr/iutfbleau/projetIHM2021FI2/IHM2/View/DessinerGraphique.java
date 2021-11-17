@@ -95,24 +95,26 @@ public class DessinerGraphique extends JComponent {
             secondPinceau.drawString(""+this.ratioComp, 80, hauteur-20-un*this.ratioComp-10);
         } else if (ratioComp == 0){
             secondPinceau.drawString(""+this.ratioComp, 80, hauteur-30);
+            secondPinceau.fillRect(60, hauteur-20-30, 40, 30);
         }
         
         //Deuxième rectangle (1 semaine, 1 mois ou 3 mois)
         secondPinceau.setColor(Color.BLACK);
         if (this.retour==0){
-            secondPinceau.drawString("Ratio de la semaine demandée", 240, hauteur-5);
+            secondPinceau.drawString("Ratio de la semaine demandée", 220, hauteur-5);
         } else if (this.retour==1){
-            secondPinceau.drawString("Ratio du mois demandé", 240, hauteur-5);
+            secondPinceau.drawString("Ratio du mois demandé", 220, hauteur-5);
         }else if (this.retour==2){
-            secondPinceau.drawString("Ratio des trois mois demandés", 240, hauteur-5);
+            secondPinceau.drawString("Ratio des trois mois demandés", 220, hauteur-5);
         }
         if (ratio > 0){
             secondPinceau.setColor(Color.ORANGE);
-            secondPinceau.fillRect(260, hauteur-20-un*this.ratio, 40, un*this.ratio);
+            secondPinceau.fillRect(290, hauteur-20-30, 40, 30);
+            //secondPinceau.fillRect(290, hauteur-20-un*this.ratio, 40, un*this.ratio);
             secondPinceau.setColor(Color.BLACK);
-            secondPinceau.drawString(""+this.ratio, 280, hauteur-20-un*this.ratio-10);
+            secondPinceau.drawString(""+this.ratio, 310, hauteur-20-un*this.ratio-10);
         } else if(ratio == 0){
-            secondPinceau.drawString(""+this.ratio, 280, hauteur-30);
+            secondPinceau.drawString(""+this.ratio, 310, hauteur-30);
         }
         
     }
