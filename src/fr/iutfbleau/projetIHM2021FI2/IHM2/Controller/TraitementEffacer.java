@@ -49,10 +49,10 @@ public class TraitementEffacer implements ActionListener {
             JOptionPane.showMessageDialog(this.fenetre,"Il n'y a rien a effacer.");
         } else {
             this.centre.removeAll();
-            this.fenetre.repaint();
-            this.fenetre.revalidate();
-            this.fenetre.setVisible(true);
         }
+        this.fenetre.repaint();
+        this.fenetre.revalidate();
+        this.fenetre.setVisible(true);
         Bureau bur = new Bureau(this.fenetre, this.grandLivreDOrAPISeulement, this.centre);
         bur.run();
     }
