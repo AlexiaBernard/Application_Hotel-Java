@@ -28,7 +28,7 @@ public class DessinerGraphique extends JComponent {
     @Override
     protected void paintComponent(Graphics pinceau) {
         System.out.println("dans dessiner graphique");
-        int hauteur = this.getWidth()-40;
+        int hauteur = this.getWidth()-100;
         int largeur = this.getHeight();
         int trait = (hauteur-40)/10;
         int un = (hauteur-40)/100;
@@ -44,45 +44,53 @@ public class DessinerGraphique extends JComponent {
         secondPinceau.drawLine(20, 20, 20, hauteur-20);
 
         //La flèche au bout de la droite
-        secondPinceau.setColor(Color.GREEN);
-        //secondPinceau.drawLine(10, 10, 20, hauteur-20);
+        secondPinceau.setColor(Color.BLACK);
         secondPinceau.drawLine(20, 20, 10, 30);
-        secondPinceau.setColor(Color.RED);
-        //secondPinceau.drawLine(30, 30, 20, hauteur-20);
+        secondPinceau.setColor(Color.BLACK);
         secondPinceau.drawLine(20,20, 30, 30);
 
-        /*
+        
         //Les petits traits
+        secondPinceau.setColor(Color.RED);
         secondPinceau.drawString("100", 10, trait);
         secondPinceau.drawLine(15, trait  , 25, trait);
 
+        secondPinceau.setColor(Color.ORANGE);
         secondPinceau.drawString("90", 10, trait*2);
         secondPinceau.drawLine(15, trait*2, 25, trait*2);
 
+        secondPinceau.setColor(Color.PINK);
         secondPinceau.drawString("80", 10, trait*3);
         secondPinceau.drawLine(15, trait*3, 25, trait*3);
 
+        secondPinceau.setColor(Color.BLUE);
         secondPinceau.drawString("70", 10, trait*4);
         secondPinceau.drawLine(15, trait*4, 25, trait*4);
 
+        secondPinceau.setColor(Color.GREEN);
         secondPinceau.drawString("60", 10, trait*5);
         secondPinceau.drawLine(15, trait*5, 25, trait*5);
 
+        secondPinceau.setColor(Color.GRAY);
         secondPinceau.drawString("50", 10, trait*6);
         secondPinceau.drawLine(15, trait*6, 25, trait*6);
 
+        secondPinceau.setColor(Color.DARK_GRAY);
         secondPinceau.drawString("40", 10, trait*7);
         secondPinceau.drawLine(15, trait*7, 25, trait*7);
 
+        secondPinceau.setColor(Color.LIGHT_GRAY);
         secondPinceau.drawString("30", 10, trait*8);
         secondPinceau.drawLine(15, trait*8, 25, trait*8);
 
+        secondPinceau.setColor(Color.MAGENTA);
         secondPinceau.drawString("20", 10, trait*9);
         secondPinceau.drawLine(15, trait*9, 25, trait*9);
 
+        secondPinceau.setColor(Color.CYAN);
         secondPinceau.drawString("10", 10, (hauteur-40));
         secondPinceau.drawLine(15, (hauteur-40), 25, (hauteur-40));
-        */
+        
 
         //La ligne horizontale
         secondPinceau.setColor(Color.YELLOW);
