@@ -448,11 +448,11 @@ public class ReservationFactoryP implements ReservationFactory {
         Objects.requireNonNull(d2,"La seconde date proposée est nulle.");
         if (d1.compareTo(d2)>0)
             throw new IllegalStateException("La première date doit être antérieur à la seconde.");
-        int compteur = 0;
+        int compteur = getAllChambre().size();
         System.out.println("Chargement en cours, veuillez patienter...");
-        for (LocalDate i = d1; i.compareTo(d2)<=0; i = i.plusDays(1)){
-            compteur += this.getDisponibles(i);
-        }
+        //for (LocalDate i = d1; i.compareTo(d2)<=0; i = i.plusDays(1)){
+        //    compteur += this.getDisponibles(i);
+        //}
         return compteur;
     }
 
@@ -479,32 +479,32 @@ public class ReservationFactoryP implements ReservationFactory {
         int compteur = 0;
         for (Reservation r : reservations){
            try {
-            //Permet de récupérer le type de chambre de la réservation
-            PreparedStatement sql = this.connexion.prepareStatement("SELECT sigle FROM Categorie WHERE id IN(SELECT Categorie FROM Chambre WHERE id = ?)");
-            sql.setInt(1, r.getChambre().getNumero());
-            ResultSet result = sql.executeQuery();
-            result.next();
-            TypeChambre type = null;
-            if (result.getString(1).equals("UNLS")){
-                type = TypeChambre.UNLS;
-            } else if (result.getString(1).equals("DEUXLS")){
-                type = TypeChambre.DEUXLS;
-            } else if (result.getString(1).equals("UNLD")){
-                type = TypeChambre.UNLD;
-            }
-            if (type.equals(t)) {
-                compteur = 0;
-                //Permet de parcourir les reservations et leurs durées et voir si a un moment dans leur
-                //durée elle sont dans la periode d1 d2
-                for (int i=0; i<=r.getJours(); i++){
-                    if (r.getDateDebut().plusDays(i).compareTo(d1)>=0 && r.getDateDebut().plusDays(i).compareTo(d2)<=0){
-                        compteur++;
+                //Permet de récupérer le type de chambre de la réservation
+                PreparedStatement sql = this.connexion.prepareStatement("SELECT sigle FROM Categorie WHERE id IN(SELECT Categorie FROM Chambre WHERE id = ?)");
+                sql.setInt(1, r.getChambre().getNumero());
+                ResultSet result = sql.executeQuery();
+                result.next();
+                TypeChambre type = null;
+                if (result.getString(1).equals("UNLS")){
+                    type = TypeChambre.UNLS;
+                } else if (result.getString(1).equals("DEUXLS")){
+                    type = TypeChambre.DEUXLS;
+                } else if (result.getString(1).equals("UNLD")){
+                    type = TypeChambre.UNLD;
+                }
+                if (type.equals(t)) {
+                    compteur = 0;
+                    //Permet de parcourir les reservations et leurs durées et voir si a un moment dans leur
+                    //durée elle sont dans la periode d1 d2
+                    for (int i=0; i<=r.getJours(); i++){
+                        if (r.getDateDebut().plusDays(i).compareTo(d1)>=0 && r.getDateDebut().plusDays(i).compareTo(d2)<=0){
+                            compteur++;
+                        }
+                    }
+                    if (compteur > 0){
+                        reser.add(r);
                     }
                 }
-                if (compteur > 0){
-                    reser.add(r);
-                }
-            }
             } catch (SQLException e) {
                 throw new IllegalStateException("Problème de récupération des chambres");
             }
