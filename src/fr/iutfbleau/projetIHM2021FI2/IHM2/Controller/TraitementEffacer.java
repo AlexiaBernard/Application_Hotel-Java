@@ -28,6 +28,8 @@ public class TraitementEffacer implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         this.fenetre.removeAll();
+        this.fenetre.repaint();
+        this.fenetre.revalidate();
         /*if (this.centre == null){
             this.fenetre.removeAll();
         } else {
