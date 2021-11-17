@@ -27,9 +27,8 @@ public class TraitementEffacer implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Effacer");
         if (this.centre == null){
-            JOptionPane.showMessageDialog(this.fenetre,"Il n'y a rien a effacer.");
+            this.fenetre.removeAll();
         } else {
             this.centre.removeAll();
             this.fenetre.repaint();

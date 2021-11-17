@@ -449,7 +449,6 @@ public class ReservationFactoryP implements ReservationFactory {
         if (d1.compareTo(d2)>0)
             throw new IllegalStateException("La première date doit être antérieur à la seconde.");
         int compteur = getAllChambre().size();
-        System.out.println("Chargement en cours, veuillez patienter...");
         //for (LocalDate i = d1; i.compareTo(d2)<=0; i = i.plusDays(1)){
         //    compteur += this.getDisponibles(i);
         //}

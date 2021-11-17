@@ -39,10 +39,7 @@ public class VerificationDateGraphique {
         try {
             int ratio = grandLivreDOrAPISeulement.getRatio(this.dateDeb,this.dateFin);
             int ratioComp = grandLivreDOrAPISeulement.getRatio(this.dateFin.minusYears(3),this.dateFin);
-            AfficherGraphique aff = new AfficherGraphique(this.fenetre, this.grandLivreDOrAPISeulement,
-                    this.centre, this.dateDeb, this.dateFin, this.retour, ratio, ratioComp );
-            if (        this.centre != null)
-                aff.deleteCentre(this.centre);
+            AfficherGraphique aff = new AfficherGraphique(this.fenetre, this.centre, this.retour, ratio, ratioComp );
             aff.run();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(fenetre,"Problème de calcul du ratio pour cette date.");
