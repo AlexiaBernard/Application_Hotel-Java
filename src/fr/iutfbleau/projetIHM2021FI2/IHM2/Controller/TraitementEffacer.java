@@ -10,45 +10,40 @@ import fr.iutfbleau.projetIHM2021FI2.IHM2.View.Bureau;
 public class TraitementEffacer implements ActionListener {
 
     private JFrame fenetre;
-    private JPanel taux_p;
-    private JPanel graphique_p;
     private ReservationFactory grandLivreDOrAPISeulement;
     private JPanel centre;
 
     /**
      * 
      * @param fenetre
-     * @param graphique_p
-     * @param taux_p
      * @param grandLivreDOrAPISeulement
      * @param centre
      */
-    public TraitementEffacer(JFrame fenetre, JPanel taux_p, JPanel graphique_p, 
-            ReservationFactory grandLivreDOrAPISeulement, JPanel centre) {
+    public TraitementEffacer(JFrame fenetre, ReservationFactory grandLivreDOrAPISeulement, 
+            JPanel centre) {
         this.fenetre = fenetre;
-        this.taux_p = taux_p;
-        this.graphique_p = graphique_p;
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;
         this.centre = centre;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.fenetre.removeAll();
-        this.fenetre.add(this.taux_p, BorderLayout.NORTH);
-        this.fenetre.add(this.centre, BorderLayout.CENTER);
-        this.fenetre.add(this.graphique_p, BorderLayout.SOUTH);
-        this.fenetre.repaint();
-        this.fenetre.revalidate();
-        this.fenetre.setVisible(true);
-        /*if (this.centre == null){
-            this.fenetre.removeAll();
+        Component comp [] =this.fenetre.getContentPane().getComponents();
+        boolean verif = false;
+        for (int i=0; i< comp.length; i++){
+            if (comp[i].equals(this.centre)){
+                verif = true;
+                break;
+            }
+        }
+        if ( verif == false){
+            JOptionPane.showMessageDialog(this.fenetre,"Il n'y a rien a effacer.");
         } else {
             this.centre.removeAll();
             this.fenetre.repaint();
             this.fenetre.revalidate();
             this.fenetre.setVisible(true);
-        }*/
+        }
         Bureau bur = new Bureau(this.fenetre, this.grandLivreDOrAPISeulement, this.centre);
         bur.run();
     }

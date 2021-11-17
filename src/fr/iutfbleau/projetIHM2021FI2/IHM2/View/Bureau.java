@@ -1,6 +1,7 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM2.View;
 
 import java.awt.*;
+
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
@@ -56,7 +57,7 @@ public class Bureau {
         this.fenetre.setVisible(true);
 
         //Listener
-        eff.addActionListener(new TraitementEffacer(this.fenetre, taux_p, graphique_p,  this.grandLivreDOrAPISeulement, this.centre));
+        eff.addActionListener(new TraitementEffacer(this.fenetre, this.grandLivreDOrAPISeulement, this.centre));
         taux_date.addActionListener(new TraitementTaux(this.fenetre, this.grandLivreDOrAPISeulement, this.centre));
         taux_type.addActionListener(new TraitementTauxType(this.fenetre, this.grandLivreDOrAPISeulement, this.centre));
         graphique.addActionListener(new TraitementGraphique(this.fenetre, this.grandLivreDOrAPISeulement, this.centre));
