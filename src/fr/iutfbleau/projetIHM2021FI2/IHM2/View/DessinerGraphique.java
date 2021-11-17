@@ -39,17 +39,17 @@ public class DessinerGraphique extends JComponent {
             secondPinceau.setColor(this.getBackground());
             secondPinceau.fillRect(0, 0, this.getWidth(), this.getHeight());
         }
-        System.out.println("1 ligne verticale");
         //La ligne droite verticale
         secondPinceau.setColor(Color.BLACK);
         secondPinceau.drawLine(20, 20, 20, hauteur-20);
 
-        System.out.println("2 fleche");
         //La flèche au bout de la droite
+        secondPinceau.setColor(Color.GREEN);
         secondPinceau.drawLine(10, 10, 20, hauteur-20);
+        secondPinceau.setColor(Color.RED);
         secondPinceau.drawLine(30, 30, 20, hauteur-20);
 
-        System.out.println("3 petits traits");
+        /*
         //Les petits traits
         secondPinceau.drawString("100", 10, trait);
         secondPinceau.drawLine(15, trait  , 25, trait);
@@ -80,11 +80,13 @@ public class DessinerGraphique extends JComponent {
 
         secondPinceau.drawString("10", 10, (hauteur-40));
         secondPinceau.drawLine(15, (hauteur-40), 25, (hauteur-40));
+        */
 
         //La ligne horizontale
-        secondPinceau.setColor(Color.BLACK);
+        secondPinceau.setColor(Color.YELLOW);
         secondPinceau.drawLine(20, hauteur-20, largeur-20, hauteur-20);
 
+        /*
         //Premier rectangle (3 ans)
         secondPinceau.setColor(Color.BLACK);
         secondPinceau.fillRect(40, hauteur-20, un*this.ratioComp, 40);
@@ -102,5 +104,6 @@ public class DessinerGraphique extends JComponent {
             secondPinceau.drawString("Ratio des trois mois demandés", 40+40+20+10, hauteur-10);
         }
         secondPinceau.drawString(""+this.ratio, 40+40+20+20, 10);
+        */
     }
 }

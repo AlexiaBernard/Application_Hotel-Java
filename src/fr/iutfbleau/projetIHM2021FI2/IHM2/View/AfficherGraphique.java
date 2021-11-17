@@ -41,13 +41,10 @@ public class AfficherGraphique  {
     }
 
     public void run() {
-        System.out.println("dans afficher graphique");
         DessinerGraphique graphique = new DessinerGraphique(this.centre, this.retour, 
                 this.ratio, this.ratioComp);
-        //this.centre.add(graphique);
         this.fenetre.remove(this.centre);
         this.fenetre.add(graphique, BorderLayout.CENTER);
-        System.out.println("après dessiner graph");
         this.fenetre.repaint();
         this.fenetre.revalidate();
         this.fenetre.setVisible(true);
