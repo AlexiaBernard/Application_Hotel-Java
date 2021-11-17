@@ -111,7 +111,7 @@ public class DessinerGraphique extends JComponent {
             secondPinceau.setColor(Color.BLACK);
             secondPinceau.drawString(""+this.ratio, 310, decHaut+un*110-this.ratio*un-10);
         } else if(ratio == 0){
-            secondPinceau.drawString(""+this.ratio, 310, hauteur-30);
+            secondPinceau.drawString(""+this.ratio, 310,  decHaut+un*110-10);
         }
     }
 }

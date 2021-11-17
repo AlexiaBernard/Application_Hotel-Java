@@ -501,7 +501,7 @@ public class ReservationFactoryP implements ReservationFactory {
                         compteur++;
                     }
                 }
-                if (compteur != 0){
+                if (compteur > 0){
                     reser.add(r);
                 }
             }
