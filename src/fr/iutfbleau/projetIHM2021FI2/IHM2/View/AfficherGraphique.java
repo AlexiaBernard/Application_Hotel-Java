@@ -2,6 +2,7 @@ package fr.iutfbleau.projetIHM2021FI2.IHM2.View;
 
 import java.time.LocalDate;
 import javax.swing.*;
+import java.awt.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
 
@@ -44,7 +45,8 @@ public class AfficherGraphique  {
         DessinerGraphique graphique = new DessinerGraphique(this.centre, this.retour, 
                 this.ratio, this.ratioComp);
         //this.centre.add(graphique);
-        this.fenetre.add(graphique);
+        this.fenetre.remove(this.centre);
+        this.fenetre.add(graphique, BorderLayout.CENTER);
         System.out.println("après dessiner graph");
         this.fenetre.repaint();
         this.fenetre.revalidate();
