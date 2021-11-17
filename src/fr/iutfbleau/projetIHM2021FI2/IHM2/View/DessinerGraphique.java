@@ -95,7 +95,8 @@ public class DessinerGraphique extends JComponent {
             secondPinceau.drawString(""+this.ratioComp, 100, hauteur-20-un*this.ratioComp-10);
         } else if (ratioComp == 0){
             secondPinceau.drawString(""+this.ratioComp, 100, hauteur-30);
-            secondPinceau.fillRect(80, hauteur-20-30*un, 40, 30*un);
+            secondPinceau.setColor(Color.BLUE);
+            secondPinceau.fillRect(80, hauteur-20-(30%10*trait)-(30-30%10)*un, 40, (30%10*trait)-(30-30%10)*un);
         }
         
         //Deuxième rectangle (1 semaine, 1 mois ou 3 mois)
@@ -109,7 +110,7 @@ public class DessinerGraphique extends JComponent {
         }
         if (ratio > 0){
             secondPinceau.setColor(Color.ORANGE);
-            secondPinceau.fillRect(290, hauteur-20-30*un, 40, 30*un);
+            secondPinceau.fillRect(290, hauteur-20-(30%10*trait)-(30-30%10)*un, 40, (30%10*trait)-(30-30%10)*un);
             //secondPinceau.fillRect(290, hauteur-20-un*this.ratio, 40, un*this.ratio);
             secondPinceau.setColor(Color.BLACK);
             secondPinceau.drawString(""+this.ratio, 310, hauteur-20-un*this.ratio-10);
