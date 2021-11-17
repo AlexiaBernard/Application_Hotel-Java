@@ -28,8 +28,7 @@ public class DessinerGraphique extends JComponent {
     @Override
     protected void paintComponent(Graphics pinceau) {
         int hauteur = this.getWidth()-180;
-        int espace = hauteur-20;
-        int un = espace/100;
+        int un = (hauteur-40)/100;
 
         Graphics secondPinceau = pinceau.create();
         //Pour pas transparent
@@ -88,13 +87,13 @@ public class DessinerGraphique extends JComponent {
         secondPinceau.drawString("Ratio sur 3 ans", 65, hauteur-5);
         if (ratioComp > 0){
             secondPinceau.setColor(Color.BLUE);
-            secondPinceau.fillRect(80, hauteur-un*this.ratioComp, 40, un*this.ratioComp);
+            secondPinceau.fillRect(80, hauteur-20-un*this.ratioComp, 40, un*this.ratioComp);
             secondPinceau.setColor(Color.BLACK);
-            secondPinceau.drawString(""+this.ratioComp, 100, hauteur-un*this.ratioComp-10);
+            secondPinceau.drawString(""+this.ratioComp, 100, hauteur-20-un*this.ratioComp-10);
         } else if (ratioComp == 0){
             secondPinceau.drawString(""+this.ratioComp, 100, hauteur-30);
             secondPinceau.setColor(Color.BLUE);
-            secondPinceau.fillRect(80, hauteur-30*un, 40, 30*un);
+            secondPinceau.fillRect(80, hauteur-20-30*un, 40, 30*un);
         }
         
         //Deuxième rectangle (1 semaine, 1 mois ou 3 mois)
