@@ -32,6 +32,7 @@ public class Bureau {
 
         //Taux d'occupation
         JPanel taux_p = new JPanel();
+        taux_p.setName("taux");
         JLabel taux_l = new JLabel("Taux d'occupation d'une journée");
         JButton taux_date = new JButton("Demander");
         JButton taux_type = new JButton("Demander par type");
@@ -43,12 +44,15 @@ public class Bureau {
 
         //Graphique d'occupation
         JPanel graphique_p = new JPanel();
+        graphique_p.setName("graph");
         JLabel graphique_l = new JLabel("Graphique d'occupation");
         JButton graphique = new JButton("Demander");
         graphique_p.setLayout(new GridLayout(3,1));
         graphique_p.add(eff);
         graphique_p.add(graphique_l);
         graphique_p.add(graphique);
+
+        this.centre.setName("centre");
 
         this.fenetre.add(taux_p, BorderLayout.NORTH);
         this.fenetre.add(this.centre, BorderLayout.CENTER);
