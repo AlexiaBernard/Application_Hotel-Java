@@ -40,23 +40,23 @@ public class DessinerGraphique extends JComponent {
         }
         //La ligne droite verticale
         secondPinceau.setColor(Color.BLACK);
-        secondPinceau.drawLine(40, decHaut, 40, un*100);
+        secondPinceau.drawLine(40, decHaut, 40, decHaut+un*100);
 
         //La flèche au bout de la droite
-        secondPinceau.drawLine(40, decHaut, 35, decHaut-10);
-        secondPinceau.drawLine(40, decHaut, 45, decHaut-10);
+        secondPinceau.drawLine(40, decHaut, 35, decHaut+10);
+        secondPinceau.drawLine(40, decHaut, 45, decHaut+10);
 
         //Les petits traits
         secondPinceau.drawString("100", 7, decHaut+un*10);
         secondPinceau.drawLine(35, decHaut+un*10, 45, decHaut+un*10);
 
-        secondPinceau.drawString("90", 10, decHaut+un*decHaut+5);
-        secondPinceau.drawLine(35, decHaut+un*40, 45, decHaut+un*40);
+        secondPinceau.drawString("90", 10, decHaut+un*20+5);
+        secondPinceau.drawLine(35, decHaut+un*20, 45, decHaut+un*20);
 
         secondPinceau.drawString("80", 10, decHaut+un*30+5);
         secondPinceau.drawLine(35, decHaut+un*30, 45, decHaut+un*30);
 
-        secondPinceau.drawString("70", 10, decHaut+un*decHaut+5);
+        secondPinceau.drawString("70", 10, decHaut+un*40+5);
         secondPinceau.drawLine(35, decHaut+un*40, 45, decHaut+un*40);
 
         secondPinceau.drawString("60", 10, decHaut+un*50+5);
@@ -80,7 +80,7 @@ public class DessinerGraphique extends JComponent {
 
         //La ligne horizontale
         secondPinceau.setColor(Color.BLACK);
-        secondPinceau.drawLine(40, un*100, 450, un*100);
+        secondPinceau.drawLine(40, decHaut+un*100, 450, decHaut+un*100);
 
         
         //Premier rectangle (3 ans)
