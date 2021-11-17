@@ -36,10 +36,10 @@ public class MainMP {
                 Menu menu = new Menu(bookingPointComAPISeulement, grandLivreDOrAPISeulement,fenetre, centre);
                 menu.run();
             } catch (SQLException e) {
-                System.err.println("La connexion avec la base de données a echoué.");
+                JOptionPane.showMessageDialog(fenetre, "La connexion avec la base de données a echoué.");
             }  
         } catch (ClassNotFoundException e) {
-            System.err.println("Impossible de se connecter à la base de données.");
+            JOptionPane.showMessageDialog(fenetre, "Impossible de se connecter à la base de données.");
         }
     }    
 }
