@@ -28,7 +28,7 @@ public class DessinerGraphique extends JComponent {
     @Override
     protected void paintComponent(Graphics pinceau) {
         System.out.println("dans dessiner graphique");
-        int hauteur = this.getWidth()-200;
+        int hauteur = this.getWidth()-180;
         int largeur = this.getHeight();
         int trait = (hauteur-40)/10;
         int un = (hauteur-40)/100;
@@ -80,16 +80,17 @@ public class DessinerGraphique extends JComponent {
         
 
         //La ligne horizontale
-        secondPinceau.setColor(Color.YELLOW);
-        secondPinceau.drawLine(40, hauteur-20, largeur-40, hauteur-20);
+        secondPinceau.setColor(Color.BLACK);
+        secondPinceau.drawLine(40, hauteur-20, largeur-20, hauteur-20);
 
-        /*
+        
         //Premier rectangle (3 ans)
         secondPinceau.setColor(Color.BLACK);
         secondPinceau.fillRect(40, hauteur-20, un*this.ratioComp, 40);
         secondPinceau.drawString("Ratio sur 3 ans", 50, hauteur-10);
         secondPinceau.drawString(""+this.ratioComp, 60, 10);
 
+        /*
         //Deuxième rectangle (1 semaine, 1 mois ou 3 mois)
         secondPinceau.setColor(Color.BLACK);
         secondPinceau.fillRect(40+40+20, hauteur-20, un*this.ratio, 40);
