@@ -45,7 +45,7 @@ public class DessinerGraphique extends JComponent {
         //La flèche au bout de la droite
         secondPinceau.drawLine(40, decHaut, 35, decHaut+10);
         secondPinceau.drawLine(40, decHaut, 45, decHaut+10);
-        secondPinceau.drawString("(en %)", 35, decHaut-7);
+        secondPinceau.drawString("(en %)", 25, decHaut-7);
 
         //Les petits traits
         secondPinceau.drawString("100", 7, decHaut+un*10+5);
