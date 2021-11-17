@@ -74,8 +74,8 @@ public class DessinerGraphique extends JComponent {
         secondPinceau.drawString("20", 10, un*10*9+5);
         secondPinceau.drawLine(35, un*10*9, 45, un*10*9);
 
-        secondPinceau.drawString("10", 10, (hauteur-40)+5);
-        secondPinceau.drawLine(35, (hauteur-40), 45, (hauteur-40));
+        secondPinceau.drawString("10", 10, un*10*10+5);
+        secondPinceau.drawLine(35, un*10*10, 45, un*10*10);
         
 
         //La ligne horizontale
