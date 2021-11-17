@@ -40,6 +40,7 @@ public class TraitementEffacer implements ActionListener {
         this.fenetre.add(this.graphique_p, BorderLayout.SOUTH);
         this.fenetre.repaint();
         this.fenetre.revalidate();
+        this.fenetre.setVisible(true);
         /*if (this.centre == null){
             this.fenetre.removeAll();
         } else {
