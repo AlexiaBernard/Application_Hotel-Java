@@ -210,12 +210,9 @@ public class ReservationFactoryP implements ReservationFactory {
     public Set<Chambre> getChambres(Prereservation p) {
         Objects.requireNonNull(p,"La préréservation est null.");
         try {
-            System.out.println("dans g ch 1");
             Set<Reservation> reservations = this.getAllReservation();
-            System.out.println("2");
             Set<Chambre> chambres = this.getAllChambreCategorie(p.getTypeChambre());
             Set<Chambre> cha = new HashSet<Chambre>();
-            System.out.println("3");
             for (Reservation r : reservations){
                 for(Chambre c : chambres){
                     if ( c.getType().equals(r.getChambre().getType())) {

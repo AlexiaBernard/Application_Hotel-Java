@@ -12,7 +12,7 @@ public class MainMP {
 
         JFrame fenetre = new JFrame("Menu");
 
-        fenetre.setSize(500, 500);
+        fenetre.setSize(500, 600);
         fenetre.setLocation(100, 100);
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

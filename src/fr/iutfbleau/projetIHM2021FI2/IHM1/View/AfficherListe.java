@@ -45,19 +45,28 @@ public class AfficherListe {
      * Il est possible d'en choisir une grâce à des boutons-radio et un bouton Valider
      */
     public void run(){
+        Color fond = new Color(222,212,249);
         int compteur = 0;
         JPanel panel_liste1 = new JPanel();
         ButtonGroup group = new ButtonGroup();
+        //Panel du boutton pour pouvoir définir sa taille
+        JPanel valider_jp = new JPanel();
+        valider_jp.setBackground(fond);
         JButton valider = new JButton("Valider");
+        valider.setPreferredSize(new Dimension(100, 30));
+        valider_jp.add(valider);
+
 
         for(Chambre c : this.disponibles){
             compteur++;
         }
 
         panel_liste1.setLayout(new GridLayout(4,compteur%4));
+        panel_liste1.setBackground(fond);
         compteur = 0;
         for(Chambre c : this.disponibles){
            JRadioButton btn = new JRadioButton();
+           btn.setBackground(fond);
            btn.setText(""+c.getNumero());
            btn.setActionCommand(""+c.getNumero());
            group.add(btn);
@@ -66,8 +75,9 @@ public class AfficherListe {
 
         JPanel centre = new JPanel();
         centre.setLayout(new GridLayout(2,1));
+        centre.setBackground(fond);
         centre.add(panel_liste1);
-        centre.add(valider);
+        centre.add(valider_jp);
 
         this.fenetre.add(centre, BorderLayout.CENTER);
         this.fenetre.setVisible(true);
