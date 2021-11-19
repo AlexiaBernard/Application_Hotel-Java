@@ -38,11 +38,13 @@ public class VerificationNomPrenom {
         try{
             Set<Prereservation> prereservations = this.bookingPointComAPISeulement.getPrereservations(this.nom, this.prenom);
             if (prereservations.size() == 0){
-                JOptionPane.showMessageDialog(this.fenetre,"Pas de préréservation pour ce client.");
-                Menu menu = new Menu(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.centre);
-                menu.run();
+                throw new IllegalStateException("Il n'y a pas de préréservation pour ce client");
             }
-            AfficherReservations rese = new AfficherReservations(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, this.fenetre, this.centre, prereservations);
+            if (this.centre != null){
+                this.centre.removeAll();
+            }
+            AfficherReservations rese = new AfficherReservations(this.bookingPointComAPISeulement, this.grandLivreDOrAPISeulement, 
+                    this.fenetre, this.centre, prereservations);
             rese.run();
         }catch(IllegalStateException e){
             JOptionPane.showMessageDialog(this.fenetre,"Pas de préréservation pour ce client.");

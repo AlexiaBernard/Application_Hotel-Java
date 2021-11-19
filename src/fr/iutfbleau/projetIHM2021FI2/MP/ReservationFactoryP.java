@@ -210,18 +210,28 @@ public class ReservationFactoryP implements ReservationFactory {
     public Set<Chambre> getChambres(Prereservation p) {
         Objects.requireNonNull(p,"La préréservation est null.");
         try {
+            System.out.println("dans g ch 1");
             Set<Reservation> reservations = this.getAllReservation();
+            System.out.println("2");
             Set<Chambre> chambres = this.getAllChambreCategorie(p.getTypeChambre());
+            Set<Chambre> cha = new HashSet<Chambre>();
+            System.out.println("3");
             for (Reservation r : reservations){
                 for(Chambre c : chambres){
                     if ( c.getType().equals(r.getChambre().getType())) {
                         //Si c'est la même date
                         if (p.getDateDebut().equals(r.getDateDebut())){
-                            chambres.remove(c);
+                            //chambres.remove(c);
                             //Si c'est pas la même date mais dans la reservation (nb de jour)
                         } else if ((r.getDateDebut().compareTo(p.getDateDebut()))<0 && r.getDateDebut().plusDays(r.getJours()).compareTo(p.getDateDebut())<=0 )  {
-                            chambres.remove(c);
+                            //chambres.remove(c);
+                        } else {
+                            if (cha.contains(c) == false)
+                            cha.add(c);
                         }
+                    } else {
+                        if (cha.contains(c) == false)
+                            cha.add(c);
                     }
                 }
             }

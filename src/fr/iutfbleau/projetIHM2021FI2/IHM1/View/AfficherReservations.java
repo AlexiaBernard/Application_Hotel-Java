@@ -79,8 +79,7 @@ public class AfficherReservations{
      * @param centre centre de la fenêtre
      */
     public void deleteRef(JPanel centre){
-        centre.removeAll();
-        //this.fenetre.remove(centre);
+        this.fenetre.remove(centre);
         this.fenetre.repaint();
         this.fenetre.revalidate();
         this.fenetre.setVisible(true);

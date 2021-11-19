@@ -44,7 +44,9 @@ public class TraitementListe{
     public void run(){
         Set<Chambre> disponibles=null;
         try{
+            System.out.println("dans tr liste");
             disponibles = this.grandLivreDOrAPISeulement.getChambres(this.prereservation);
+            System.out.println("1");
             AfficherListe liste = new AfficherListe(this.bookingPointComAPISeulement,
                     this.grandLivreDOrAPISeulement, this.fenetre, this.prereservation, disponibles);
             liste.run();            
