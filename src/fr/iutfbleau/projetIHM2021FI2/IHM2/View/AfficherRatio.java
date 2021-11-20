@@ -34,7 +34,6 @@ public class AfficherRatio {
         JLabel ratio = new JLabel("Le ratio pour le "+this.date+" est de "+this.ratio+".");
 
         this.centre.add(ratio);
-
         this.fenetre.add(centre, BorderLayout.CENTER);
         this.fenetre.setVisible(true);
     }

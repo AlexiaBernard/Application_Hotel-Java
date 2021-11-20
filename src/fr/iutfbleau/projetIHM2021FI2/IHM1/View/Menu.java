@@ -1,8 +1,6 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM1.View;
 
 import javax.swing.*;
-import javax.swing.plaf.DimensionUIResource;
-
 import java.awt.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
