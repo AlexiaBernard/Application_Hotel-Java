@@ -30,18 +30,19 @@ public class Bureau {
     //------------------Partie du haut : Les taux d'occupation--------------//
         //Taux d'occupation
         JLabel taux_l = new JLabel("Taux d'occupation d'une journée");
+        taux_l.setHorizontalAlignment(SwingConstants.CENTER);
 
         //Panel du boutton pour pouvoir définir sa taille
         JButton taux_date = new JButton("Demander");
         JPanel taux_d_p = new JPanel();
-        taux_date.setPreferredSize(new Dimension(100, 30));
+        taux_date.setPreferredSize(new Dimension(250, 30));
         taux_d_p.setBackground(fond);
         taux_d_p.add(taux_date);
 
         //Panel du boutton pour pouvoir définir sa taille
         JButton taux_type = new JButton("Demander par type");
         JPanel taux_t_p = new JPanel();
-        taux_type.setPreferredSize(new Dimension(100, 30));
+        taux_type.setPreferredSize(new Dimension(250, 30));
         taux_t_p.setBackground(fond);
         taux_t_p.add(taux_type);
 
@@ -79,6 +80,7 @@ public class Bureau {
         
         //Label du graphique
         JLabel graphique_l = new JLabel("Graphique d'occupation");
+        graphique_l.setHorizontalAlignment(SwingConstants.CENTER);
         //Panel du boutton "Demander" pour pouvoir définir sa taille
         JButton graphique = new JButton("Demander");
         JPanel graph_p = new JPanel();
