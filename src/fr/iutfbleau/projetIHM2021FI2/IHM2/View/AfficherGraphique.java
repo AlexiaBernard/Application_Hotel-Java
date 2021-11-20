@@ -40,6 +40,7 @@ public class AfficherGraphique  {
         graphique.setName("graphique");
         graphique.setBackground(fond);
         //this.fenetre.add(graphique, BorderLayout.CENTER);
+        this.fenetre.add(this.centre, BorderLayout.CENTER);
         this.fenetre.repaint();
         this.fenetre.revalidate();
         this.fenetre.setVisible(true);
