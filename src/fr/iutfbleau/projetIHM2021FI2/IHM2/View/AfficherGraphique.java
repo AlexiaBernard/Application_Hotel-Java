@@ -34,13 +34,10 @@ public class AfficherGraphique  {
         Color fond = new Color(222,212,249);
         DessinerGraphique graphique = new DessinerGraphique(this.fenetre, this.retour, 
                 this.ratio, this.ratioComp);
-        //this.fenetre.remove(this.centre);
-        this.centre.removeAll();
-        this.centre.add(graphique);
+        this.fenetre.remove(this.centre);
         graphique.setName("graphique");
         graphique.setBackground(fond);
-        //this.fenetre.add(graphique, BorderLayout.CENTER);
-        this.fenetre.add(this.centre, BorderLayout.CENTER);
+        this.fenetre.add(graphique, BorderLayout.CENTER);
         this.fenetre.repaint();
         this.fenetre.revalidate();
         this.fenetre.setVisible(true);
