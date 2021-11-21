@@ -42,7 +42,9 @@ public class Menu {
         Color fond = new Color(222,212,249);
         
         /* Pour Référence */
-        JLabel textRetrouver_ref = new JLabel("Retrouver réservation avec les références.");
+        JLabel textRetrouver_ref = new JLabel("Retrouver réservation avec la référence.");
+        textRetrouver_ref.setHorizontalAlignment(SwingConstants.CENTER);
+        textRetrouver_ref.setFont(new Font("Serif", Font.HANGING_BASELINE, 20));
         JPanel retrouver_ref = new JPanel();
         JTextField reference = new JTextField();
         //Panel du boutton pour pouvoir définir sa taille
@@ -54,6 +56,8 @@ public class Menu {
 
         /* Pour Nom et Prénom */
         JLabel textRetrouver_np = new JLabel("Retrouver réservation avec le nom et le prénom du client.");
+        textRetrouver_np.setHorizontalAlignment(SwingConstants.CENTER);
+        textRetrouver_np.setFont(new Font("Serif", Font.HANGING_BASELINE, 20));
         JPanel retrouver_np = new JPanel();
         JPanel jp_nom_prenom = new JPanel();
         JLabel jl_nom = new JLabel("Nom : ");
@@ -62,6 +66,7 @@ public class Menu {
         jl_prenom.setHorizontalAlignment(SwingConstants.RIGHT);
         JTextField nom = new JTextField();
         JTextField prenom = new JTextField();
+
         //Panel du boutton pour pouvoir définir sa taille
         JPanel valider_np_jp = new JPanel();
         JButton valider_np = new JButton("Valider");
