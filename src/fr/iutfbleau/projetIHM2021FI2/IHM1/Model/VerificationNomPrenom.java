@@ -6,6 +6,13 @@ import javax.swing.*;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.View.*;
 
+/**
+ * <code>AjoutReservation</code> est un modèle.
+ * Il sert à vérifier la correspondance entre les infos du client et une préréservation dans la base de données.
+ * 
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
+ */
 public class VerificationNomPrenom {
 
     private PrereservationFactory bookingPointComAPISeulement;
@@ -16,13 +23,13 @@ public class VerificationNomPrenom {
     private String prenom;
 
     /**
-     * 
-     * @param bookingPointComAPISeulement
-     * @param grandLivreDOrAPISeulement
-     * @param fenetre
-     * @param centre
-     * @param nom
-     * @param prenom
+     * Constructeur permettant d'accéder aux informations sur le client
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
+     * @param fenetre la fenetre
+     * @param centre le centre de la fenetre
+     * @param nom le nom du client
+     * @param prenom le prénom du client
      */
     public VerificationNomPrenom(PrereservationFactory bookingPointComAPISeulement, 
             ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JPanel centre, String nom, String prenom){
@@ -34,6 +41,9 @@ public class VerificationNomPrenom {
         this.prenom = prenom;      
     }
 
+    /**
+     * Vérification dans la BD si le client existe & a fait une préréservation
+     */
     public void run(){
         try{
             Set<Prereservation> prereservations = this.bookingPointComAPISeulement.getPrereservations(this.nom, this.prenom);

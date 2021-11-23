@@ -7,6 +7,13 @@ import javax.swing.*;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.View.*;
 
+/**
+ * <code>AjoutReservation</code> est un modèle.
+ * Il sert à ajouter une réservation à partir d'une préréservation dans la base de données.
+ * 
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
+ */
 public class AjoutReservation {
 
     private PrereservationFactory bookingPointComAPISeulement;
@@ -19,15 +26,15 @@ public class AjoutReservation {
     private int i;
     
     /**
-     * 
-     * @param bookingPointComAPISeulement
-     * @param grandLivreDOrAPISeulement
-     * @param fenetre
-     * @param chambre
-     * @param prereservation
-     * @param centre
-     * @param disponibles
-     * @param i
+     * Constructeur permettant d'accéder à une préréservation
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
+     * @param fenetre la fenetre
+     * @param chambre une chambre
+     * @param prereservation une préreservation
+     * @param centre le centre de la fenetre
+     * @param disponibles chambres disponibles
+     * @param i i
      */
     public AjoutReservation(PrereservationFactory bookingPointComAPISeulement, 
                 ReservationFactory grandLivreDOrAPISeulement,  JFrame fenetre, 
