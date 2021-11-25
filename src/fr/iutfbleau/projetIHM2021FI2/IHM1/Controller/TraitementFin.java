@@ -20,8 +20,9 @@ public class TraitementFin {
 
     /**
      * Récupère la fenêtre pour la gérer
-     * @param grandLivreDOrAPISeulement
-     * @param fenetre la fenêtre 
+     * 
+     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
+     * @param fenetre                   la fenêtre
      */
     public TraitementFin(ReservationFactory grandLivreDOrAPISeulement,JFrame fenetre) {
         this.grandLivreDOrAPISeulement = grandLivreDOrAPISeulement;

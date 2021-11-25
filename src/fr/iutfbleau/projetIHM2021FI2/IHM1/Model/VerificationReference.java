@@ -22,11 +22,13 @@ public class VerificationReference {
 
     /**
      * Constructeur permettant d'accéder aux informations sur la référence
-     * @param bookingPointComAPISeulement interface PreservationFactory de l'API correspondant à la préreservation
-     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
-     * @param fenetre la fenetre
-     * @param reference référence de la préréservation
-     * @param prenom le prénom du client
+     * 
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API
+     *                                    correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement   modèle non persistant de Réservation
+     * @param fenetre                     la fenetre
+     * @param reference                   référence de la préréservation
+     * @param prenom                      le prénom du client
      */
     public VerificationReference(PrereservationFactory bookingPointComAPISeulement,
             ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, String reference, JPanel centre) {

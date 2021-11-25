@@ -24,11 +24,13 @@ public class AfficherListe {
 
     /**
      * Constructeur permettant d'accéder à la liste des chambres libres par la suite
-     * @param bookingPointComAPISeulement interface PreservationFactory de l'API correspondant à la préreservation
-     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
-     * @param fenetre la fenetre
-     * @param prereservation la préreservation 
-     * @param disponibles chambres disponibles
+     * 
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API
+     *                                    correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement   modèle non persistant de Réservation
+     * @param fenetre                     la fenetre
+     * @param prereservation              la préreservation
+     * @param disponibles                 chambres disponibles
      */
     public AfficherListe(PrereservationFactory bookingPointComAPISeulement, 
             ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, 
@@ -41,8 +43,9 @@ public class AfficherListe {
     }    
 
     /**
-     * Affiche la liste de chambres disponibles au centre de la fenetre sous forme de liste
-     * Il est possible d'en choisir une grâce à des boutons-radio et un bouton Valider
+     * Affiche la liste de chambres disponibles au centre de la fenetre sous forme
+     * de liste. Il est possible d'en choisir une grâce à des boutons-radio et un
+     * bouton Valider
      */
     public void run(){
         Color fond = new Color(222,212,249);

@@ -6,6 +6,7 @@ import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.*;
 
 import java.awt.event.*;
+
 /**
  * <code>TraitementReference</code> est un contrôleur.
  * Il gère le bouton Valider après la référence
@@ -13,7 +14,6 @@ import java.awt.event.*;
  * @author Enora GERMOND, Aléxia Bernard
  * @version 1.0
  */
-
 public class TraitementReference implements ActionListener{
     
     private PrereservationFactory bookingPointComAPISeulement;

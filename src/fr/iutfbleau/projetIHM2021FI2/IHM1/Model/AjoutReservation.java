@@ -1,7 +1,6 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM1.Model;
 
 import java.util.Set;
-
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
@@ -27,14 +26,16 @@ public class AjoutReservation {
     
     /**
      * Constructeur permettant d'accéder à une préréservation
-     * @param bookingPointComAPISeulement interface PreservationFactory de l'API correspondant à la préreservation
-     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
-     * @param fenetre la fenetre
-     * @param chambre une chambre
-     * @param prereservation une préreservation
-     * @param centre le centre de la fenetre
-     * @param disponibles chambres disponibles
-     * @param i i
+     * 
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API
+     *                                    correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement   modèle non persistant de Réservation
+     * @param fenetre                     la fenetre
+     * @param chambre                     une chambre
+     * @param prereservation              une préreservation
+     * @param centre                      le centre de la fenetre
+     * @param disponibles                 chambres disponibles
+     * @param i                           i
      */
     public AjoutReservation(PrereservationFactory bookingPointComAPISeulement, 
                 ReservationFactory grandLivreDOrAPISeulement,  JFrame fenetre, 
@@ -50,6 +51,9 @@ public class AjoutReservation {
        this.i = i;
     }
 
+    /**
+     * Crée une réservation dans la base de données et appelle Fin pour afficher un dialogue de validation.
+     */
     public void run(){
         try{
             this.grandLivreDOrAPISeulement.createReservation(this.prereservation,this.chambre);

@@ -22,13 +22,16 @@ public class Afficher {
     private JPanel centre;
 
     /**
-     * Constructeur qui permer d'accéder à la fenêtre à la chambre et à la préreservation en paramètre par la suite
-     * @param bookingPointComAPISeulement interface PreservationFactory de l'API correspondant à la préreservation
-     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
-     * @param fenetre la fenetre
-     * @param ch1 une chambre
-     * @param prereservation une préréservation
-     * @param centre un JPanel
+     * Constructeur qui permer d'accéder à la fenêtre à la chambre et à la
+     * préreservation en paramètre par la suite
+     * 
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API
+     *                                    correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement   modèle non persistant de Réservation
+     * @param fenetre                     la fenetre
+     * @param ch1                         une chambre
+     * @param prereservation              une préréservation
+     * @param centre                      un JPanel
      */
     public Afficher(PrereservationFactory bookingPointComAPISeulement, 
                 ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre,

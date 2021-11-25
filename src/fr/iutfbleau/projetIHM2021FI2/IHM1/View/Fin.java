@@ -20,11 +20,14 @@ public class Fin {
     private JPanel centre;
     
     /**
-     *Constructeur permettant d'accéder à la liste des réservations effectuées par une personne
-     * @param bookingPointComAPISeulement interface PreservationFactory de l'API correspondant à la préreservation
-     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
-     * @param fenetre la fenetre
-     * @param centre centre de la fenetre
+     * Constructeur permettant d'accéder à la liste des réservations effectuées par
+     * une personne
+     * 
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API
+     *                                    correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement   modèle non persistant de Réservation
+     * @param fenetre                     la fenetre
+     * @param centre                      centre de la fenetre
      */
     public Fin(PrereservationFactory bookingPointComAPISeulement, 
             ReservationFactory grandLivreDOrAPISeulement, JFrame fenetre, JPanel centre){

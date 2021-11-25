@@ -6,8 +6,8 @@ import fr.iutfbleau.projetIHM2021FI2.API.*;
 import fr.iutfbleau.projetIHM2021FI2.IHM1.Model.*;
 
 /**
- * <code>TraitementNomPrenom</code> est un contrôleur.
- * Il gère le bouton lancer du menu
+ * <code>TraitementValider</code> est un contrôleur.
+ * Il gère le bouton <b>Oui</b> suite à la dialogue de confirmation
  * 
  * @author Enora GERMOND, Aléxia Bernard
  * @version 1.0
@@ -23,12 +23,15 @@ public class TraitementValider{
     private JPanel centre;
     
     /**
-     * Constructeur qui permer d'accéder à la fenêtre par la suite
-     * @param bookingPointComAPISeulement
-     * @param grandLivreDOrAPISeulement
-     * @param fenetre 
-     * @param prereservation
-     * @param chambre
+     * Constructeur qui permer d'accéder à la fenêtre et à la préreservation en
+     * paramètre par la suite
+     * 
+     * @param bookingPointComAPISeulement interface PreservationFactory de l'API
+     *                                    correspondant à la préreservation
+     * @param grandLivreDOrAPISeulement   modèle non persistant de Réservation
+     * @param fenetre                     la fenêtre
+     * @param prereservation              la préreservation
+     * @param chambre                     la chambre
      */
     public TraitementValider(PrereservationFactory bookingPointComAPISeulement, 
             ReservationFactory grandLivreDOrAPISeulement,  JFrame fenetre, 
@@ -40,6 +43,9 @@ public class TraitementValider{
         this.chambre = chambre;
     }
     
+    /**
+     * Exécution du bouton : appel de <b>AjoutReservation</b>
+     */
     public void run(){
         AjoutReservation reser = new AjoutReservation(this.bookingPointComAPISeulement, 
                 this.grandLivreDOrAPISeulement, this.fenetre, this.chambre, 
