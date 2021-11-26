@@ -11,6 +11,13 @@ import fr.iutfbleau.projetIHM2021FI2.API.TypeChambre;
 import fr.iutfbleau.projetIHM2021FI2.IHM2.Model.VerificationDateType;
 import fr.iutfbleau.projetIHM2021FI2.IHM2.View.Bureau;
 
+/**
+ * <code>TraitementGraphique</code> est un contrôleur. Il gère le bouton
+ * <b>Demander</b> le taux du Bureau
+ * 
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
+ */
 public class TraitementTauxType implements ActionListener {
 
     private JFrame fenetre;
@@ -18,10 +25,11 @@ public class TraitementTauxType implements ActionListener {
     private JPanel centre;
 
     /**
+     * Constructeur qui permer d'accéder à la fenêtre par la suite
      * 
-     * @param fenetre
-     * @param grandLivreDOrAPISeulement
-     * @param centre
+     * @param fenetre                   la fenetre
+     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
+     * @param centre                    le centre de la fenetre
      */
     public TraitementTauxType(JFrame fenetre, ReservationFactory grandLivreDOrAPISeulement, JPanel centre) {
         this.fenetre = fenetre;
@@ -29,6 +37,9 @@ public class TraitementTauxType implements ActionListener {
         this.centre = centre;
     }
 
+    /**
+     * Récupère des informations supplémentaires pour ensuite créer le graphique
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
