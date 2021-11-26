@@ -6,8 +6,21 @@ import javax.swing.*;
 import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
 import fr.iutfbleau.projetIHM2021FI2.MP.ReservationFactoryP;
 
+/**
+ * <code>BD</code> est un modèle.
+ * Elle permet de se connecter à la base de données et à envoyer un message d'erreur si la connexion échoue.
+ * 
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
+ */
 public class BD {
 
+    /**
+     * Connexion à la base de données
+     * 
+     * @param fenetre la fenetre
+     * @return null
+     */
     public ReservationFactory Connexion(JFrame fenetre){
 
         try {

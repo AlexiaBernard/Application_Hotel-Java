@@ -6,6 +6,13 @@ import java.awt.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 
+/**
+ * <code>AfficherFin</code> est une vue
+ * Elle affiche le ratio de l'hotel pour une date donnée.
+ * 
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
+ */
 public class AfficherRatio {
 
     private JFrame fenetre;

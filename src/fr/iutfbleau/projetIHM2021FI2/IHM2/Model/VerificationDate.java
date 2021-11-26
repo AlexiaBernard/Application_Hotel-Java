@@ -7,6 +7,13 @@ import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
 import fr.iutfbleau.projetIHM2021FI2.IHM2.View.AfficherRatio;
 import fr.iutfbleau.projetIHM2021FI2.IHM2.View.Bureau;
 
+/**
+ * <code>VerificationDate</code> est un modèle.
+ * Il sert à calculer le ratio d'une date donnée.
+ * 
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
+ */
 public class VerificationDate {
 
     private JFrame fenetre;
@@ -15,11 +22,12 @@ public class VerificationDate {
     private JPanel centre;    
 
     /**
+     * Constructeur permettant d'accéder à une date
      * 
-     * @param fenetre
-     * @param grandLivreDOrAPISeulement
-     * @param date
-     * @param centre
+     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
+     * @param fenetre                   la fenetre
+     * @param date                      la date
+     * @param centre                    le centre de la fenetre
      */
     public VerificationDate(JFrame fenetre, ReservationFactory grandLivreDOrAPISeulement, LocalDate date, JPanel centre) {
         this.fenetre = fenetre;
@@ -28,6 +36,10 @@ public class VerificationDate {
         this.centre = centre;
     }
 
+    /**
+     * Vérification de l'état de la date donnée et appel de la fonction pour
+     * l'affichage du ratio
+     */
     public void run(){
         try {
             int ratio = grandLivreDOrAPISeulement.getRatio(this.date);

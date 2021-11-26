@@ -11,6 +11,13 @@ import fr.iutfbleau.projetIHM2021FI2.API.TypeChambre;
 import fr.iutfbleau.projetIHM2021FI2.IHM2.View.AfficherRatioType;
 import fr.iutfbleau.projetIHM2021FI2.IHM2.View.Bureau;
 
+/**
+ * <code>VerificationDateType</code> est un modèle.
+ * Il sert à calculer le ratio pour une date et un type de chambre donnés.
+ * 
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
+ */
 public class VerificationDateType {
 
     private JFrame fenetre;
@@ -20,12 +27,13 @@ public class VerificationDateType {
     private JPanel centre;
 
     /**
+     * Constructeur permettant d'accéder à un date et un type de chambre
      * 
-     * @param fenetre
-     * @param grandLivreDOrAPISeulement
-     * @param date
-     * @param type
-     * @param centre
+     * @param fenetre                   la fenetre
+     * @param grandLivreDOrAPISeulement modèle non persistant de Réservation
+     * @param date                      date donnée
+     * @param type                      type de la chambre
+     * @param centre                    centre de la fenetre
      */
     public VerificationDateType(JFrame fenetre, ReservationFactory grandLivreDOrAPISeulement, LocalDate date,
             TypeChambre type, JPanel centre) {
@@ -37,6 +45,10 @@ public class VerificationDateType {
         this.centre = centre;
     }
 
+    /**
+     * Vérification de l'état de la date et du type de chambre donnés et appel de la
+     * fonction pour l'affichage du ratio
+     */
     public void run(){
         try {
             int ratio = grandLivreDOrAPISeulement.getRatio(this.date, this.type);

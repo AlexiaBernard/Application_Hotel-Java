@@ -1,11 +1,15 @@
 package fr.iutfbleau.projetIHM2021FI2.IHM2.View;
 
-import java.time.LocalDate;
 import javax.swing.*;
 import java.awt.*;
 
-import fr.iutfbleau.projetIHM2021FI2.API.ReservationFactory;
-
+/**
+ * <code>AfficherFin</code> est une vue
+ * Elle affiche le graphique des ratio de l'hotel sur une période donnée
+ * 
+ * @author Enora GERMOND, Aléxia Bernard
+ * @version 1.0
+ */
 public class AfficherGraphique  {
 
     private JFrame fenetre;
