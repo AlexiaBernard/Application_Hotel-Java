@@ -4,13 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * <code>AfficherFin</code> est une vue
+ * <code>AfficherGraphique</code> est une vue
  * Elle affiche le graphique des ratio de l'hotel sur une période donnée
  * 
  * @author Enora GERMOND, Aléxia Bernard
  * @version 1.0
  */
-public class AfficherGraphique  {
+public class AfficherGraphique {
 
     private JFrame fenetre;
     private JPanel centre;
@@ -19,24 +19,29 @@ public class AfficherGraphique  {
     private int ratioComp;
 
     /**
+     * Constructeur permettant de récupérer les informations nécessaires à la
+     * création du graphique
      * 
-     * @param fenetre
-     * @param centre
-     * @param retour
-     * @param ratio
-     * @param ratioComp
+     * @param fenetre   la fenetre
+     * @param centre    centre de la fenetre
+     * @param retour    retour
+     * @param ratio     le ratio
+     * @param ratioComp ratio sur la durée
      */
     public AfficherGraphique(JFrame fenetre, JPanel centre, int retour, int ratio, int ratioComp) {
         this.fenetre = fenetre;
         this.centre = centre;
         this.retour = retour;
         this.ratio = ratio;
-        this.ratioComp = ratioComp;        
+        this.ratioComp = ratioComp;
     }
 
+    /**
+     * Affichage du graphique
+     */
     public void run() {
-        Color fond = new Color(222,212,249);
-        DessinerGraphique graphique = new DessinerGraphique(this.fenetre, this.retour, 
+        Color fond = new Color(222, 212, 249);
+        DessinerGraphique graphique = new DessinerGraphique(this.fenetre, this.retour,
                 this.ratio, this.ratioComp);
         this.fenetre.remove(this.centre);
         graphique.setName("graphique");

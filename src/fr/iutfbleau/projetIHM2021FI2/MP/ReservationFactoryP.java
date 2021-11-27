@@ -7,6 +7,10 @@ import java.util.*;
 
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 
+/**
+ * Usine persistante stockant les réservations dans une structure de donnée
+ * permettant de simuler un ensemble. 
+ */
 public class ReservationFactoryP implements ReservationFactory {
 
     private Connection connexion;

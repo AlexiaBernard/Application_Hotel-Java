@@ -2,13 +2,13 @@ package fr.iutfbleau.projetIHM2021FI2.MP;
 import fr.iutfbleau.projetIHM2021FI2.API.*;
 import java.time.LocalDate;
 import java.util.*;
+
 /**
- * Une préréservation non persitante toute bête
+ * Une préréservation persitante toute bête
  * 
  * e.g. utilisé par le système de réservation externe à l'hôtel.
  * 
  */
-
 public class PrereservationP implements Prereservation {
 
     private String reference;
